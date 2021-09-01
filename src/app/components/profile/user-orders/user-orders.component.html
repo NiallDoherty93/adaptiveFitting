@@ -1,0 +1,39 @@
+<div class="row">
+    <div class="col-md-6">
+      <a routerLink="/profile" class="btn btn-link">
+        <i class="fa fa-arrow-circle-o-left"></i> Back To Profile
+      </a>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+        <h2><i class="fa fa-shopping-basket"></i>Products</h2>
+     
+    </div>
+   
+</div>
+
+<table *ngIf="orders.length >0; else noOrders" class="table table-striped">
+
+    
+    
+    <thead class="thead-inverse">
+        <tr>
+            <th>Title</th>
+            <th>description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let order of orders">
+            <td>{{order.items}}</td>
+            <td>{{order.datePlaced}}</td>
+            
+            
+                
+         
+        </tr>
+    </tbody>
+</table>
+
+<ng-template #noOrders><hr><h5>You have no orders</h5></ng-template>

@@ -1,0 +1,48 @@
+<div class="row col-lg-10 col-md mx-auto" *ngIf="cart$ | async as cart">
+  <div class="heading">
+    <h2>Shopping Cart</h2>
+  </div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th></th>
+        <th class="text-center">Product</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of cart.items">
+        <td>{{ item?.product?.item }}</td>
+        <td>{{ item?.accessory?.item }}</td>
+        <!-- <td>{{ item.accessoriesUpper.item }}</td>
+        <td>{{ item.accessoriesLower.item }}</td>
+        <td>{{ item.accessoriesUpperItems.item }}</td>
+        <td>{{ item.accessoriesLowerItems.item }}</td> -->
+        <td>
+  
+        </td>
+        <td class="text-right">
+         
+        </td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th class="text-right">
+     
+        </th>
+      </tr>
+    </tfoot>
+  </table>
+  <button  class="nav-link" *ngIf="cart.items.length"
+    (click)="onSubmit()"
+  >Checkout
+    
+  
+  </button>
+
+</div>

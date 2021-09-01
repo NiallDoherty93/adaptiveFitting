@@ -1,0 +1,125 @@
+<div class="row">
+  <div class="col-md-6">
+    <a routerLink="/profile" class="btn btn-link">
+      <i class="fa fa-arrow-circle-o-left"></i> Back To Profile
+    </a>
+  </div>
+</div>
+
+<div class="card" *ngIf="user; else noUserDetails">
+  <div class="card-header">
+    Edit Details
+  </div>
+  <div class="card-body">
+    <form #userDetailsForm="ngForm" (ngSubmit)="onSubmitAdd(userDetailsForm)">
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input type="text" class="form-control" name="firstName" #userFirstName="ngModel"
+          [ngClass]="{'is-invalid': userFirstName.errors && userFirstName.touched}" [(ngModel)]="user.firstName"
+          minlength="2" required>
+        <div [hidden]="!userFirstName.errors?.required" class="invalid-feedback">
+          First name required
+
+        </div>
+        <div [hidden]="!userFirstName.errors?.minlength" class="invalid-feedback">
+          Must be at least 2 characters
+
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input type="text" class="form-control" name="lastName" #userLastName="ngModel"
+          [ngClass]="{'is-invalid': userLastName.errors && userLastName.touched}" [(ngModel)]="user.lastName"
+          minlength="2" required>
+        <div [hidden]="!userLastName.errors?.required" class="invalid-feedback">
+          Last name required
+
+        </div>
+        <div [hidden]="!userLastName.errors?.minlength" class="invalid-feedback">
+          Must be at least 2 characters
+
+        </div>
+      </div>
+
+      <!-- <div class="form-group">
+                <label for="email">Email</label>
+                <input 
+                type="text"
+                class="form-control"
+                name="email"
+                #email="ngModel"
+                [ngClass]="{'is-invalid': email.errors && email.touched}"
+                [(ngModel)]="user.email"
+                pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" 
+                required
+                
+                >
+                <div [hidden]="!email.errors?.required"
+                class="invalid-feedback">
+               Email required
+
+                </div>
+                <div [hidden]="!email.errors?.pattern"
+                class="invalid-feedback">
+                Email is not valid 
+
+                </div>
+            </div> -->
+
+      <div class="form-group">
+        <label for="phone">Phone</label>
+        <input type="text" class="form-control" name="phone" #userPhone="ngModel"
+          [ngClass]="{'is-invalid': userPhone.errors && userPhone.touched}" [(ngModel)]="user.phone" minlength="2"
+          required>
+        <div [hidden]="!userPhone.errors?.required" class="invalid-feedback">
+          Phone number is required
+
+        </div>
+        <div [hidden]="!userPhone.errors?.minlength" class="invalid-feedback">
+          Must be atleast 10 characters
+
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="lastName">Address</label>
+        <input type="text" class="form-control" name="address" #userAddress="ngModel"
+          [ngClass]="{'is-invalid': userAddress.errors && userAddress.touched}" [(ngModel)]="user.address" minlength="5"
+          required>
+        <div [hidden]="!userAddress.errors?.required" class="invalid-feedback">
+          Address required
+
+        </div>
+        <div [hidden]="!userAddress.errors?.minlength" class="invalid-feedback">
+          Must be at least 5 characters
+
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="lastName">Postcode</label>
+        <input type="text" class="form-control" name="postcode" #userPostcode="ngModel"
+          [ngClass]="{'is-invalid': userPostcode.errors && userPostcode.touched}" [(ngModel)]="user.postcode"
+          minlength="2" required>
+        <div [hidden]="!userPostcode.errors?.required" class="invalid-feedback">
+          Last name required
+
+        </div>
+        <div [hidden]="!userPostcode.errors?.minlength" class="invalid-feedback">
+          Must be at least 2 characters
+
+        </div>
+      </div>
+
+
+
+      <input type="submit" value="Submit" class="btn btn-primary btn-block">
+
+
+    </form>
+  </div>
+</div>
+
+
+
+<ng-template #noUserDetails>No user details </ng-template>

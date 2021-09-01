@@ -1,0 +1,37 @@
+
+<div class="row">
+    <div class="col-md-12">
+        <h2><i class="fa fa-shopping-basket"></i>Products</h2>
+        <div>
+            <input 
+            #query
+            (keyup)="filter(query.value)"
+            type="text" class="form-control" placeholder="Search...">
+        </div>
+    </div>
+   
+</div>
+
+<table *ngIf="products.length >0; else noProducts" class="table table-striped">
+
+    
+    
+    <thead class="thead-inverse">
+        <tr>
+            <th>Title</th>
+            <th>description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let product of filteredProducts">
+            <td>{{product.item}}</td>
+            <td>{{product.description}}</td>
+            
+            <td><a routerLink="/admin/details/{{product.id}}" class="btn btn-secondary btn-sm">
+                
+            <i class="fa fa-arrow-circle-o-right"></i>Details</a></td>
+        </tr>
+    </tbody>
+</table>
+
+<ng-template #noProducts><hr><h5>There are no products in the system</h5></ng-template>
