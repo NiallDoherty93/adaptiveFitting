@@ -1,6 +1,7 @@
 import { Component, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
 
 import { OrderDashComponent } from './components/order-dash/order-dash.component';
 import { LoginComponent } from './components/login/login.component';
@@ -34,30 +35,37 @@ import { UserAccessoriesItemsLowerComponent } from './components/user-accessorie
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { UserMeasurementsComponent } from './components/profile/user-measurements/user-measurements.component';
 import { UserOrdersComponent } from './components/profile/user-orders/user-orders.component';
+import { UserOrderDetailsComponent } from './components/profile/user-order-details/user-order-details.component';
+import { OrdersComponent } from './tailor/orders/orders.component';
+import { OrderDetailsComponent } from './tailor/order-details/order-details.component';
 
 
 
 
-
+OrderDashComponent
 const routes: Routes =[
-  {path: '', component: OrderDashComponent },
-  {path: 'login', component: LoginComponent },
+  {path: '', component: LoginComponent },
+  {path: 'dashboard', component: OrderDashComponent, canActivate:[AuthGuard] },
   {path: 'register', component: RegisterComponent },
-  {path: 'profile', component: ProfileComponent },  
-  {path: 'edit-details', component: AddUserDetailsComponent },
-  {path: 'edit-measurements', component: UserMeasurementsComponent},
-  {path: 'my-orders', component: UserOrdersComponent},
+  {path: 'profile', component: ProfileComponent, canActivate:[AuthGuard] },  
+  {path: 'edit-details', component: AddUserDetailsComponent, canActivate:[AuthGuard] },
+  {path: 'edit-measurements', component: UserMeasurementsComponent, canActivate:[AuthGuard]},
+  {path: 'my-orders', component: UserOrdersComponent, canActivate:[AuthGuard]},
+  {path: 'my-orders/my-orders-details/:id', component: UserOrderDetailsComponent, canActivate:[AuthGuard]},
 
-  {path: 'user-accessories-upper', component: UserAccessoriesComponent},
-  {path: 'user-accessories-item-upper', component: UserAccessoriesItemsUpperComponent},
-  {path: 'user-accessories-lower', component: UserAccessoriesLowerComponent},
-  {path: 'user-accessories-item-lower', component: UserAccessoriesItemsLowerComponent},
+  {path: 'user-accessories-upper', component: UserAccessoriesComponent, canActivate:[AuthGuard]},
+  {path: 'user-accessories-item-upper', component: UserAccessoriesItemsUpperComponent , canActivate:[AuthGuard]},
+  {path: 'user-accessories-lower', component: UserAccessoriesLowerComponent, canActivate:[AuthGuard]},
+  {path: 'user-accessories-item-lower', component: UserAccessoriesItemsLowerComponent, canActivate:[AuthGuard]},
 
-  {path: 'checkout', component: CheckoutComponent },
+  {path: 'checkout', component: CheckoutComponent, canActivate:[AuthGuard] },
+
+  {path: 'tailor/orders', component: OrdersComponent},
+  {path: 'tailor/orders/:id', component: OrderDetailsComponent },
   
   {path: 'admin/add', component: AdminAddProductComponent},
   {path: 'admin/dash', component: AdminDashComponent},
-  {path: 'shopping-cart', component: ShoppingCartComponent },
+  {path: 'shopping-cart', component: ShoppingCartComponent, canActivate:[AuthGuard] },
   {path: 'admin/details/:id', component: AdminDetailsProductComponent},
   {path: 'admin/edit/:id', component: AdminEditProductComponent},
   {path: 'admin/products', component: AdminProductsComponent},
@@ -69,6 +77,8 @@ const routes: Routes =[
   {path: 'admin/accessories', component: AdminAddAccessoriesComponent},
   {path: '**', component: NotFoundComponent },
 
+
+
   
   
 ];
@@ -78,6 +88,9 @@ const routes: Routes =[
   exports: [RouterModule],
   imports: [
     RouterModule.forRoot(routes)
+  ],
+  providers: [
+    AuthGuard
   ]
 })
 export class AppRoutingModule { }

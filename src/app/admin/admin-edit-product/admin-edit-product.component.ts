@@ -4,6 +4,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { FlashMessagesService } from 'flash-messages-angular';
 import { ProductItems } from 'src/app/models/product-items';
 import { NgForm } from '@angular/forms';
+import { FLASH_MESSAGE_TIMEOUT } from 'src/app/global/application-constants';
 
 @Component({
   selector: 'app-admin-edit-product',
@@ -34,7 +35,7 @@ export class AdminEditProductComponent implements OnInit {
   onSubmit({value, valid}: NgForm){
     if(!valid){
       this.flashMessageService.show('Please fill out the form correctly',{
-          cssClass: 'alert-danger', timeout: 4000
+          cssClass: 'alert-danger', timeout: FLASH_MESSAGE_TIMEOUT
       });
     }else{
       // add id to client
@@ -42,7 +43,7 @@ export class AdminEditProductComponent implements OnInit {
       //update client
       this.itemService.updateItem(value);
       this.flashMessageService.show('Client updated',{
-        cssClass: 'alert-success', timeout: 4000
+        cssClass: 'alert-success', timeout: FLASH_MESSAGE_TIMEOUT
     
     });
     this.router.navigate(['/admin/details/'+this.id])

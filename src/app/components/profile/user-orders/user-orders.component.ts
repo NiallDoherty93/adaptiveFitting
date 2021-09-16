@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { FlashMessagesService } from 'flash-messages-angular';
 import { Order } from 'src/app/models/order';
@@ -14,8 +14,7 @@ import { UserService } from 'src/app/services/user.service';
 export class UserOrdersComponent implements OnInit {
   userId: string | any;
   order: Order | any;
-  orders: Order[]=[]
-  
+  orders: Order[]=[];
 
   constructor(
     private flashMessageService: FlashMessagesService,
@@ -31,13 +30,11 @@ export class UserOrdersComponent implements OnInit {
       // console.log(this.userId)
       if(this.userId){
         this.orderService.getUserOrder().subscribe(order =>{
-          this.order = order[0];
+          this.orders = order
          
           console.log(order)
         })
       } 
     }) ;
-
   }
-
 }

@@ -39,7 +39,7 @@ export class UserAccessoriesItemsLowerComponent implements OnInit {
   onSubmit({value, valid}: NgForm){
   
       
-    this.router.navigate(['checkout']);
+    this.router.navigate(['/user-accessories-item-lower']);
     
     
   }

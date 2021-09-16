@@ -5,7 +5,10 @@
         <div>
             <input 
             #query
-            (keyup)="filter(query.value)"
+            (keyup)="filterUpper(query.value)"
+            (keyup)="filterItemUpper(query.value)"
+            (keyup)="filterLower(query.value)"
+            (keyup)="filterItemLower(query.value)"
             type="text" class="form-control" placeholder="Search...">
         </div>
     </div>
@@ -23,11 +26,35 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let accessories of filteredProducts">
-            <td>{{accessories.item}}</td>
-            <td>{{accessories.description}}</td>
+        <tr *ngFor="let accessoriesUpper of filteredAccessoryUpper">
+            <td>{{accessoriesUpper.item}}</td>
+            <td>{{accessoriesUpper.description}}</td>
             
-            <td><a routerLink="/admin/detailsaccessories/{{accessories.id}}" class="btn btn-secondary btn-sm">
+            <td><a routerLink="/admin/detailsaccessories/{{accessoriesUpper.id}}" class="btn btn-secondary btn-sm">
+                
+            <i class="fa fa-arrow-circle-o-right"></i>Details</a></td>
+        </tr>
+        <tr *ngFor="let accessoriesItemsUpper of filteredAccessoryItemUpper">
+            <td>{{accessoriesItemsUpper.item}}</td>
+            <td>{{accessoriesItemsUpper.description}}</td>
+            
+            <td><a routerLink="/admin/detailsaccessories/{{accessoriesItemsUpper.id}}" class="btn btn-secondary btn-sm">
+                
+            <i class="fa fa-arrow-circle-o-right"></i>Details</a></td>
+        </tr>
+        <tr *ngFor="let accessoriesLower of filteredAccessoryLower">
+            <td>{{accessoriesLower.item}}</td>
+            <td>{{accessoriesLower.description}}</td>
+            
+            <td><a routerLink="/admin/detailsaccessories/{{accessoriesLower.id}}" class="btn btn-secondary btn-sm">
+                
+            <i class="fa fa-arrow-circle-o-right"></i>Details</a></td>
+        </tr>
+        <tr *ngFor="let accessoriesItemsLower of filteredAccessoryItemLower">
+            <td>{{accessoriesItemsLower.item}}</td>
+            <td>{{accessoriesItemsLower.description}}</td>
+            
+            <td><a routerLink="/admin/detailsaccessories/{{accessoriesItemsLower.id}}" class="btn btn-secondary btn-sm">
                 
             <i class="fa fa-arrow-circle-o-right"></i>Details</a></td>
         </tr>

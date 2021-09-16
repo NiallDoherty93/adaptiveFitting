@@ -15,11 +15,8 @@ export class ShoppingCartComponent implements OnInit {
   constructor(private shoppingCartService: ShoppingCartService, private router: Router,) { }
 
   async ngOnInit(): Promise<void> {
-    console.log("test")
    this.cart$ = await this.shoppingCartService.getCart();
-   console.log(this.cart$)
    this.cart$.pipe().subscribe(cart => {
-     console.log(cart);
    })
   }
 
@@ -29,6 +26,7 @@ export class ShoppingCartComponent implements OnInit {
 
   onSubmit(){
     this.router.navigate(['/checkout']);
+    console.log('stfu')
   }
 
 }

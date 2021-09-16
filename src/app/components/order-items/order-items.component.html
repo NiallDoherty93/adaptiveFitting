@@ -3,7 +3,6 @@
     <div class="row">
       
       <div class="col-md-4" *ngFor="let item of items">
-    
         
         <div class="card shadow-sm">
           <img class="bd-placeholder-img card-img-top" width="100%"
@@ -18,9 +17,6 @@
           </div>
           <div class="card-footer" >
             
-            <!-- <button 
-            
-            type="button" class="btn btn-sm btn-outline-primary">Add To Cart</button> -->
             <button 
             (click)="addItemToCart(item)"
             type="submit" class="btn btn-primary w-100">Start Fitting
@@ -34,3 +30,5 @@
     </table>
     
     <ng-template #noItems><hr><h5>There are no items in the system</h5></ng-template>
+
+  

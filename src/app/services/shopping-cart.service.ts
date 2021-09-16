@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection, 
-  AngularFirestoreDocument } from '@angular/fire/firestore';
+import {
+  AngularFirestore,
+  AngularFirestoreCollection,
+  AngularFirestoreDocument,
+} from '@angular/fire/firestore';
 import { ProductItems } from '../models/product-items';
 import { first, map, switchMap, take } from 'rxjs/operators';
 import { Observable } from 'rxjs';
@@ -15,46 +18,36 @@ import { AccessoriesItemsUpper } from '../models/accessorries-items-upper';
 
 import { AccessoriesLower } from '../models/accessories-lower';
 import { AccessoriesItemsLower } from '../models/accessories-items-lower';
- 
-
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ShoppingCartService {
-  carts: Observable<ShoppingCart[]> |any;
+  carts: Observable<ShoppingCart[]> | any;
   cartCollection: AngularFirestoreCollection<ShoppingCart> | any;
   cart: Observable<ShoppingCart> | any;
   cartDoc: AngularFirestoreDocument<ShoppingCart> | any;
 
-  cartItems: Observable<ShoppingCartItem[]> |any;
+  cartItems: Observable<ShoppingCartItem[]> | any;
   cartItemsCollection: AngularFirestoreCollection<ShoppingCartItem> | any;
   cartItem: Observable<ShoppingCartItem> | any;
   cartItemDoc: AngularFirestoreDocument<ShoppingCartItem> | any;
 
-  
-  itemsCollection: AngularFirestoreCollection<ProductItems>|any;
+
+
+  itemsCollection: AngularFirestoreCollection<ProductItems> | any;
   itemDoc!: AngularFirestoreDocument<ProductItems>;
   items!: Observable<ProductItems[]>;
   // item: Observable<ProductItems> | any;
 
-  
-
-
-
-  constructor(private db: AngularFirestore, private afAuth: AngularFireAuth) { }
+  constructor(private db: AngularFirestore, private afAuth: AngularFireAuth) {}
   //private db: AngularFireDatabase
-
-  
-
 
   public create() {
     return this.db.collection('shopping-cart').add({
       dateCreated: new Date().getTime(),
     });
   }
-
-
 
   async addItemToCart(product: ProductItems) {
     this.updateItemQuantity(product, 1);
@@ -63,7 +56,6 @@ export class ShoppingCartService {
   async removeItemFromCart(product: ProductItems) {
     this.updateItemQuantity(product, -1);
   }
-
 
   public async getOrCreateCartId(): Promise<string> {
     let cartId = localStorage.getItem('cartId');
@@ -83,9 +75,7 @@ export class ShoppingCartService {
       .doc(cartId)
       .collection('product-items')
       .doc(productId);
-      
   }
-
 
   async getCart(): Promise<Observable<ShoppingCart>> {
     let cartId = await this.getOrCreateCartId();
@@ -94,13 +84,13 @@ export class ShoppingCartService {
       .valueChanges()
       .pipe(
         map((item: any) => {
-          console.log(item)
+          console.log(item);
           let cart: ShoppingCart = {
-            dateCreated: 0, 
+            dateCreated: 0,
             items: item,
             // accessoryUpper: accessoryUpper,
-          }
-       
+          };
+
           this.db
             .collection('shopping-cart')
             .doc<{ dateCreated: number }>(cartId)
@@ -110,13 +100,6 @@ export class ShoppingCartService {
               cart.dateCreated = d?.dateCreated;
             });
 
-    
-          // item.forEach((i: { product: ProductItems; quantity: number }) => {
-          //   return Object.assign(cart.items, {
-          //     [i.product.id]: { product: i.product, quantity: i.quantity }
-          //   });
-          // });
-          
           return cart;
         })
       );
@@ -125,29 +108,31 @@ export class ShoppingCartService {
 
   async clearCart() {
     let cartId = await this.getOrCreateCartId();
+    console.log(cartId)
 
     this.db
-      .collection('shopping-cart' + cartId + 'product-items')
-      .valueChanges()
-      .pipe(
-        first(),
-        map((p) => {
-          return p.map((p: any) => {
-            return p.product.id;
-          });
-        })
-      )
-      .subscribe((productIdArray) => {
-        productIdArray.forEach((productId: any) => {
-          this.db
-            .collection('shopping-cart' + cartId + 'product-items')
-            .doc(productId)
-            .delete();
-        });
-      });
-  }
+      .collection('shopping-cart/' + cartId + '/product-items')
+  .valueChanges()
+  .pipe(
+    // first(),
+    map((p) => {
+      console.log(p)
+      return p.map((p: any) => {
+        
+        return p.product ? p.product.id : p.accessory.id;
 
-  
+      });
+    })
+  )
+  .subscribe((productIdArray) => {
+    productIdArray.forEach((productId: any) => {
+      this.db
+        .collection('shopping-cart/' + cartId + '/product-items')
+        .doc(productId)
+        .delete();
+    });
+  });
+  }
 
   private async updateItemQuantity(product: ProductItems, change: number) {
     let cartId = await this.getOrCreateCartId();
@@ -171,7 +156,10 @@ export class ShoppingCartService {
   }
   //upper
 
-  private async updateAccessoryUpperQuantity(accessory: AccessoriesUpper, change: number) {
+  private async updateAccessoryUpperQuantity(
+    accessory: AccessoriesUpper,
+    change: number
+  ) {
     let cartId = await this.getOrCreateCartId();
     let item$ = this.getAccessoryUpper(cartId, accessory.id);
 
@@ -192,7 +180,6 @@ export class ShoppingCartService {
       });
   }
 
-  
   private getAccessoryUpper(cartId: string, accessoryId: any) {
     return this.db
       .collection('shopping-cart')
@@ -205,10 +192,12 @@ export class ShoppingCartService {
     this.updateAccessoryUpperQuantity(accessory, 1);
   }
 
-
   //item upper
 
-  private async updateAccessoryItemsUpperQuantity(accessory: AccessoriesItemsUpper, change: number) {
+  private async updateAccessoryItemsUpperQuantity(
+    accessory: AccessoriesItemsUpper,
+    change: number
+  ) {
     let cartId = await this.getOrCreateCartId();
     let item$ = this.getAccessoryItemUpper(cartId, accessory.id);
 
@@ -229,7 +218,6 @@ export class ShoppingCartService {
       });
   }
 
-  
   private getAccessoryItemUpper(cartId: string, accessoryId: any) {
     return this.db
       .collection('shopping-cart')
@@ -244,7 +232,10 @@ export class ShoppingCartService {
 
   //lower
 
-  private async updateAccessoryLowerQuantity(accessory: AccessoriesLower, change: number) {
+  private async updateAccessoryLowerQuantity(
+    accessory: AccessoriesLower,
+    change: number
+  ) {
     let cartId = await this.getOrCreateCartId();
     let item$ = this.getAccessoryLower(cartId, accessory.id);
 
@@ -265,7 +256,6 @@ export class ShoppingCartService {
       });
   }
 
-  
   private getAccessoryLower(cartId: string, accessoryId: any) {
     return this.db
       .collection('shopping-cart')
@@ -280,7 +270,10 @@ export class ShoppingCartService {
 
   //item lower
 
-  private async updateAccessoryItemLowerQuantity(accessory: AccessoriesItemsLower, change: number) {
+  private async updateAccessoryItemLowerQuantity(
+    accessory: AccessoriesItemsLower,
+    change: number
+  ) {
     let cartId = await this.getOrCreateCartId();
     let item$ = this.getAccessoryItemLower(cartId, accessory.id);
 
@@ -301,7 +294,6 @@ export class ShoppingCartService {
       });
   }
 
-  
   private getAccessoryItemLower(cartId: string, accessoryId: any) {
     return this.db
       .collection('shopping-cart')
@@ -313,23 +305,4 @@ export class ShoppingCartService {
   async addAccessoryItemsLowerToCart(accessory: AccessoriesItemsLower) {
     this.updateAccessoryItemLowerQuantity(accessory, 1);
   }
-
-
 }
-
-
-  
-
-
- 
-
-
-
-  
-
-
-
-
-
-
-

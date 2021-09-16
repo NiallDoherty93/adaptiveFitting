@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
-import { UserService } from './user.service';
+
 
 @Injectable({
   providedIn: 'root'
@@ -39,4 +37,15 @@ export class AuthService {
       err => reject(err))
     })
   }
+
+  forgotPassword(passwordResetEmail: string) {
+    return this.firebaseAuth.sendPasswordResetEmail(passwordResetEmail)
+    .then(() => {
+      window.alert('Password reset email sent, check your inbox.');
+    }).catch((error) => {
+      window.alert(error)
+    })
+  }
+
+
 }

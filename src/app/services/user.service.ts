@@ -30,11 +30,7 @@ export class UserService {
     this.userCollection = this.db.collection('user-details');
   }
 
-  //   check if profile exists in database
-  // if exists
-  // overwrite details
-  // else
-  // create new database entry
+
 
   async createUserDetails(data: UserDetails) {
     const user = await this.afAuth.currentUser;
@@ -74,8 +70,8 @@ export class UserService {
     );
   }
 
-  editUserDetails(userId: string, users: UserDetails) {
-    this.db.collection('user-details').doc(userId).update(users);
+  editUserDetails(userId: string, user: UserDetails) {
+    this.db.collection('user-details').doc(userId).update(user);
   }
 
   editUserMeasurements(userId: string, measurements: UserMeasurements){
@@ -83,22 +79,7 @@ export class UserService {
     
   }
 
-  // getUserMeasurements(): Observable<UserMeasurements> {
-  //   // console.log(id)
-  //   const collection = this.db.collection<UserMeasurements>(
-  //     'user-measurements',
-  //     (ref) => ref.where('uid', '==', id)
-  //   );
-  //   // console.log(collection)
-  //   const measurement$ = collection.valueChanges().pipe(
-  //     map((ref) => {
-  //       const measurement = ref[0];
-
-  //       return measurement;
-  //     })
-  //   );
-  //   return measurement$;
-  // }
+  
 
   getUserMeasurements(): Observable<UserMeasurements[]> {
     return this.afAuth.authState.pipe(
@@ -128,7 +109,6 @@ export class UserService {
           return actions.map((a) => {
             const data = a.payload.doc.data();
             const id = a.payload.doc.id;
-            // console.log('id', id, 'data', data)
             return {
               id,
               data,
@@ -157,8 +137,36 @@ export class UserService {
       )
       .subscribe();
   }
-}
 
-function user(user: any) {
-  throw new Error('Function not implemented.');
+  public getUserDetailsByUid(uid: String): Observable<UserDetails[]> {
+    console.log(uid);
+    return this.db
+      .collection<UserDetails>('user-details', (ref) => ref.where('uid', '==', uid))
+      .snapshotChanges()
+      .pipe(
+        map((actions) => {
+          return actions.map((a) => {
+            const userDetails: UserDetails = a.payload.doc.data();
+            return userDetails;
+          })
+        })
+      )
+     
+  }
+
+  public getUserMeasurementsByUid(uid: String): Observable<UserMeasurements[]> {
+    console.log(uid);
+    return this.db
+      .collection<UserMeasurements>('user-measurements', (ref) => ref.where('uid', '==', uid))
+      .snapshotChanges()
+      .pipe(
+        map((actions) => {
+          return actions.map((a) => {
+            const userMeasurements: UserMeasurements = a.payload.doc.data();
+            return userMeasurements;
+          })
+        })
+      )
+     
+  }
 }

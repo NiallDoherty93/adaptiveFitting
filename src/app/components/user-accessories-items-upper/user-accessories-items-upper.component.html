@@ -2,7 +2,18 @@
     <table *ngIf="accessories.length >0; else noItems" class="table table-striped" >
         <div class="row">
           
-          <div class="col-md-4" *ngFor="let item of accessories">
+          <div class="col-md-3">
+            <div class="card shadow-sm" style="padding: 15px;">
+            <h3>Instructions:</h3>
+            <br>
+            <p> <strong>Step 3:</strong> Choose an additonal fitting(s) you would like. Each fitting has a description of why someone would need it. If
+              you do not want any of these changes, click <a routerLink="/checkout"> here</a>. Otherwise, 
+            click the 'Add to order' button. Once you've added all the fittings that you want, click next at the top of the
+            screen to move onto the next step.</p>
+          </div>
+          </div>
+          
+          <div class="col-md-2" *ngFor="let item of accessories">
         
             
             <div class="card shadow-sm">
@@ -30,6 +41,12 @@
             </div>
     
           </div>
+          <div class="col-md-3">
+            <a routerLink="/checkout" class="btn btn-link">
+              <i class="fa fa-arrow-circle-o-right"> <h3>Next</h3></i> 
+          </a>
+            <app-shopping-cart></app-shopping-cart>
+        </div>
         </div>
         </table>
         

@@ -20,34 +20,42 @@ import { Accessories } from 'src/app/models/accessories';
 })
 export class AdminAccessoriesComponent implements OnInit {
   accessories: Accessories[] = [];
-  // accessoriesUpper!:AccessoriesUpper[]
-  // accessoriesItemsUpper!:AccessoriesItemsUpper[] 
-  // accessoriesLower!: AccessoriesLower[] 
-  // accessoriesItemsLower!: AccessoriesItemsLower[]
-  // accessory!: AccessoriesUpper | AccessoriesItemsUpper | AccessoriesLower | AccessoriesItemsLower;
-  subscription: Subscription|any;
 
-  filteredProducts: Accessories[] = [];
+  accessoriesUpper:Accessories[] = []
+  accessoriesItemsUpper:Accessories[] = []
+  accessoriesLower: Accessories[] = []
+  accessoriesItemsLower: Accessories[] = []
+  // accessory!: AccessoriesUpper | AccessoriesItemsUpper | AccessoriesLower | AccessoriesItemsLower;
+  subscriptionUpper: Subscription|any;
+  subscriptionItemUpper: Subscription|any;
+  subscriptionLower: Subscription|any;
+  subscriptionItemLower: Subscription|any;
+  
+
+  filteredAccessoryUpper: Accessories[] = [];
+  filteredAccessoryItemUpper: Accessories[] = [];
+  filteredAccessoryLower: Accessories[] = [];
+  filteredAccessoryItemLower: Accessories[] = [];
 
   constructor(private itemService: ItemsService) { 
-    this.subscription= this.itemService.getAccessoriesUpper().subscribe(accessoriesUpper=> {
-      this.filteredProducts= this.accessories = accessoriesUpper
+    this.subscriptionUpper= this.itemService.getAccessoriesUpper().subscribe(accessoriesUpper=> {
+      this.filteredAccessoryUpper= this.accessoriesUpper = accessoriesUpper
     })
-    this.subscription= this.itemService.getAccessoriesItemsUpper().subscribe(accessoriesItemsUpper=> {
-      this.filteredProducts= this.accessories = accessoriesItemsUpper
+    this.subscriptionItemUpper= this.itemService.getAccessoriesItemsUpper().subscribe(accessoriesItemsUpper=> {
+      this.filteredAccessoryItemUpper= this.accessoriesItemsUpper = accessoriesItemsUpper
     })
-    this.subscription= this.itemService.getAccessoriesLower().subscribe(accessoriesLower=> {
-      this.filteredProducts= this.accessories = accessoriesLower
+    this.subscriptionLower= this.itemService.getAccessoriesLower().subscribe(accessoriesLower=> {
+      this.filteredAccessoryLower= this.accessoriesLower = accessoriesLower
     })
-    this.subscription= this.itemService.getAccessoriesItemsLower().subscribe(accessoriesItemsLower=> {
-      this.filteredProducts= this.accessories = accessoriesItemsLower
+    this.subscriptionItemLower= this.itemService.getAccessoriesItemsLower().subscribe(accessoriesItemsLower=> {
+      this.filteredAccessoryItemLower= this.accessoriesItemsLower = accessoriesItemsLower
     })
   }
 
  
 
   ngOnInit(): void {
-    this.getAccessoryTypes();
+    // this.getAccessoryTypes();
   
     this.itemService.getAccessoriesUpper().subscribe(accessories => {
       this.accessories = accessories
@@ -68,22 +76,45 @@ export class AdminAccessoriesComponent implements OnInit {
 
   }
 
-  private getAccessoryTypes(): void {
-    this.itemService.getAccessoriesUpper().subscribe(accessoriesUpper => {
-      //@ts-ignore
-      this.filteredProducts.push(accessoriesUpper);
-    })
+  // private getAccessoryTypes(): void {
+  //   this.itemService.getAccessoriesUpper().subscribe(accessoriesUpper => {
+  //     //@ts-ignore
+  //     this.filteredProducts.push(accessoriesUpper);
+  //   })
+  // }
+
+
+  filterUpper(query: string){
+    this.filteredAccessoryUpper=(query)?
+    this.filteredAccessoryUpper.filter(p => p.item?.toLowerCase().includes(query.toLowerCase())) :
+    this.filteredAccessoryUpper;
+  }
+
+  filterItemUpper(query: string){
+    this.filteredAccessoryItemUpper=(query)?
+    this.filteredAccessoryItemUpper.filter(p => p.item?.toLowerCase().includes(query.toLowerCase())) :
+    this.filteredAccessoryItemUpper;
+  }
+
+  filterLower(query: string){
+    this.filteredAccessoryLower=(query)?
+    this.filteredAccessoryLower.filter(p => p.item?.toLowerCase().includes(query.toLowerCase())) :
+    this.filteredAccessoryLower;
+  }
+
+  filterItemLower(query: string){
+    this.filteredAccessoryItemLower=(query)?
+    this.filteredAccessoryItemLower.filter(p => p.item?.toLowerCase().includes(query.toLowerCase())) :
+    this.filteredAccessoryItemLower;
   }
 
 
-  filter(query: string){
-    this.filteredProducts=(query)?
-    this.accessories.filter(a => a.item?.toLowerCase().includes(query.toLowerCase())) :
-    this.accessories;
-  }
 
   ngOnDestroy(){
-    this.subscription.unsubscribe()
+    this.subscriptionUpper.unsubscribe()
+    this.subscriptionItemUpper.unsubscribe()
+    this.subscriptionLower.unsubscribe()
+    this.subscriptionItemLower.unsubscribe()
   }
 
 }

@@ -7,6 +7,7 @@ import { AccessoriesItemsUpper } from 'src/app/models/accessorries-items-upper';
 import { AccessoriesLower } from 'src/app/models/accessories-lower';
 import { AccessoriesItemsLower } from 'src/app/models/accessories-items-lower';
 import { Accessories } from 'src/app/models/accessories';
+import { ACCESSORY_ITEM_LOWER, ACCESSORY_ITEM_UPPER, ACCESSORY_LOWER, ACCESSORY_UPPER, FLASH_MESSAGE_TIMEOUT } from 'src/app/global/application-constants';
 
 
 @Component({
@@ -15,7 +16,10 @@ import { Accessories } from 'src/app/models/accessories';
   styleUrls: ['./admin-details-accessories.component.css']
 })
 export class AdminDetailsAccessoriesComponent implements OnInit {
-  id: string |any;
+  idUpper: string |any;
+  idUpperItem: string |any;
+  idLower: string |any;
+  idLowerItem: string |any;
   accessory!: Accessories;
   accessoryUpper!: Accessories;
   accessoryItemUpper!: Accessories;
@@ -30,57 +34,63 @@ export class AdminDetailsAccessoriesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.id = this.route.snapshot.params['id'];
+    this.idUpper = this.route.snapshot.params['id'];
 
-    this.itemService.getAccessoryUpper(this.id).subscribe(accessory =>{
-      this.accessoryUpper = accessory
+    this.itemService.getAccessoryUpper(this.idUpper).subscribe(accessoryUpper =>{
+      this.accessoryUpper = accessoryUpper
     })
 
-    this.itemService.getAccessoryItemUpper(this.id).subscribe(accessory =>{
-      this.accessoryItemUpper = accessory
+    this.idUpperItem = this.route.snapshot.params['id'];
+
+    this.itemService.getAccessoryItemUpper(this.idUpperItem).subscribe(accessoryItemUpper =>{
+      this.accessoryItemUpper = accessoryItemUpper
     })
 
-    this.itemService.getAccessoryLower(this.id).subscribe(accessory =>{
-      this.accessoryLower = accessory
+    this.idLower = this.route.snapshot.params['id'];
+
+    this.itemService.getAccessoryLower(this.idLower).subscribe(accessoryLower =>{
+      this.accessoryLower = accessoryLower
     })
 
-    this.itemService.getAccessoryItemLower(this.id).subscribe(accessory =>{
-      this.accessoryItemLower = accessory
+    this.idLowerItem = this.route.snapshot.params['id'];
+
+    this.itemService.getAccessoryItemLower(this.idLowerItem).subscribe(accessoryItemLower =>{
+      this.accessoryItemLower = accessoryItemLower
     })
 
   }
 
   onDeleteClick(){
     if(confirm('Are you sure?')){
-      switch(this.accessory.category){
-        case "Upper-Body":{
+      switch(this.accessoryUpper?.type || this.accessoryItemUpper?.type || this.accessoryLower?.type || this.accessoryItemLower?.type){
+        case ACCESSORY_UPPER:{
           this.itemService.deleteAccessoriesUpper(this.accessoryUpper)
           this.flashMessage.show('Accessory Removed',{
-            cssClass: 'alert-success', timeout: 4000
+            cssClass: 'alert-success', timeout: FLASH_MESSAGE_TIMEOUT
           });
           this.router.navigate(['/admin/dash']);
           break;
         }
-        case "Upper-Body-Item":{
+        case ACCESSORY_ITEM_UPPER:{
           this.itemService.deleteAccessoriesItemsUpper(this.accessoryItemUpper)
           this.flashMessage.show('Accessory Removed',{
-            cssClass: 'alert-success', timeout: 4000
+            cssClass: 'alert-success', timeout: FLASH_MESSAGE_TIMEOUT
           });
           this.router.navigate(['/admin/dash']);
           break;
         }
-        case "Lower-Body":{
+        case ACCESSORY_LOWER:{
           this.itemService.deleteAccessoriesLower(this.accessoryLower)
           this.flashMessage.show('Accessory Removed',{
-            cssClass: 'alert-success', timeout: 4000
+            cssClass: 'alert-success', timeout: FLASH_MESSAGE_TIMEOUT
           });
           this.router.navigate(['/admin/dash']);
           break;
         }
-        case "Lower-Body-Item": {
+        case ACCESSORY_ITEM_LOWER: {
           this.itemService.deleteAccessoriesItemsLower(this.accessoryItemLower)
           this.flashMessage.show('Accessory Removed',{
-            cssClass: 'alert-success', timeout: 4000
+            cssClass: 'alert-success', timeout: FLASH_MESSAGE_TIMEOUT
           });
           this.router.navigate(['/admin/dash']);
           break;

@@ -7,58 +7,74 @@
 </div>
 
 <form #userMeasurementsForm="ngForm" (ngSubmit)="onSubmitAddMeasurements(userMeasurementsForm)" *ngIf="measurements; else noUserMeasurements">
-    <h2>Upper Body</h2>
+  <div class="row">
+    <div class="col-md-6">
+      <h2>Upper Body (Inches)</h2>
+      <div class="form-group">
+        <label for="chest">Neck Circumference </label>
+        <input type="number" class="form-control" name="neck" [(ngModel)]="measurements.neck" placeholder="Inches" >
+      </div>
+      <div class="form-group">
+        <label for="chest">Back Length</label>
+        <input type="number" class="form-control" name="backlenght" [(ngModel)]="measurements.backlenght" placeholder="Inches" >
+      </div>
     <div class="form-group">
-      <label for="chest">Chest</label>
+      <label for="chest">Chest Circumference</label>
       <input type="number" class="form-control" name="chest" [(ngModel)]="measurements.chest" placeholder="Inches" >
     </div>
     <div class="form-group">
-      <label for="cuff">Cuff</label>
-      <input type="number" class="form-control" name="cuff" [(ngModel)]="measurements.cuff" placeholder="Inches">
+      <label for="cuff">Left Cuff Circumference</label>
+      <input type="number" class="form-control" name="leftCuff" [(ngModel)]="measurements.leftCuff" placeholder="Inches">
     </div>
     <div class="form-group">
-        <label for="leftArm">Left Arm</label>
+      <label for="cuff">Right Cuff Circumference</label>
+      <input type="number" class="form-control" name="rightCuff" [(ngModel)]="measurements.rightCuff" placeholder="Inches">
+    </div>
+    <div class="form-group">
+        <label for="leftArm">Left Arm Length</label>
         <input type="number" class="form-control" name="leftArm" [(ngModel)]="measurements.leftArm" placeholder="Inches">
       </div>
       <div class="form-group">
-        <label for="rightArm">Right Arm</label>
+        <label for="rightArm">Right Arm Length</label>
         <input type="number" class="form-control" name="rightArm" [(ngModel)]="measurements.rightArm" placeholder="Inches">
       </div>
       <div class="form-group">
-        <label for="leftShoulder">Left Shoulder</label>
+        <label for="leftShoulder">Left Shoulder Length</label>
         <input type="number" class="form-control" name="leftShoulder" [(ngModel)]="measurements.leftShoulder" placeholder="Inches">
       </div>
       <div class="form-group">
-        <label for="rightShoulder">Right Shoulder</label>
+        <label for="rightShoulder">Right Shoulder Length</label>
         <input type="number" class="form-control" name="rightShoulder" [(ngModel)]="measurements.rightShoulder" placeholder="Inches">
       </div>
-      <h2>Lower Body</h2>
+    </div>
+    <div class="col-md-6">
+      <h2>Lower Body (Inches)</h2>
       <div class="form-group">
-        <label for="waist">Waist</label>
+        <label for="waist">Waist Line Circumference</label>
         <input type="number" class="form-control" name="waist" [(ngModel)]="measurements.waist" placeholder="Inches">
       </div>
       <div class="form-group">
-        <label for="hip">Hip</label>
+        <label for="hip">Hip Circumference</label>
         <input type="number" class="form-control" name="hip" [(ngModel)]="measurements.hip" placeholder="Inches">
       </div>
       <div class="form-group">
-          <label for="rise">Rise</label>
+          <label for="rise">Rise Length</label>
           <input type="number" class="form-control" name="rise" [(ngModel)]="measurements.rise" placeholder="Inches">
         </div>
         <div class="form-group">
-          <label for="leftThighWidth">Left Thigh</label>
+          <label for="leftThighWidth">Left Thigh Circumference</label>
           <input type="number" class="form-control" name="leftThighWidth" [(ngModel)]="measurements.leftThighWidth" placeholder="Inches">
         </div>
         <div class="form-group">
-          <label for="rightThighWidth">Right Thigh</label>
+          <label for="rightThighWidth">Right Thigh Circumference</label>
           <input type="number" class="form-control" name="rightThighWidth" [(ngModel)]="measurements.rightThighWidth" placeholder="Inches">
         </div>
         <div class="form-group">
-          <label for="leftLegLength">Left Leg</label>
+          <label for="leftLegLength">Left Leg Length</label>
           <input type="number" class="form-control" name="leftLegLength" [(ngModel)]="measurements.leftLegLength" placeholder="Inches">
         </div>
         <div class="form-group">
-            <label for="rightLegLenght">Right Leg</label>
+            <label for="rightLegLenght">Right Leg Length</label>
             <input type="number" class="form-control" name="rightLegLenght" [(ngModel)]="measurements.rightLegLenght" placeholder="Inches">
           </div>
           <div class="form-group">
@@ -69,10 +85,16 @@
             <label for="rightLegInseam">Right Leg Inseam</label>
             <input type="number" class="form-control" name="rightLegInseam" [(ngModel)]="measurements.rightLegInseam" placeholder="Inches">
           </div>
+    </div>
+     
+          
+  </div>
+  <br>
 
           <input type="submit" value="Submit" class="btn btn-primary btn-block" >
+          <br>
   </form>
 
-  <ng-template #noUserMeasurements>No user measurements </ng-template>
+  <ng-template #noUserMeasurements>You have not yet added your body measurements</ng-template>
 
 

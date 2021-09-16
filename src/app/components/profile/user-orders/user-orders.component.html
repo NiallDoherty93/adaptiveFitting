@@ -8,7 +8,7 @@
 
   <div class="row">
     <div class="col-md-12">
-        <h2><i class="fa fa-shopping-basket"></i>Products</h2>
+        <h2><i class="fa fa-shopping-basket"></i>Orders</h2>
      
     </div>
    
@@ -20,20 +20,28 @@
     
     <thead class="thead-inverse">
         <tr>
-            <th>Title</th>
-            <th>description</th>
+            <th>Order Reference</th>
+            <th>Date Placed</th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let order of orders">
-            <td>{{order.items}}</td>
-            <td>{{order.datePlaced}}</td>
+            <td>
+                {{order.id}}
+                
+            </td>
+               
+           
+           
+            <td>{{order.datePlaced | date: 'dd/MM/yyyy  :  HH:mm '}}</td>
             
-            
+            <td ><a routerLink="my-orders-details/{{order.id}}" class="btn btn-secondary btn-sm">
+                
+                <i class="fa fa-arrow-circle-o-right"></i>View Order Details</a></td>
                 
          
         </tr>
     </tbody>
 </table>
 
-<ng-template #noOrders><hr><h5>You have no orders</h5></ng-template>
+<ng-template #noOrders><hr><h5>You have not made an order</h5></ng-template>

@@ -1,1 +1,50 @@
-<p>orders works!</p>
+
+  <div class="row">
+    <div class="col-md-12">
+        <h2><i class="fa fa-shopping-basket"></i>Orders</h2>
+     
+    </div>
+   
+</div>
+<br>
+
+<div>
+    <input 
+    #query
+    (keyup)="filter(query.value)"
+    type="text" class="form-control" placeholder="Search by order reference...">
+</div>
+
+<br>
+
+<table *ngIf="orders.length >0; else noOrders" class="table table-striped">
+
+    
+    
+    <thead class="thead-inverse">
+        <tr >
+            <th>Order Reference</th>
+            <th>Date Placed</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let order of filteredOrders">
+            <td>
+                {{order.id}}
+                
+            </td>
+               
+           
+           
+            <td>{{order.datePlaced | date: 'dd/MM/yyyy  :  HH:mm '}}</td>
+            
+            <td><a routerLink="/tailor/orders/{{order.id}}" class="btn btn-secondary btn-sm">
+                
+                <i class="fa fa-arrow-circle-o-right"></i>View Order Details</a></td>
+                
+         
+        </tr>
+    </tbody>
+</table>
+
+<ng-template #noOrders><hr><h5>There are no orders in the system</h5></ng-template>

@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { ProductItems } from 'src/app/models/product-items';
 import { filter } from 'rxjs/operators';
 import { AccessoriesUpper } from 'src/app/models/accessories-upper';
+import { ACCESSORY_ITEM_LOWER, ACCESSORY_ITEM_UPPER, ACCESSORY_LOWER, ACCESSORY_UPPER, FLASH_MESSAGE_TIMEOUT } from 'src/app/global/application-constants';
+import { Accessories } from 'src/app/models/accessories';
 
 @Component({
   selector: 'app-admin-add-accessories',
@@ -14,7 +16,12 @@ import { AccessoriesUpper } from 'src/app/models/accessories-upper';
 })
 export class AdminAddAccessoriesComponent implements OnInit {
 
-  accessory: AccessoriesUpper = {
+  accessoryUpper!: Accessories;
+  accessoryItemUpper!: Accessories;
+  accessoryLower!: Accessories;
+  accessoryItemLower!: Accessories
+
+  accessory: Accessories = {
     type: '',
     item: '',
     description: '' ,
@@ -31,33 +38,33 @@ export class AdminAddAccessoriesComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit({value, valid}: NgForm, accessories: AccessoriesUpper){
+  onSubmit({value, valid}: NgForm, accessories: Accessories){
     
     if (!valid){
       //show error
       this.flashMessagesService.show('Please fill out the form correctly',{
-        cssClass: 'alert-danger', timeout: 4000
+        cssClass: 'alert-danger', timeout: FLASH_MESSAGE_TIMEOUT
       });
     }else{
 
-      switch(accessories.category){
+      switch(accessories.type){
        
-        case "Upper-Body":{
+        case ACCESSORY_UPPER:{
           this.itemService.createAccessoriesUpper(value)
           this.router.navigate(['/admin/dash']);
           break;
         }
-        case "Upper-Body-Item":{
+        case ACCESSORY_ITEM_UPPER:{
           this.itemService.createAccessoriesItemsUpper(value)
           this.router.navigate(['/admin/dash']);
           break;
         }
-        case "Lower-Body":{
+        case ACCESSORY_LOWER:{
           this.itemService.createAccessoriesLower(value)
           this.router.navigate(['/admin/dash']);
           break;
         }
-        case "Lower-Body-Item": {
+        case ACCESSORY_ITEM_LOWER: {
           this.itemService.createAccessoriesItemsLower(value)
           this.router.navigate(['/admin/dash']);
           break;

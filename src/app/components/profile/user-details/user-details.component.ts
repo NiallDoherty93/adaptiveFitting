@@ -5,6 +5,7 @@ import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
 import { UserDetails } from 'src/app/models/user-details';
 import { AuthService } from 'src/app/services/auth.service';
+import { FLASH_MESSAGE_TIMEOUT } from 'src/app/global/application-constants';
 
 @Component({
   selector: 'app-add-user-details',
@@ -50,22 +51,22 @@ export class AddUserDetailsComponent implements OnInit {
   onSubmitAdd({value, valid}: NgForm){
     if (!valid){
       this.flashMessageService.show('Please fill out the form correctly',{
-        cssClass: 'alert-danger', timeout: 4000
+        cssClass: 'alert-danger', timeout: FLASH_MESSAGE_TIMEOUT
       });
     }else{
       this.userService.editUserDetails(this.user.id, this.user)
       if(!this.user){
         this.flashMessageService.show('Details added successfully!',{
-          cssClass: 'alert-success', timeout: 4000
+          cssClass: 'alert-success', timeout: FLASH_MESSAGE_TIMEOUT
         
         });
       }else{
         this.flashMessageService.show('Details edited successfully!',{
-          cssClass: 'alert-success', timeout: 4000
+          cssClass: 'alert-success', timeout: FLASH_MESSAGE_TIMEOUT
         });
       }
       
-      this.router.navigate(['/']);
+      this.router.navigate(['/profile']);
       // console.log(this.user)
     }
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { FlashMessagesService } from 'flash-messages-angular';
 import { Router } from '@angular/router';
+import { FLASH_MESSAGE_TIMEOUT } from 'src/app/global/application-constants';
 
 
 
@@ -23,7 +24,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.authService.getAuth().subscribe(auth =>{
       if(auth){
-        this.router.navigate(['/'])
+        this.router.navigate(['/dashboard'])
       }
     });
   }
@@ -32,13 +33,13 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.email, this.password)
     .then(res => {
       this.flashMessage.show('You are now logged in', {
-        cssClass: 'alert-success', timeout:4000
+        cssClass: 'alert-success', timeout:FLASH_MESSAGE_TIMEOUT
       });
-      this.router.navigate(['/'])
+      this.router.navigate(['/dashboard'])
     })
     .catch(err => {
       this.flashMessage.show(err.message, {
-        cssClass: 'alert-danger', timeout:4000
+        cssClass: 'alert-danger', timeout:FLASH_MESSAGE_TIMEOUT
       });
     });
 }

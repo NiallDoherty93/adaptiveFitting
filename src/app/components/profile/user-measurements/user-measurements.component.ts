@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { UserMeasurements } from 'src/app/models/user-measurements';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserDetails } from 'src/app/models/user-details';
+import { FLASH_MESSAGE_TIMEOUT } from 'src/app/global/application-constants';
 
 @Component({
   selector: 'app-user-measurements',
@@ -43,24 +44,24 @@ export class UserMeasurementsComponent implements OnInit {
   onSubmitAddMeasurements({value, valid}: NgForm){
     if (!valid){
       this.flashMessageService.show('Please fill out the form correctly',{
-        cssClass: 'alert-danger', timeout: 4000
+        cssClass: 'alert-danger', timeout: FLASH_MESSAGE_TIMEOUT
       });
     }else{
       this.userService.editUserMeasurements(this.measurements.id, this.measurements)
       console.log(this.userId)
       if(!this.measurements){
         this.flashMessageService.show('Details added successfully!',{
-          cssClass: 'alert-success', timeout: 4000
+          cssClass: 'alert-success', timeout: FLASH_MESSAGE_TIMEOUT
         
         });
     }else{
       this.flashMessageService.show('Details edited successfully!',{
-        cssClass: 'alert-success', timeout: 4000
+        cssClass: 'alert-success', timeout: FLASH_MESSAGE_TIMEOUT
       });
     }
    
     }
-      this.router.navigate(['/']);
+      this.router.navigate(['/profile']);
       // console.log(this.user)
     }
   }

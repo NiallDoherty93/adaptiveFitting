@@ -1,6 +1,9 @@
 export interface UserMeasurements{
     chest?: number,
-    cuff?: number,
+    neck?: number,
+    backLenght?: number,
+    leftCuff?: number,
+    rightCuff?: number,
     leftArm?: number,
     rightArm?: number,
     rightShoulder?: number,

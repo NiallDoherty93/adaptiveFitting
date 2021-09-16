@@ -3,6 +3,7 @@ import { ItemsService } from 'src/app/services/items.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { FlashMessagesService } from 'flash-messages-angular';
 import { ProductItems } from 'src/app/models/product-items';
+import { FLASH_MESSAGE_TIMEOUT } from 'src/app/global/application-constants';
 
 @Component({
   selector: 'app-admin-details-product',
@@ -35,7 +36,7 @@ export class AdminDetailsProductComponent implements OnInit {
     if(confirm('Are you sure?')){
       this.itemService.deleteItem(this.product);
       this.flashMessage.show('Product Removed',{
-        cssClass: 'alert-success', timeout: 4000
+        cssClass: 'alert-success', timeout: FLASH_MESSAGE_TIMEOUT
       });
       this.router.navigate(['/admin/dash']);
     }

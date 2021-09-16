@@ -5,6 +5,7 @@ import { ItemsService } from 'src/app/services/items.service';
 import { Router } from '@angular/router';
 import { ProductItems } from 'src/app/models/product-items';
 import { filter } from 'rxjs/operators';
+import { FLASH_MESSAGE_TIMEOUT } from 'src/app/global/application-constants';
 
 
 @Component({
@@ -38,14 +39,14 @@ export class AdminAddProductComponent implements OnInit {
     if (!valid){
       //show error
       this.flashMessagesService.show('Please fill out the form correctly',{
-        cssClass: 'alert-danger', timeout: 4000
+        cssClass: 'alert-danger', timeout: FLASH_MESSAGE_TIMEOUT
       });
     }else{
       // add new item
       this.itemService.createItem(value)
       //show message
       this.flashMessagesService.show('New item added!',{
-        cssClass: 'alert-success', timeout: 4000
+        cssClass: 'alert-success', timeout: FLASH_MESSAGE_TIMEOUT
       
       
     });

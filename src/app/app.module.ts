@@ -52,6 +52,8 @@ import { AdminAccessoriesComponent } from './admin/admin-accessories/admin-acces
 import { OrdersComponent } from './tailor/orders/orders.component';
 import { OrderDashboardComponent } from './tailor/order-dashboard/order-dashboard.component';
 import { UserOrdersComponent } from './components/profile/user-orders/user-orders.component';
+import { UserOrderDetailsComponent } from './components/profile/user-order-details/user-order-details.component';
+import { OrderDetailsComponent } from './tailor/order-details/order-details.component';
 
 
 
@@ -104,6 +106,8 @@ import { UserOrdersComponent } from './components/profile/user-orders/user-order
     OrdersComponent,
     OrderDashboardComponent,
     UserOrdersComponent,
+    UserOrderDetailsComponent,
+    OrderDetailsComponent,
   
 
    

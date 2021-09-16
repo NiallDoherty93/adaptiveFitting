@@ -6,6 +6,6 @@ export class Order {
     id!: string;
     datePlaced!: number;
     items!: orderItem[] ;
-  
+    uid!: string;
    
   }

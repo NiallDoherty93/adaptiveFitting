@@ -1,6 +1,4 @@
 export interface UserDetails{
-  
-    
     address?: string,
     email?: string,
     uid?: string,
@@ -8,9 +6,9 @@ export interface UserDetails{
     lastName?: string,
     phone?: string,
     postcode?: string
-    id?: string
-    isAdmin?: boolean
-
+    id?: string,
+    isAdmin?: boolean,
+    detailsComplete?: boolean
   }
 
   

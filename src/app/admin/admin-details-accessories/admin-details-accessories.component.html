@@ -6,7 +6,7 @@
     </div>
     <div class="col-md-6">
         <div class="btn-group pull-right">
-            <a routerLink="/admin/editaccessories/{{id}}" class="btn btn-light">
+            <a routerLink="/admin/editaccessories/{{idUpper || idUpperItem || idLower || idLowerItem}}" class="btn btn-light">
             Edit</a>
             <button (click)="onDeleteClick()" class="btn btn-danger">Delete</button>
         </div>
@@ -15,12 +15,44 @@
 
 <hr>
 
-<div class="col-md-12" >
+<div >
+
+
+<div class="col-md-12" *ngIf="accessoryUpper">
     <div class="card" style="width: 20rem;">
-        <img class="card-img-top" [src]="accessory.image" alt="Card image cap">
+        <img class="card-img-top" [src]="accessoryUpper.image" alt="Card image cap">
         <div class="card-body">
-            <h4 class="card-title">{{accessory.item}}</h4>
-            <p class="card-text">{{accessory.description}}</p>
+            <h4 class="card-title">{{accessoryUpper.item}}</h4>
+            <p class="card-text">{{accessoryUpper.description}}</p>
+        </div>
+    </div>
+</div>
+
+</div>
+<div class="col-md-12" *ngIf="accessoryItemUpper" >
+    <div class="card" style="width: 20rem;">
+        <img class="card-img-top" [src]="accessoryItemUpper.image" alt="Card image cap">
+        <div class="card-body">
+            <h4 class="card-title">{{accessoryItemUpper.item}}</h4>
+            <p class="card-text">{{accessoryItemUpper.description}}</p>
+        </div>
+    </div>
+</div>
+<div class="col-md-12" *ngIf="accessoryLower" >
+    <div class="card" style="width: 20rem;">
+        <img class="card-img-top" [src]="accessoryLower.image" alt="Card image cap">
+        <div class="card-body">
+            <h4 class="card-title">{{accessoryLower.item}}</h4>
+            <p class="card-text">{{accessoryLower.description}}</p>
+        </div>
+    </div>
+</div>
+<div class="col-md-12" *ngIf="accessoryItemLower" >
+    <div class="card" style="width: 20rem;">
+        <img class="card-img-top" [src]="accessoryItemLower.image" alt="Card image cap">
+        <div class="card-body">
+            <h4 class="card-title">{{accessoryItemLower.item}}</h4>
+            <p class="card-text">{{accessoryItemLower.description}}</p>
         </div>
     </div>
 </div>

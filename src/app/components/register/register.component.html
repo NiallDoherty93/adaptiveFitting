@@ -3,7 +3,7 @@
         <div class="card">
             <div class="card-body">
                 <h1 class="text-center pb-4 pt-3">
-                   <span class="text-primary"> <i class="fa fa-lock"></i>Client Panel </span> Register
+                   <span class="text-primary"> <i class="fa fa-lock"></i> Adaptive Fitting </span> Registration
                 </h1>
                 <form (submit)="onSubmit()">
                     <div class="form-group">
@@ -16,8 +16,17 @@
                         <input type="password" name="password" [(ngModel)]="password" 
                         class="form-control" required>
                     </div>
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input type="password" name="confirmPassword" [(ngModel)]="confirmPassword" 
+                        class="form-control" required>
+                    </div>
+                    <br>
                     <input type="submit" value="Register" class="btn btn-primary btn-block">
                 </form>
+            </div>
+            <div>
+                <p>Already a member?<br><a routerLink="/" class="nav-link">Login</a></p>
             </div>
         </div>
     </div>

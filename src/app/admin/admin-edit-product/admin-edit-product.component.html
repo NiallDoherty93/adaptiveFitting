@@ -5,7 +5,7 @@
     <div class="col-md-6">
         <div class="card">
             <div class="card-header">
-                Add Product
+                Edit Product
             </div>
             
             <div class="card-body">
@@ -87,28 +87,14 @@
         
                     <div class="form-group">
                         <label for="category">Category</label>
-                        <input 
-                        type="text"
-                        class="form-control"
+                        <select [(ngModel)]="product.category" 
                         name="category"
-                        #productCategory="ngModel"
-                        [ngClass]="{'is-invalid': productCategory.errors && productCategory.touched}"
-                        [(ngModel)]="product.category"
-                        minlength="2" 
-                        required
-                        
-                        >
-                        <div [hidden]="!productCategory.errors?.required"
-                        class="invalid-feedback">
-                       Category number is required
-        
-                        </div>
-                        <div [hidden]="!productCategory.errors?.minlength"
-                        class="invalid-feedback">
-                        Must be atleast 10 characters
-        
-                        </div>
-                    </div>
+                        class="form-control" id="category-dropdown">
+                          <option>Upper-Body</option>
+                          <option>Lower-Body</option>
+                          
+                        </select>
+                      </div>
         
                  
         
@@ -130,4 +116,6 @@
         </div>
     </div>
 </div>
+
+
 

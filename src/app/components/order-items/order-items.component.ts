@@ -40,11 +40,6 @@ export class OrderItemsComponent implements OnInit {
 
   }
 
-
-  // onSubmit({value, valid}: NgForm){
-  //     this.router.navigate(['/user-accessories']);
-  //   }
-
  
     addItemToCart(product: ProductItems){
       switch(product.category){
@@ -56,7 +51,7 @@ export class OrderItemsComponent implements OnInit {
         }
         case "Lower-Body":{
           this.shoppingCartService.addItemToCart(product);
-          this.router.navigate(['/']);
+          this.router.navigate(['/user-accessories-lower']);
           break;
         }
        

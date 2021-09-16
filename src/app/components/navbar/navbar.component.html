@@ -7,8 +7,8 @@
     </div>
     <div class="collapse navbar-collapse" id="navbarMain">
         <ul class="ul navbar-nav mr-auto">
-            <li class="nav-item">
-                <a routerLink="/" class="nav-link">Dashboard</a>
+            <li *ngIf="isLoggedIn" class="nav-item" >
+                <a routerLink="/dashboard" class="nav-link">Dashboard</a>
             </li>
         </ul>
         <ul class="ul navbar-nav ml-auto">
@@ -16,13 +16,13 @@
                 <a routerLink="/register" class="nav-link">Register</a>
             </li>
             <li *ngIf="!isLoggedIn" class="nav-item">
-                <a routerLink="/login" class="nav-link">Login</a>
+                <a routerLink="/" class="nav-link">Login</a>
             </li>
             <li *ngIf="isLoggedIn" class="nav-item">
                 <a routerLink="/profile" class="nav-link">Profile</a>
             </li>
             <li ngbDropdown  class="nav-item dropdown ">
-                <a ngbDropdownToggle class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Username</a>
+                <a ngbDropdownToggle class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More Options</a>
                 <div ngbDropdownMenu class="dropdown-menu " aria-labelledby="dropdown01">
                     <a class="dropdown-item" routerLink="admin/dash">Admin Dashboard</a>
                     <a class="dropdown-item" >Manage Orders</a>
@@ -35,7 +35,4 @@
             </li>
         </ul>
     </div>
-
-
-
 </nav>

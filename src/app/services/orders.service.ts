@@ -27,7 +27,9 @@ export class OrdersService {
     private afAuth: AngularFireAuth,
     private userService: UserService,
     
-  ) { }
+  ) {
+    this.ordersCollection = this.db.collection('orders')
+   }
 
  async placeOrder(order: any){
    const user = await this.afAuth.currentUser;

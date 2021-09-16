@@ -39,7 +39,7 @@ export class UserAccessoriesComponent implements OnInit {
   onSubmit({value, valid}: NgForm){
   
       
-    this.router.navigate(['/user-accessories-item-upper']);
+    this.router.navigate(['/user-accessories-upper']);
     
     
   }

@@ -5,6 +5,7 @@ import { FlashMessagesService } from 'flash-messages-angular';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
+import { FLASH_MESSAGE_TIMEOUT } from 'src/app/global/application-constants';
 
 
 
@@ -40,7 +41,7 @@ export class NavbarComponent implements OnInit {
   onLogoutClick(){
     this.authService.logout();
     this.flashMessageService.show('You are now logged out',{
-      cssClass: 'alert-success', timeout:4000
+      cssClass: 'alert-success', timeout:FLASH_MESSAGE_TIMEOUT
     });
     this.router.navigate(['/login'])
   }

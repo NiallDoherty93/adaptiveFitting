@@ -1,17 +1,279 @@
-<p>Checkout</p>
+<h2>Checkout</h2>
+<br>
+<br>
 
 <div class="row" >
-<div class="col-4">
-    <app-shopping-cart></app-shopping-cart>
+<div class="col-3">
+    <div class="row col-lg-10 col-md-6 mx-auto" *ngIf="cart$ | async as cart">
+        <div class="heading">
+          <h4>Shopping Cart</h4>
+        </div>
+      
+        <table class="table">
+          <thead>
+            <tr>
+              
+              <th class="text-left">Garment</th>
+      
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of cart.items">
+              <td>{{ item?.product?.item }}</td>
+              <td class="text-left"> 
+              </td>
+            </tr>
+          </tbody>
+      
+          <thead>
+            <tr>
+              <th class="text-left">Accessory</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of cart.items">
+              <td>{{ item?.accessory?.item }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 </div>
-<div class="col-4">
-    <app-add-user-details></app-add-user-details>
+<div class="col-3">
+    <div class="col-md-8">
+        <div class="tab-content profile-tab" id="myTabContent">
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                <div class="heading">
+                    <h4>Delivery Details</h4>
+                  </div><br>
+                  <div class="row">
+                    <div class="col-md-6">
+                        <label><strong>Name:</strong></label>
+                    </div>
+                    <div class="col-md-6">
+                        <p>{{userDetails?.firstName}} {{userDetails?.lastName}}</p>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label><strong>Contact Email:</strong></label>
+                    </div>
+                    <div class="col-md-6">
+                        <p>{{userDetails?.email}}</p>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label><strong>Delivery Address:</strong></label>
+                    </div>
+                    <div class="col-md-6">
+                        <p>{{userDetails?.address}}</p>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label><strong>Postcode:</strong> </label>
+                    </div>
+                    <div class="col-md-6">
+                        <p>{{userDetails?.postcode}}</p>
+                    </div>
+                </div>
+            </div>
+          
+        </div>
+    </div>
 </div>
-<div class="col-4">
-    <app-user-measurements></app-user-measurements>
+<div class="col-3">
+    <div class="col-md-8">
+        <div class="tab-content profile-tab" id="myTabContent">
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                <div class="heading">
+                    <h4>Upper Body Measurements (inches)</h4>
+                  </div><br>
+                  <div class="row">
+                    <div class="col-md-6">
+                        <label><strong>Chest Circumference:</strong> </label>
+                    </div>
+                    <div class="col-md-6">
+                        <p>{{userMeasurements?.chest}} </p>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label><strong>Neck Circumference: </strong> </label>
+                    </div>
+                    <div class="col-md-6">
+                        <p>{{userMeasurements?.neck}} </p>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label><strong>Left Cuff Circumference:</strong></label>
+                    </div>
+                    <div class="col-md-6">
+                        <p>{{userMeasurements?.leftCuff}}</p>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label><strong>Right Cuff Circumference:</strong> </label>
+                    </div>
+                    <div class="col-md-6">
+                        <p>{{userMeasurements?.rightCuff}}</p>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label><strong>Left Arm Length:</strong> </label>
+                    </div>
+                    <div class="col-md-6">
+                        <p>{{userMeasurements?.leftArm}}</p>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label><strong>Right Arm Length:</strong> </label>
+                    </div>
+                    <div class="col-md-6">
+                        <p>{{userMeasurements?.rightArm}}</p>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label><strong>Left Shoulder Length:</strong> </label>
+                    </div>
+                    <div class="col-md-6">
+                        <p>{{userMeasurements?.leftShoulder}}</p>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label><strong>Right Shoulder Length:</strong></label>
+                    </div>
+                    <div class="col-md-6">
+                        <p>{{userMeasurements?.rightShoulder}}</p>
+                    </div>
+                </div>
+            </div>
+          
+        </div>
+    </div>
+             
+     
+    
 </div>
 
-<button class="nav-link"  
+<div class="col-3">
+    <div class="col-md-8">
+        <div class="tab-content profile-tab" id="myTabContent">
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                <div class="heading">
+                    <h4>Lower Body Measurements (inches)</h4>
+                  </div><br>
+                  <div class="row">
+                    <div class="col-md-6">
+                        <label><strong>Waist Line Circumference: </strong></label>
+                    </div>
+                    <div class="col-md-6">
+                        <p>{{userMeasurements?.waist}} </p>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label><strong>Hip Circumference:</strong></label>
+                    </div>
+                    <div class="col-md-6">
+                        <p>{{userMeasurements?.hip}}</p>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label><strong>Rise Length:</strong></label>
+                    </div>
+                    <div class="col-md-6">
+                        <p>{{userMeasurements?.rise}}</p>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label><strong>Left Thigh Circumference:</strong></label>
+                    </div>
+                    <div class="col-md-6">
+                        <p>{{userMeasurements?.leftThighWidth}}</p>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label><strong>Right Thigh Circumference:</strong></label>
+                    </div>
+                    <div class="col-md-6">
+                        <p>{{userMeasurements?.rightThighWidth}}</p>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label><strong>Left Leg Length:</strong></label>
+                    </div>
+                    <div class="col-md-6">
+                        <p>{{userMeasurements?.leftLegLength}}</p>
+                    </div>
+                </div>
+                <br>
+                  <div class="row">
+                    <div class="col-md-6">
+                        <label><strong>Right Leg Length:</strong></label>
+                    </div>
+                    <div class="col-md-6">
+                        <p>{{userMeasurements?.rightLegLenght}}</p>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label><strong>Left Leg Inseam:</strong></label>
+                    </div>
+                    <div class="col-md-6">
+                        <p>{{userMeasurements?.leftLegInseam}}</p>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label><strong>Right Leg Inseam:</strong></label>
+                    </div>
+                    <div class="col-md-6">
+                        <p>{{userMeasurements?.rightLegInseam}}</p>
+                    </div>
+                </div>
+            </div>
+          
+        </div>
+    </div>
+             
+     
+    
+</div>
+<br>
+<div>
+
+</div>
+<br>
+
+<button class="nav-link" 
 (click) = "placeOrder()">Place Order</button>
 
 
