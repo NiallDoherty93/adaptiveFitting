@@ -1,17 +1,17 @@
-<a routerLink="/admin/dash" class="btn btn-link">
-    <i class="fa fa-arrow-circle-o-left"></i> Back To Dashboard
+<a routerLink="/admin/accessories" class="btn btn-link">
+    <i class="fa fa-arrow-circle-o-left"></i> Back To Fittings
 </a>
 <div class="row" *ngIf="accessoryUpper">
     <div class="col-md-6">
         <div class="card">
             <div class="card-header">
-                Edit Accessory
+                Edit Fitting
             </div>
             
             <div class="card-body"  >
                 <form #productForm="ngForm" (ngSubmit)="onSubmit(productForm)">
                     <div class="form-group">
-                        <label for="item">Accessory Title</label>
+                        <label for="item">Fitting Title</label>
                         <input 
                         type="text"
                         class="form-control"

@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
 import { FLASH_MESSAGE_TIMEOUT } from 'src/app/global/application-constants';
+import { Observable } from 'rxjs';
+import { UserDetails } from 'src/app/models/user-details';
 
 @Component({
   selector: 'app-register',
@@ -15,6 +17,8 @@ export class RegisterComponent implements OnInit {
   password: string | any;
   confirmPassword: string | any;
   uid: string | any;
+  user: UserDetails
+  roles: boolean
   
  
 
@@ -28,13 +32,15 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit(){
+   onSubmit(){
      if (this.password===this.confirmPassword){
       this.authService.register(this.email, this.password)
+      
       .then(res => {
         this.userService.createUserDetails({email: this.email})
         this.userService.createUserMeasurements({uid: this.uid})
         
+      
         this.flashMessage.show('You are now registered and logged in',{
           cssClass: 'alert-success', timeout: FLASH_MESSAGE_TIMEOUT
         });

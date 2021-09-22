@@ -1,3 +1,5 @@
+import { Roles } from "./roles";
+
 export interface UserDetails{
     address?: string,
     email?: string,
@@ -7,9 +9,5 @@ export interface UserDetails{
     phone?: string,
     postcode?: string
     id?: string,
-    isAdmin?: boolean,
-    detailsComplete?: boolean
+    roles?: Roles
   }
-
-  
-

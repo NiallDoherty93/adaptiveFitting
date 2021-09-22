@@ -1,4 +1,15 @@
-
+<div>
+<a routerLink="/admin/dash" class="btn btn-link">
+    <i class="fa fa-arrow-circle-o-left"></i> Back To Dashboard
+</a>
+</div>
+<br>
+<div>
+    <a routerLink='/admin/add' class="btn btn-success btn-block btn-group pull-right">
+        <i class="fa fa-plus"></i>New product
+        </a>
+</div>
+<br>
 <div class="row">
     <div class="col-md-12">
         <h2><i class="fa fa-shopping-basket"></i>Products</h2>
@@ -6,11 +17,12 @@
             <input 
             #query
             (keyup)="filter(query.value)"
-            type="text" class="form-control" placeholder="Search...">
+            type="text" class="form-control" placeholder="Search by title...">
         </div>
     </div>
    
 </div>
+<br>
 
 <table *ngIf="products.length >0; else noProducts" class="table table-striped">
 

@@ -14,7 +14,7 @@ import { FLASH_MESSAGE_TIMEOUT } from 'src/app/global/application-constants';
 })
 export class AddUserDetailsComponent implements OnInit {
   detailsExist: boolean|any =true;
-  user: UserDetails | any;
+  user: UserDetails;
   userId: string | any
 
 
@@ -41,9 +41,8 @@ export class AddUserDetailsComponent implements OnInit {
       if(this.userId){
         this.userService.getUserDetails().subscribe(user =>{
           this.user = user[0];
-         
-          // console.log(user)
         })
+        
       } 
     }) ;
   }
@@ -55,13 +54,17 @@ export class AddUserDetailsComponent implements OnInit {
       });
     }else{
       this.userService.editUserDetails(this.user.id, this.user)
+      this.auth.updateUserData(this.user)
+     
       if(!this.user){
-        this.flashMessageService.show('Details added successfully!',{
+        this.flashMessageService.show('Details updated successfully!',{
           cssClass: 'alert-success', timeout: FLASH_MESSAGE_TIMEOUT
+          
+        }
+        );
         
-        });
       }else{
-        this.flashMessageService.show('Details edited successfully!',{
+        this.flashMessageService.show('Details updated successfully!',{
           cssClass: 'alert-success', timeout: FLASH_MESSAGE_TIMEOUT
         });
       }

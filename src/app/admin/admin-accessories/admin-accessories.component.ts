@@ -76,12 +76,6 @@ export class AdminAccessoriesComponent implements OnInit {
 
   }
 
-  // private getAccessoryTypes(): void {
-  //   this.itemService.getAccessoriesUpper().subscribe(accessoriesUpper => {
-  //     //@ts-ignore
-  //     this.filteredProducts.push(accessoriesUpper);
-  //   })
-  // }
 
 
   filterUpper(query: string){

@@ -3,13 +3,6 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
 import { Observable } from 'rxjs';
 import { map} from 'rxjs/operators';
 import { ProductItems } from '../models/product-items';
-
-import { AccessoriesUpper } from '../models/accessories-upper';
-import { AccessoriesItemsUpper } from '../models/accessorries-items-upper';
-
-import { AccessoriesLower} from '../models/accessories-lower';
-import { AccessoriesItemsLower } from '../models/accessories-items-lower';
-
 import { Accessories } from '../models/accessories';
 
 @Injectable({
@@ -58,7 +51,6 @@ export class ItemsService {
    }
 
    createItem(item: ProductItems){
-      
     this.itemsCollection.add(item)
   }
 
@@ -73,7 +65,6 @@ export class ItemsService {
   }
 
    getItems(): Observable<ProductItems[]> {
-    //get items with the id
     this.items = this.itemsCollection.snapshotChanges().pipe(
     map(changes => {
       return changes.map(action => {

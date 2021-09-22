@@ -6,6 +6,7 @@ import { FLASH_MESSAGE_TIMEOUT } from 'src/app/global/application-constants';
 
 
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -14,6 +15,7 @@ import { FLASH_MESSAGE_TIMEOUT } from 'src/app/global/application-constants';
 export class LoginComponent implements OnInit {
   email: string | any;
   password: string | any;
+  role: string
  
   constructor(
     private authService: AuthService,

@@ -21,6 +21,9 @@ import { AdminAddProductComponent } from './admin/admin-add-product/admin-add-pr
 import { AdminAddAccessoriesComponent } from './admin/admin-add-accessories/admin-add-accessories.component';
 import { AdminDetailsAccessoriesComponent } from './admin/admin-details-accessories/admin-details-accessories.component';
 import { AdminEditAccessoriesComponent } from './admin/admin-edit-accessories/admin-edit-accessories.component';
+import { AdminAccessoriesComponent } from './admin/admin-accessories/admin-accessories.component';
+import { AdminClientsComponent } from './admin/admin-clients/admin-clients.component';
+import { AdminDetailsClientComponent } from './admin/admin-details-client/admin-details-client.component';
 import { SidebarComponent } from './admin/sidebar/sidebar.component';
 
 
@@ -38,6 +41,9 @@ import { UserOrdersComponent } from './components/profile/user-orders/user-order
 import { UserOrderDetailsComponent } from './components/profile/user-order-details/user-order-details.component';
 import { OrdersComponent } from './tailor/orders/orders.component';
 import { OrderDetailsComponent } from './tailor/order-details/order-details.component';
+import { AdminAuthGuard } from './guards/auth.admin-guard';
+import { TailorAuthGuard } from './guards/auth.tailor-guard';
+// import { AdminClientPermissionsComponent } from './admin/admin-client-permissions/admin-client-permissions.component';
 
 
 
@@ -60,21 +66,24 @@ const routes: Routes =[
 
   {path: 'checkout', component: CheckoutComponent, canActivate:[AuthGuard] },
 
-  {path: 'tailor/orders', component: OrdersComponent},
-  {path: 'tailor/orders/:id', component: OrderDetailsComponent },
+  {path: 'tailor/orders', component: OrdersComponent, canActivate:[TailorAuthGuard]  },
+  {path: 'tailor/orders/:id', component: OrderDetailsComponent , canActivate:[TailorAuthGuard] },
   
-  {path: 'admin/add', component: AdminAddProductComponent},
-  {path: 'admin/dash', component: AdminDashComponent},
+  {path: 'admin/add', component: AdminAddProductComponent, canActivate:[AdminAuthGuard]},
+  {path: 'admin/dash', component: AdminDashComponent, canActivate:[AdminAuthGuard] },
   {path: 'shopping-cart', component: ShoppingCartComponent, canActivate:[AuthGuard] },
-  {path: 'admin/details/:id', component: AdminDetailsProductComponent},
-  {path: 'admin/edit/:id', component: AdminEditProductComponent},
-  {path: 'admin/products', component: AdminProductsComponent},
-  {path: 'admin/settings', component: AdminSettingsComponent},
-  {path: 'admin/sidebar', component: SidebarComponent},
-  {path: 'admin/addaccessories', component: AdminAddAccessoriesComponent },
-  {path: 'admin/detailsaccessories/:id', component: AdminDetailsAccessoriesComponent},
-  {path: 'admin/editaccessories/:id', component: AdminEditAccessoriesComponent},
-  {path: 'admin/accessories', component: AdminAddAccessoriesComponent},
+  {path: 'admin/details/:id', component: AdminDetailsProductComponent, canActivate:[AdminAuthGuard]},
+  {path: 'admin/edit/:id', component: AdminEditProductComponent, canActivate:[AdminAuthGuard]},
+  {path: 'admin/products', component: AdminProductsComponent, canActivate:[AdminAuthGuard]},
+  {path: 'admin/settings', component: AdminSettingsComponent, canActivate:[AdminAuthGuard]},
+  {path: 'admin/sidebar', component: SidebarComponent, canActivate:[AdminAuthGuard]},
+  {path: 'admin/addaccessories', component: AdminAddAccessoriesComponent, canActivate:[AdminAuthGuard] },
+  {path: 'admin/detailsaccessories/:id', component: AdminDetailsAccessoriesComponent, canActivate:[AdminAuthGuard]},
+  {path: 'admin/editaccessories/:id', component: AdminEditAccessoriesComponent, canActivate:[AdminAuthGuard]},
+  {path: 'admin/accessories', component: AdminAccessoriesComponent, canActivate:[AdminAuthGuard]},
+  {path: 'admin/clients', component: AdminClientsComponent, canActivate:[AdminAuthGuard]},
+  {path: 'admin/detailsclients/:id', component: AdminDetailsClientComponent, canActivate:[AdminAuthGuard]},
+  // {path: 'admin/clientpermissions/:id', component: AdminClientPermissionsComponent, canActivate:[AdminAuthGuard]},
   {path: '**', component: NotFoundComponent },
 
 
@@ -90,7 +99,9 @@ const routes: Routes =[
     RouterModule.forRoot(routes)
   ],
   providers: [
-    AuthGuard
+    AuthGuard,
+    AdminAuthGuard, 
+    TailorAuthGuard
   ]
 })
 export class AppRoutingModule { }

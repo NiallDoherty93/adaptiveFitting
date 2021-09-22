@@ -42,34 +42,9 @@
         </div>
       </div>
 
-      <!-- <div class="form-group">
-                <label for="email">Email</label>
-                <input 
-                type="text"
-                class="form-control"
-                name="email"
-                #email="ngModel"
-                [ngClass]="{'is-invalid': email.errors && email.touched}"
-                [(ngModel)]="user.email"
-                pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" 
-                required
-                
-                >
-                <div [hidden]="!email.errors?.required"
-                class="invalid-feedback">
-               Email required
-
-                </div>
-                <div [hidden]="!email.errors?.pattern"
-                class="invalid-feedback">
-                Email is not valid 
-
-                </div>
-            </div> -->
-
       <div class="form-group">
         <label for="phone">Phone</label>
-        <input type="text" class="form-control" name="phone" #userPhone="ngModel"
+        <input type="number" class="form-control" name="phone" #userPhone="ngModel"
           [ngClass]="{'is-invalid': userPhone.errors && userPhone.touched}" [(ngModel)]="user.phone" minlength="2"
           required>
         <div [hidden]="!userPhone.errors?.required" class="invalid-feedback">
@@ -77,7 +52,7 @@
 
         </div>
         <div [hidden]="!userPhone.errors?.minlength" class="invalid-feedback">
-          Must be atleast 10 characters
+          Must be atleast 10 digits
 
         </div>
       </div>
@@ -106,7 +81,7 @@
 
         </div>
         <div [hidden]="!userPostcode.errors?.minlength" class="invalid-feedback">
-          Must be at least 2 characters
+          Must be at least 7 characters
 
         </div>
       </div>

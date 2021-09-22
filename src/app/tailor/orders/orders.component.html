@@ -1,4 +1,9 @@
-
+<div class="col-md-6">
+    <a routerLink="/admin/dash" class="btn btn-link">
+        <i class="fa fa-arrow-circle-o-left"></i> Back To Dashboard
+    </a>
+</div>
+<br>
   <div class="row">
     <div class="col-md-12">
         <h2><i class="fa fa-shopping-basket"></i>Orders</h2>
@@ -25,6 +30,7 @@
         <tr >
             <th>Order Reference</th>
             <th>Date Placed</th>
+            
         </tr>
     </thead>
     <tbody>
@@ -33,18 +39,19 @@
                 {{order.id}}
                 
             </td>
-               
-           
-           
-            <td>{{order.datePlaced | date: 'dd/MM/yyyy  :  HH:mm '}}</td>
+        
+                <td>{{order.datePlaced | date: 'dd/MM/yyyy  :  HH:mm '}}</td>
             
-            <td><a routerLink="/tailor/orders/{{order.id}}" class="btn btn-secondary btn-sm">
-                
-                <i class="fa fa-arrow-circle-o-right"></i>View Order Details</a></td>
-                
+                <td><a routerLink="/tailor/orders/{{order.id}}" class="btn btn-secondary btn-sm">
+                    
+                    <i class="fa fa-arrow-circle-o-right"></i>View Order Details</a></td>
+                    
+            
+            
          
         </tr>
     </tbody>
 </table>
 
 <ng-template #noOrders><hr><h5>There are no orders in the system</h5></ng-template>
+

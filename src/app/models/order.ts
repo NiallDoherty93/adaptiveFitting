@@ -1,4 +1,3 @@
-import { ShoppingCart } from "./shopping-cart";
 import { orderItem } from "./order-item";
 
 

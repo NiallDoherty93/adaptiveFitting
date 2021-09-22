@@ -1,7 +1,4 @@
 export interface ProductItems{
-  
-  
-
   id?: any,
   category?: string,
   item?: string,

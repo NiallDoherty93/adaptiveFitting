@@ -1,118 +1,88 @@
-<a routerLink="/admin/dash" class="btn btn-link">
-    <i class="fa fa-arrow-circle-o-left"></i> Back To Dashboard
-</a>
 <div class="row">
+  <div class="col-md-6">
+    <a routerLink="/admin/products" class="btn btn-link">
+      <i class="fa fa-arrow-circle-o-left"></i> Back To Products
+    </a>
+  </div>
+  <div class="row">
     <div class="col-md-6">
-        <div class="card">
-            <div class="card-header">
-                Add Product
-            </div>
-           
-            <div class="card-body">
-                <form #productForm="ngForm" (ngSubmit)="onSubmit(productForm)">
-                    <div class="form-group">
-                        <label for="item">Product Title</label>
-                        <input 
-                        type="text"
-                        class="form-control"
-                        name="item"
-                        #productTitle="ngModel"
-                        [ngClass]="{'is-invalid': productTitle.errors && productTitle.touched}"
-                        [(ngModel)]="product.item"
-                        minlength="2"
-                        required
-                        
-                        >
-                        <div [hidden]="!productTitle.errors?.required"
-                        class="invalid-feedback">
-                        Product title required
-        
-                        </div>
-                        <div [hidden]="!productTitle.errors?.minlength"
-                        class="invalid-feedback">
-                        Must be at least 2 characters 
-        
-                        </div>
-                    </div>
-        
-                    <div class="form-group">
-                        <label for="description">Description</label>
-                        <input 
-                        type="text"
-                        class="form-control"
-                        name="description"
-                        #productDescription="ngModel"
-                        [ngClass]="{'is-invalid': productDescription.errors && productDescription.touched}"
-                        [(ngModel)]="product.description"
-                        minlength="2"
-                        required
-                        
-                        >
-                        <div [hidden]="!productDescription.errors?.required"
-                        class="invalid-feedback">
-                        Description required
-        
-                        </div>
-                        <div [hidden]="!productDescription.errors?.minlength"
-                        class="invalid-feedback">
-                        Must be at least 2 characters 
-        
-                        </div>
-                    </div>
-        
-                    <div class="form-group">
-                        <label for="image">Image URL</label>
-                        <input 
-                        type="text"
-                        class="form-control"
-                        name="image"
-                        #productImage="ngModel"
-                        [ngClass]="{'is-invalid': productImage.errors && productImage.touched}"
-                        [(ngModel)]="product.image"
-                        
-                        required
-                        
-                        >
-                        <div [hidden]="!productImage.errors?.required"
-                        class="invalid-feedback">
-                       Image required
-        
-                        </div>
-                        <div [hidden]="!productImage.errors?.pattern"
-                        class="invalid-feedback">
-                        Image is not valid 
-        
-                        </div>
-                    </div>
-        
-                       
-                        <div class="form-group">
-                            <label for="category">Category</label>
-                            <select [(ngModel)]="product.category" 
-                            name="category"
-                            class="form-control" id="category-dropdown">
-                              <option>Upper-Body</option>
-                              <option>Lower-Body</option>
-                              
-                            </select>
-                          </div>
-                
-                    <input type="submit" value="Submit" class="btn btn-primary btn-block" >
-        
-                </form>
-            </div>
+      <div class="card">
+        <div class="card-header">
+          Add Product
         </div>
-        
+
+        <div class="card-body">
+          <form #productForm="ngForm" (ngSubmit)="onSubmit(productForm)">
+            <div class="form-group">
+              <label for="item">Product Title</label>
+              <input type="text" class="form-control" name="item" #productTitle="ngModel"
+                [ngClass]="{'is-invalid': productTitle.errors && productTitle.touched}" [(ngModel)]="product.item"
+                minlength="2" required>
+              <div [hidden]="!productTitle.errors?.required" class="invalid-feedback">
+                Product title required
+
+              </div>
+              <div [hidden]="!productTitle.errors?.minlength" class="invalid-feedback">
+                Must be at least 2 characters
+
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="description">Description</label>
+              <input type="text" class="form-control" name="description" #productDescription="ngModel"
+                [ngClass]="{'is-invalid': productDescription.errors && productDescription.touched}"
+                [(ngModel)]="product.description" minlength="2" required>
+              <div [hidden]="!productDescription.errors?.required" class="invalid-feedback">
+                Description required
+
+              </div>
+              <div [hidden]="!productDescription.errors?.minlength" class="invalid-feedback">
+                Must be at least 2 characters
+
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="image">Image URL</label>
+              <input type="text" class="form-control" name="image" #productImage="ngModel"
+                [ngClass]="{'is-invalid': productImage.errors && productImage.touched}" [(ngModel)]="product.image"
+                required>
+              <div [hidden]="!productImage.errors?.required" class="invalid-feedback">
+                Image required
+
+              </div>
+              <div [hidden]="!productImage.errors?.pattern" class="invalid-feedback">
+                Image is not valid
+
+              </div>
+            </div>
+
+
+            <div class="form-group">
+              <label for="category">Category</label>
+              <select [(ngModel)]="product.category" name="category" class="form-control" id="category-dropdown">
+                <option>Upper-Body</option>
+                <option>Lower-Body</option>
+
+              </select>
+            </div>
+
+            <input type="submit" value="Submit" class="btn btn-primary btn-block">
+
+          </form>
+        </div>
+      </div>
+
     </div>
 
     <div class="col-md-6">
-        <div class="card" style="width: 20rem;">
-            <img class="card-img-top" [src]="productImage.value" alt="Card image cap">
-            <div class="card-body">
-                <h4 class="card-title">{{productTitle.value}}</h4>
-                <p class="card-text">{{productDescription.value}}</p>
-            </div>
+      <div class="card" style="width: 20rem;">
+        <img class="card-img-top" [src]="productImage.value" alt="Card image cap">
+        <div class="card-body">
+          <h4 class="card-title">{{productTitle.value}}</h4>
+          <p class="card-text">{{productDescription.value}}</p>
         </div>
+      </div>
     </div>
-</div>
-
+  </div>

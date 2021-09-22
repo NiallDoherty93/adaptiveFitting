@@ -68,7 +68,7 @@ export class AdminDetailsAccessoriesComponent implements OnInit {
           this.flashMessage.show('Accessory Removed',{
             cssClass: 'alert-success', timeout: FLASH_MESSAGE_TIMEOUT
           });
-          this.router.navigate(['/admin/dash']);
+          this.router.navigate(['/admin/accessories']);
           break;
         }
         case ACCESSORY_ITEM_UPPER:{
@@ -76,7 +76,7 @@ export class AdminDetailsAccessoriesComponent implements OnInit {
           this.flashMessage.show('Accessory Removed',{
             cssClass: 'alert-success', timeout: FLASH_MESSAGE_TIMEOUT
           });
-          this.router.navigate(['/admin/dash']);
+          this.router.navigate(['/admin/accessories']);
           break;
         }
         case ACCESSORY_LOWER:{
@@ -84,7 +84,7 @@ export class AdminDetailsAccessoriesComponent implements OnInit {
           this.flashMessage.show('Accessory Removed',{
             cssClass: 'alert-success', timeout: FLASH_MESSAGE_TIMEOUT
           });
-          this.router.navigate(['/admin/dash']);
+          this.router.navigate(['/admin/accessories']);
           break;
         }
         case ACCESSORY_ITEM_LOWER: {
@@ -92,7 +92,7 @@ export class AdminDetailsAccessoriesComponent implements OnInit {
           this.flashMessage.show('Accessory Removed',{
             cssClass: 'alert-success', timeout: FLASH_MESSAGE_TIMEOUT
           });
-          this.router.navigate(['/admin/dash']);
+          this.router.navigate(['/admin/accessories']);
           break;
         }
       }

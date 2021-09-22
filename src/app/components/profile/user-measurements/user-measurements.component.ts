@@ -14,7 +14,7 @@ import { FLASH_MESSAGE_TIMEOUT } from 'src/app/global/application-constants';
   styleUrls: ['./user-measurements.component.css'],
 })
 export class UserMeasurementsComponent implements OnInit {
-  measurements: UserMeasurements | any;
+  measurements: UserMeasurements;
   userId: string | any;
 
  
@@ -54,14 +54,16 @@ export class UserMeasurementsComponent implements OnInit {
           cssClass: 'alert-success', timeout: FLASH_MESSAGE_TIMEOUT
         
         });
+        this.router.navigate(['/profile']);
     }else{
       this.flashMessageService.show('Details edited successfully!',{
         cssClass: 'alert-success', timeout: FLASH_MESSAGE_TIMEOUT
       });
+      this.router.navigate(['/profile']);
     }
    
     }
-      this.router.navigate(['/profile']);
+      
       // console.log(this.user)
     }
   }

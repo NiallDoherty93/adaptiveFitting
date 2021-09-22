@@ -33,8 +33,6 @@ export class ShoppingCartService {
   cartItem: Observable<ShoppingCartItem> | any;
   cartItemDoc: AngularFirestoreDocument<ShoppingCartItem> | any;
 
-
-
   itemsCollection: AngularFirestoreCollection<ProductItems> | any;
   itemDoc!: AngularFirestoreDocument<ProductItems>;
   items!: Observable<ProductItems[]>;
@@ -84,13 +82,10 @@ export class ShoppingCartService {
       .valueChanges()
       .pipe(
         map((item: any) => {
-          console.log(item);
           let cart: ShoppingCart = {
             dateCreated: 0,
             items: item,
-            // accessoryUpper: accessoryUpper,
           };
-
           this.db
             .collection('shopping-cart')
             .doc<{ dateCreated: number }>(cartId)
@@ -105,33 +100,26 @@ export class ShoppingCartService {
       );
   }
 
-
   async clearCart() {
     let cartId = await this.getOrCreateCartId();
-    console.log(cartId)
-
     this.db
       .collection('shopping-cart/' + cartId + '/product-items')
-  .valueChanges()
-  .pipe(
-    // first(),
-    map((p) => {
-      console.log(p)
-      return p.map((p: any) => {
-        
-        return p.product ? p.product.id : p.accessory.id;
-
+      .valueChanges()
+      .pipe(
+        map((p) => {
+          return p.map((p: any) => {
+            return p.product ? p.product.id : p.accessory.id;
+          });
+        })
+      )
+      .subscribe((productIdArray) => {
+        productIdArray.forEach((productId: any) => {
+          this.db
+            .collection('shopping-cart/' + cartId + '/product-items')
+            .doc(productId)
+            .delete();
+        });
       });
-    })
-  )
-  .subscribe((productIdArray) => {
-    productIdArray.forEach((productId: any) => {
-      this.db
-        .collection('shopping-cart/' + cartId + '/product-items')
-        .doc(productId)
-        .delete();
-    });
-  });
   }
 
   private async updateItemQuantity(product: ProductItems, change: number) {
@@ -143,17 +131,13 @@ export class ShoppingCartService {
       .pipe(first())
       .subscribe((item: any) => {
         let quantity = (item?.quantity || 0) + change;
-
-        if (quantity === 0) {
-          item$.delete();
-        } else {
-          item$.set({
-            product: product,
-            quantity: quantity,
-          });
-        }
+        item$.set({
+          product: product,
+          quantity: quantity,
+        });
       });
   }
+
   //upper
 
   private async updateAccessoryUpperQuantity(

@@ -22,11 +22,11 @@ export class ShoppingCartComponent implements OnInit {
 
   clearCart(){
       this.shoppingCartService.clearCart();
+      this.router.navigate(['/dashboard']);
   }
 
   onSubmit(){
     this.router.navigate(['/checkout']);
-    console.log('stfu')
   }
 
 }

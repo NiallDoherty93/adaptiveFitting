@@ -54,6 +54,11 @@ import { OrderDashboardComponent } from './tailor/order-dashboard/order-dashboar
 import { UserOrdersComponent } from './components/profile/user-orders/user-orders.component';
 import { UserOrderDetailsComponent } from './components/profile/user-order-details/user-order-details.component';
 import { OrderDetailsComponent } from './tailor/order-details/order-details.component';
+import { AdminClientsComponent } from './admin/admin-clients/admin-clients.component';
+import { AdminDetailsClientComponent } from './admin/admin-details-client/admin-details-client.component';
+import { OrdersService } from './services/orders.service';
+import { AdminPermissionsClientComponent } from './admin/admin-permissions-client/admin-permissions-client.component';
+// import { AdminClientPermissionsComponent } from './admin/admin-client-permissions/admin-client-permissions.component';
 
 
 
@@ -108,6 +113,10 @@ import { OrderDetailsComponent } from './tailor/order-details/order-details.comp
     UserOrdersComponent,
     UserOrderDetailsComponent,
     OrderDetailsComponent,
+    AdminClientsComponent,
+    AdminDetailsClientComponent,
+    AdminPermissionsClientComponent,
+    // AdminClientPermissionsComponent,
   
 
    
@@ -125,7 +134,7 @@ import { OrderDetailsComponent } from './tailor/order-details/order-details.comp
     
     
   ],
-  providers: [AuthService, ItemsService,  UserService, ShoppingCartService],
+  providers: [AuthService, ItemsService,  UserService, ShoppingCartService, OrdersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -38,7 +38,7 @@ export class AdminDetailsProductComponent implements OnInit {
       this.flashMessage.show('Product Removed',{
         cssClass: 'alert-success', timeout: FLASH_MESSAGE_TIMEOUT
       });
-      this.router.navigate(['/admin/dash']);
+      this.router.navigate(['/admin/products']);
     }
   }
 
