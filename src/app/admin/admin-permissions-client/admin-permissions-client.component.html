@@ -1,1 +1,24 @@
-<p>admin-permissions-client works!</p>
+
+<form #permissionForm="ngForm" (ngSubmit)="onSubmit(permissionForm)" >
+    <div class="form-group">
+        <label for="category">Permissions</label>
+        <select [(ngModel)]="user" 
+        name="role"
+        class="form-control" id="category-dropdown">
+        <option>Make Admin</option>
+        <option>Make Tailor</option>
+        </select>
+        <input (click)="onSubmit(permissionForm)" type="submit" value="Submit" class="btn btn-primary btn-block" >
+      </div>
+      
+
+</form>
+   
+
+
+
+
+
+
+
+

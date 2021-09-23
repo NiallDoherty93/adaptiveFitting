@@ -9,6 +9,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { Observable } from 'rxjs';
 import { map, take, tap } from 'rxjs/operators';
 import { AuthService } from '../services/auth.service';
+import { UserDetails } from '../models/user-details';
 
 @Injectable()
 export class AdminAuthGuard implements CanActivate {

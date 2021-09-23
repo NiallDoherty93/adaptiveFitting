@@ -37,7 +37,8 @@ export class AdminDetailsClientComponent implements OnInit {
 
   onDeleteClick(){
     if(confirm('Are you sure?')){
-      this.userService.deleteUser(this.user);
+      console.log(this.user)
+      this.userService.deleteUser(this.user.uid);
       this.flashMessage.show('User Removed',{
         cssClass: 'alert-success', timeout: FLASH_MESSAGE_TIMEOUT
       });

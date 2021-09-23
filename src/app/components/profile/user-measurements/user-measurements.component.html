@@ -6,278 +6,277 @@
   </div>
 </div>
 
-<form #userMeasurementsForm="ngForm" (ngSubmit)="onSubmitAddMeasurements(userMeasurementsForm)" *ngIf="measurements; else noUserMeasurements" >
+<form #userMeasurementsForm="ngForm" (ngSubmit)="onSubmitAddMeasurements(userMeasurementsForm)"
+  *ngIf="measurements; else noUserMeasurements">
   <div class="row">
     <div class="col-md-6">
       <h2>Upper Body (Inches)</h2>
       <div class="form-group">
         <label for="neck">Neck Circumference </label>
         <input type="number" class="form-control" name="neck" [(ngModel)]="measurements.neck" placeholder="Inches"
-        #userMeasurementsneck="ngModel"
-          [ngClass]="{'is-invalid': userMeasurementsneck.errors && userMeasurementsneck.touched}" [(ngModel)]="measurements.neck"
-          min="0" required >
-          <div [hidden]="!userMeasurementsneck.errors?.required" class="invalid-feedback">
-            Mesurement value required
-  
-          </div>
-          <div [hidden]="!userMeasurementsneck.errors?.min" class="invalid-feedback">
-            Body measurement cannot be a negative number
-          </div>
+          #userMeasurementsneck="ngModel"
+          [ngClass]="{'is-invalid': userMeasurementsneck.errors && userMeasurementsneck.touched}"
+          [(ngModel)]="measurements.neck" min="0" required>
+        <div [hidden]="!userMeasurementsneck.errors?.required" class="invalid-feedback">
+          Mesurement value required
+
+        </div>
+        <div [hidden]="!userMeasurementsneck.errors?.min" class="invalid-feedback">
+          Body measurement cannot be a negative number
+        </div>
       </div>
 
       <div class="form-group">
         <label for="backlenght">Back Length</label>
-        <input type="number"  class="form-control" name="backlenght" [(ngModel)]="measurements.backlenght" placeholder="Inches"
-        #userMeasurementsbacklenght="ngModel"
-          [ngClass]="{'is-invalid': userMeasurementsbacklenght.errors && userMeasurementsbacklenght.touched}" [(ngModel)]="measurements.backlenght"
-          min="0" required>
-          <div [hidden]="!userMeasurementsbacklenght.errors?.required" class="invalid-feedback">
-            Mesurement value required
-  
-          </div>
-          <div [hidden]="!userMeasurementsbacklenght.errors?.min" class="invalid-feedback">
-            Body measurement cannot be a negative number
-          </div>
+        <input type="number" class="form-control" name="backlenght" [(ngModel)]="measurements.backlenght"
+          placeholder="Inches" #userMeasurementsbacklenght="ngModel"
+          [ngClass]="{'is-invalid': userMeasurementsbacklenght.errors && userMeasurementsbacklenght.touched}"
+          [(ngModel)]="measurements.backlenght" min="0" required>
+        <div [hidden]="!userMeasurementsbacklenght.errors?.required" class="invalid-feedback">
+          Mesurement value required
+
+        </div>
+        <div [hidden]="!userMeasurementsbacklenght.errors?.min" class="invalid-feedback">
+          Body measurement cannot be a negative number
+        </div>
       </div>
 
-    <div class="form-group">
-      <label for="chest">Chest Circumference</label>
-      <input type="number"  class="form-control" name="chest" [(ngModel)]="measurements.chest" placeholder="Inches"
-      #userMeasurementschest="ngModel"
-          [ngClass]="{'is-invalid': userMeasurementschest.errors && userMeasurementschest.touched}" [(ngModel)]="measurements.chest"
-          min="0" required>
-          <div [hidden]="!userMeasurementschest.errors?.required" class="invalid-feedback">
-            Mesurement value required
-  
-          </div>
-          <div [hidden]="!userMeasurementschest.errors?.min" class="invalid-feedback">
-            Body measurement cannot be a negative number
-          </div>
-    </div>
-    <div class="form-group">
-      <label for="leftCuff">Left Cuff Circumference</label>
-      <input type="number"  class="form-control" name="leftCuff" [(ngModel)]="measurements.leftCuff" placeholder="Inches"
-      #userMeasurementsleftCuff="ngModel"
-          [ngClass]="{'is-invalid': userMeasurementsleftCuff.errors && userMeasurementsleftCuff.touched}" [(ngModel)]="measurements.leftCuff"
-          min="0" required>
-      <div [hidden]="!userMeasurementsleftCuff.errors?.required" class="invalid-feedback">
-        Mesurement value required
+      <div class="form-group">
+        <label for="chest">Chest Circumference</label>
+        <input type="number" class="form-control" name="chest" [(ngModel)]="measurements.chest" placeholder="Inches"
+          #userMeasurementschest="ngModel"
+          [ngClass]="{'is-invalid': userMeasurementschest.errors && userMeasurementschest.touched}"
+          [(ngModel)]="measurements.chest" min="0" required>
+        <div [hidden]="!userMeasurementschest.errors?.required" class="invalid-feedback">
+          Mesurement value required
 
+        </div>
+        <div [hidden]="!userMeasurementschest.errors?.min" class="invalid-feedback">
+          Body measurement cannot be a negative number
+        </div>
       </div>
-      <div [hidden]="!userMeasurementsleftCuff.errors?.min" class="invalid-feedback">
-        Body measurement cannot be a negative number
-      </div>
-    </div>
+      <div class="form-group">
+        <label for="leftCuff">Left Cuff Circumference</label>
+        <input type="number" class="form-control" name="leftCuff" [(ngModel)]="measurements.leftCuff"
+          placeholder="Inches" #userMeasurementsleftCuff="ngModel"
+          [ngClass]="{'is-invalid': userMeasurementsleftCuff.errors && userMeasurementsleftCuff.touched}"
+          [(ngModel)]="measurements.leftCuff" min="0" required>
+        <div [hidden]="!userMeasurementsleftCuff.errors?.required" class="invalid-feedback">
+          Mesurement value required
 
-    <div class="form-group" >
-      <label for="rightCuff">Right Cuff Circumference</label>
-      <input type="number"  class="form-control" name="rightCuff" [(ngModel)]="measurements.rightCuff" placeholder="Inches"
-      #userMeasurementsrightCuff="ngModel"
-          [ngClass]="{'is-invalid': userMeasurementsrightCuff.errors && userMeasurementsrightCuff.touched}" [(ngModel)]="measurements.rightCuff"
-          min="0" required >
-          <div [hidden]="!userMeasurementsrightCuff.errors?.required" class="invalid-feedback">
-            Mesurement value required
-    
-          </div>
-          <div [hidden]="!userMeasurementsrightCuff.errors?.min" class="invalid-feedback">
-            Body measurement cannot be a negative number
-          </div>
-    </div>
-    <div class="form-group">
+        </div>
+        <div [hidden]="!userMeasurementsleftCuff.errors?.min" class="invalid-feedback">
+          Body measurement cannot be a negative number
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="rightCuff">Right Cuff Circumference</label>
+        <input type="number" class="form-control" name="rightCuff" [(ngModel)]="measurements.rightCuff"
+          placeholder="Inches" #userMeasurementsrightCuff="ngModel"
+          [ngClass]="{'is-invalid': userMeasurementsrightCuff.errors && userMeasurementsrightCuff.touched}"
+          [(ngModel)]="measurements.rightCuff" min="0" required>
+        <div [hidden]="!userMeasurementsrightCuff.errors?.required" class="invalid-feedback">
+          Mesurement value required
+
+        </div>
+        <div [hidden]="!userMeasurementsrightCuff.errors?.min" class="invalid-feedback">
+          Body measurement cannot be a negative number
+        </div>
+      </div>
+      <div class="form-group">
         <label for="leftArm">Left Arm Length</label>
-        <input type="number"  class="form-control" name="leftArm" [(ngModel)]="measurements.leftArm" placeholder="Inches"
-        #userMeasurementsleftArm="ngModel"
-          [ngClass]="{'is-invalid': userMeasurementsleftArm.errors && userMeasurementsleftArm.touched}" [(ngModel)]="measurements.leftArm"
-          min="0" required >
-          <div [hidden]="!userMeasurementsleftArm.errors?.required" class="invalid-feedback">
-            Mesurement value required
-    
-          </div>
-          <div [hidden]="!userMeasurementsleftArm.errors?.min" class="invalid-feedback">
-            Body measurement cannot be a negative number
-          </div>
+        <input type="number" class="form-control" name="leftArm" [(ngModel)]="measurements.leftArm" placeholder="Inches"
+          #userMeasurementsleftArm="ngModel"
+          [ngClass]="{'is-invalid': userMeasurementsleftArm.errors && userMeasurementsleftArm.touched}"
+          [(ngModel)]="measurements.leftArm" min="0" required>
+        <div [hidden]="!userMeasurementsleftArm.errors?.required" class="invalid-feedback">
+          Mesurement value required
+
+        </div>
+        <div [hidden]="!userMeasurementsleftArm.errors?.min" class="invalid-feedback">
+          Body measurement cannot be a negative number
+        </div>
       </div>
       <div class="form-group">
         <label for="rightArm">Right Arm Length</label>
-        <input type="number"  class="form-control" name="rightArm" [(ngModel)]="measurements.rightArm" placeholder="Inches"
-        #userMeasurementsrightArm="ngModel"
-          [ngClass]="{'is-invalid': userMeasurementsrightArm.errors && userMeasurementsrightArm.touched}" [(ngModel)]="measurements.rightArm"
-          min="0" required >
-          <div [hidden]="!userMeasurementsrightArm.errors?.required" class="invalid-feedback">
-            Mesurement value required
-    
-          </div>
-          <div [hidden]="!userMeasurementsrightArm.errors?.min" class="invalid-feedback">
-            Body measurement cannot be a negative number
-          </div>
+        <input type="number" class="form-control" name="rightArm" [(ngModel)]="measurements.rightArm"
+          placeholder="Inches" #userMeasurementsrightArm="ngModel"
+          [ngClass]="{'is-invalid': userMeasurementsrightArm.errors && userMeasurementsrightArm.touched}"
+          [(ngModel)]="measurements.rightArm" min="0" required>
+        <div [hidden]="!userMeasurementsrightArm.errors?.required" class="invalid-feedback">
+          Mesurement value required
+
+        </div>
+        <div [hidden]="!userMeasurementsrightArm.errors?.min" class="invalid-feedback">
+          Body measurement cannot be a negative number
+        </div>
       </div>
       <div class="form-group">
         <label for="leftShoulder">Left Shoulder Length</label>
-        <input type="number"  class="form-control" name="leftShoulder" [(ngModel)]="measurements.leftShoulder" placeholder="Inches"
-        #userMeasurementsleftShoulder="ngModel"
-          [ngClass]="{'is-invalid': userMeasurementsleftShoulder.errors && userMeasurementsleftShoulder.touched}" [(ngModel)]="measurements.leftShoulder"
-          min="0" required >
-          <div [hidden]="!userMeasurementsleftShoulder.errors?.required" class="invalid-feedback">
-            Mesurement value required
-    
-          </div>
-          <div [hidden]="!userMeasurementsleftShoulder.errors?.min" class="invalid-feedback">
-            Body measurement cannot be a negative number
-          </div>
+        <input type="number" class="form-control" name="leftShoulder" [(ngModel)]="measurements.leftShoulder"
+          placeholder="Inches" #userMeasurementsleftShoulder="ngModel"
+          [ngClass]="{'is-invalid': userMeasurementsleftShoulder.errors && userMeasurementsleftShoulder.touched}"
+          [(ngModel)]="measurements.leftShoulder" min="0" required>
+        <div [hidden]="!userMeasurementsleftShoulder.errors?.required" class="invalid-feedback">
+          Mesurement value required
+
+        </div>
+        <div [hidden]="!userMeasurementsleftShoulder.errors?.min" class="invalid-feedback">
+          Body measurement cannot be a negative number
+        </div>
       </div>
       <div class="form-group">
         <label for="rightShoulder">Right Shoulder Length</label>
-        <input type="number"  class="form-control" name="rightShoulder" [(ngModel)]="measurements.rightShoulder" placeholder="Inches"
-        #userMeasurementsrightShoulder="ngModel"
-          [ngClass]="{'is-invalid': userMeasurementsrightShoulder.errors && userMeasurementsrightShoulder.touched}" [(ngModel)]="measurements.rightShoulder"
-          min="0" required >
-          <div [hidden]="!userMeasurementsrightShoulder.errors?.required" class="invalid-feedback">
-            Mesurement value required
-    
-          </div>
-          <div [hidden]="!userMeasurementsrightShoulder.errors?.min" class="invalid-feedback">
-            Body measurement cannot be a negative number
-          </div>
+        <input type="number" class="form-control" name="rightShoulder" [(ngModel)]="measurements.rightShoulder"
+          placeholder="Inches" #userMeasurementsrightShoulder="ngModel"
+          [ngClass]="{'is-invalid': userMeasurementsrightShoulder.errors && userMeasurementsrightShoulder.touched}"
+          [(ngModel)]="measurements.rightShoulder" min="0" required>
+        <div [hidden]="!userMeasurementsrightShoulder.errors?.required" class="invalid-feedback">
+          Mesurement value required
+
+        </div>
+        <div [hidden]="!userMeasurementsrightShoulder.errors?.min" class="invalid-feedback">
+          Body measurement cannot be a negative number
+        </div>
       </div>
     </div>
     <div class="col-md-6">
       <h2>Lower Body (Inches)</h2>
       <div class="form-group">
         <label for="waist">Waist Line Circumference</label>
-        <input type="number"  class="form-control" name="waist" [(ngModel)]="measurements.waist" placeholder="Inches"
-        #userMeasurementswaist="ngModel"
-          [ngClass]="{'is-invalid': userMeasurementswaist.errors && userMeasurementswaist.touched}" [(ngModel)]="measurements.waist"
-          min="0" required >
-          <div [hidden]="!userMeasurementswaist.errors?.required" class="invalid-feedback">
-            Mesurement value required
-    
-          </div>
-          <div [hidden]="!userMeasurementswaist.errors?.min" class="invalid-feedback">
-            Body measurement cannot be a negative number
-          </div>
+        <input type="number" class="form-control" name="waist" [(ngModel)]="measurements.waist" placeholder="Inches"
+          #userMeasurementswaist="ngModel"
+          [ngClass]="{'is-invalid': userMeasurementswaist.errors && userMeasurementswaist.touched}"
+          [(ngModel)]="measurements.waist" min="0" required>
+        <div [hidden]="!userMeasurementswaist.errors?.required" class="invalid-feedback">
+          Mesurement value required
+
+        </div>
+        <div [hidden]="!userMeasurementswaist.errors?.min" class="invalid-feedback">
+          Body measurement cannot be a negative number
+        </div>
       </div>
       <div class="form-group">
         <label for="hip">Hip Circumference</label>
-        <input type="number"  class="form-control" name="hip" [(ngModel)]="measurements.hip" placeholder="Inches"
-        #userMeasurementship="ngModel"
-          [ngClass]="{'is-invalid': userMeasurementship.errors && userMeasurementship.touched}" [(ngModel)]="measurements.hip"
-          min="0" required >
-          <div [hidden]="!userMeasurementship.errors?.required" class="invalid-feedback">
-            Mesurement value required
-    
-          </div>
-          <div [hidden]="!userMeasurementship.errors?.min" class="invalid-feedback">
-            Body measurement cannot be a negative number
-          </div>
+        <input type="number" class="form-control" name="hip" [(ngModel)]="measurements.hip" placeholder="Inches"
+          #userMeasurementship="ngModel"
+          [ngClass]="{'is-invalid': userMeasurementship.errors && userMeasurementship.touched}"
+          [(ngModel)]="measurements.hip" min="0" required>
+        <div [hidden]="!userMeasurementship.errors?.required" class="invalid-feedback">
+          Mesurement value required
+
+        </div>
+        <div [hidden]="!userMeasurementship.errors?.min" class="invalid-feedback">
+          Body measurement cannot be a negative number
+        </div>
       </div>
       <div class="form-group">
-          <label for="rise">Rise Length</label>
-          <input type="number"  class="form-control" name="rise" [(ngModel)]="measurements.rise" placeholder="Inches"
+        <label for="rise">Rise Length</label>
+        <input type="number" class="form-control" name="rise" [(ngModel)]="measurements.rise" placeholder="Inches"
           #userMeasurementsrise="ngModel"
-          [ngClass]="{'is-invalid': userMeasurementsrise.errors && userMeasurementsrise.touched}" [(ngModel)]="measurements.rise"
-          min="0" required >
-          <div [hidden]="!userMeasurementsrise.errors?.required" class="invalid-feedback">
-            Mesurement value required
-    
-          </div>
-          <div [hidden]="!userMeasurementsrise.errors?.min" class="invalid-feedback">
-            Body measurement cannot be a negative number
-          </div>
+          [ngClass]="{'is-invalid': userMeasurementsrise.errors && userMeasurementsrise.touched}"
+          [(ngModel)]="measurements.rise" min="0" required>
+        <div [hidden]="!userMeasurementsrise.errors?.required" class="invalid-feedback">
+          Mesurement value required
+
         </div>
-        <div class="form-group">
-          <label for="leftThighWidth">Left Thigh Circumference</label>
-          <input type="number"  class="form-control" name="leftThighWidth" [(ngModel)]="measurements.leftThighWidth" placeholder="Inches"
-          #userMeasurementsleftThighWidth="ngModel"
-          [ngClass]="{'is-invalid': userMeasurementsleftThighWidth.errors && userMeasurementsleftThighWidth.touched}" [(ngModel)]="measurements.leftThighWidth"
-          min="0" required >
-          <div [hidden]="!userMeasurementsleftThighWidth.errors?.required" class="invalid-feedback">
-            Mesurement value required
-    
-          </div>
-          <div [hidden]="!userMeasurementsleftThighWidth.errors?.min" class="invalid-feedback">
-            Body measurement cannot be a negative number
-          </div>
+        <div [hidden]="!userMeasurementsrise.errors?.min" class="invalid-feedback">
+          Body measurement cannot be a negative number
         </div>
-        <div class="form-group">
-          <label for="rightThighWidth">Right Thigh Circumference</label>
-          <input type="number"  class="form-control" name="rightThighWidth" [(ngModel)]="measurements.rightThighWidth" placeholder="Inches"
-          #userMeasurementsrightThighWidth="ngModel"
-          [ngClass]="{'is-invalid': userMeasurementsrightThighWidth.errors && userMeasurementsrightThighWidth.touched}" [(ngModel)]="measurements.rightThighWidth"
-          min="0" required >
-          <div [hidden]="!userMeasurementsrightThighWidth.errors?.required" class="invalid-feedback">
-            Mesurement value required
-    
-          </div>
-          <div [hidden]="!userMeasurementsrightThighWidth.errors?.min" class="invalid-feedback">
-            Body measurement cannot be a negative number
-          </div>
+      </div>
+      <div class="form-group">
+        <label for="leftThighWidth">Left Thigh Circumference</label>
+        <input type="number" class="form-control" name="leftThighWidth" [(ngModel)]="measurements.leftThighWidth"
+          placeholder="Inches" #userMeasurementsleftThighWidth="ngModel"
+          [ngClass]="{'is-invalid': userMeasurementsleftThighWidth.errors && userMeasurementsleftThighWidth.touched}"
+          [(ngModel)]="measurements.leftThighWidth" min="0" required>
+        <div [hidden]="!userMeasurementsleftThighWidth.errors?.required" class="invalid-feedback">
+          Mesurement value required
+
         </div>
-        <div class="form-group">
-          <label for="leftLegLength">Left Leg Length</label>
-          <input type="number"  class="form-control" name="leftLegLength" [(ngModel)]="measurements.leftLegLength" placeholder="Inches"
-          #userMeasurementsleftLegLength="ngModel"
-          [ngClass]="{'is-invalid': userMeasurementsleftLegLength.errors && userMeasurementsleftLegLength.touched}" [(ngModel)]="measurements.leftLegLength"
-          min="0" required >
-          <div [hidden]="!userMeasurementsleftLegLength.errors?.required" class="invalid-feedback">
-            Mesurement value required
-    
-          </div>
-          <div [hidden]="!userMeasurementsleftLegLength.errors?.min" class="invalid-feedback">
-            Body measurement cannot be a negative number
-          </div>
+        <div [hidden]="!userMeasurementsleftThighWidth.errors?.min" class="invalid-feedback">
+          Body measurement cannot be a negative number
         </div>
-        <div class="form-group">rightLegLength
-            <label for="rightLegLength">Right Leg Length</label>
-            <input type="number"  class="form-control" name="rightLegLength" [(ngModel)]="measurements.rightLegLength" placeholder="Inches"
-            #userMeasurementsrightLegLength="ngModel"
-          [ngClass]="{'is-invalid': userMeasurementsrightLegLength.errors && userMeasurementsrightLegLength.touched}" [(ngModel)]="measurements.rightLegLength"
-          min="0" required >
-          <div [hidden]="!userMeasurementsrightLegLength.errors?.required" class="invalid-feedback">
-            Mesurement value required
-    
-          </div>
-          <div [hidden]="!userMeasurementsrightLegLength.errors?.min" class="invalid-feedback">
-            Body measurement cannot be a negative number
-          </div>
-          </div>
-          <div class="form-group">
-            <label for="leftLegInseam">Left Leg Inseam</label>
-            <input type="number"  class="form-control" name="leftLegInseam" [(ngModel)]="measurements.leftLegInseam" placeholder="Inches"
-            #userMeasurementsleftLegInseam="ngModel"
-          [ngClass]="{'is-invalid': userMeasurementsleftLegInseam.errors && userMeasurementsleftLegInseam.touched}" [(ngModel)]="measurements.leftLegInseam"
-          min="0" required >
-          <div [hidden]="!userMeasurementsleftLegInseam.errors?.required" class="invalid-feedback">
-            Mesurement value required
-    
-          </div>
-          <div [hidden]="!userMeasurementsleftLegInseam.errors?.min" class="invalid-feedback">
-            Body measurement cannot be a negative number
-          </div>
-          </div>
-          <div class="form-group">
-            <label for="rightLegInseam">Right Leg Inseam</label>
-            <input type="number"  class="form-control" name="rightLegInseam" [(ngModel)]="measurements.rightLegInseam" placeholder="Inches"
-            #userMeasurementsrightLegInseam="ngModel"
-          [ngClass]="{'is-invalid': userMeasurementsrightLegInseam.errors && userMeasurementsrightLegInseam.touched}" [(ngModel)]="measurements.rightLegInseam"
-          min="0" required >
-          <div [hidden]="!userMeasurementsrightLegInseam.errors?.required" class="invalid-feedback">
-            Mesurement value required
-    
-          </div>
-          <div [hidden]="!userMeasurementsrightLegInseam.errors?.min" class="invalid-feedback">
-            Body measurement cannot be a negative number
-          </div>
-          </div>
+      </div>
+      <div class="form-group">
+        <label for="rightThighWidth">Right Thigh Circumference</label>
+        <input type="number" class="form-control" name="rightThighWidth" [(ngModel)]="measurements.rightThighWidth"
+          placeholder="Inches" #userMeasurementsrightThighWidth="ngModel"
+          [ngClass]="{'is-invalid': userMeasurementsrightThighWidth.errors && userMeasurementsrightThighWidth.touched}"
+          [(ngModel)]="measurements.rightThighWidth" min="0" required>
+        <div [hidden]="!userMeasurementsrightThighWidth.errors?.required" class="invalid-feedback">
+          Mesurement value required
+
+        </div>
+        <div [hidden]="!userMeasurementsrightThighWidth.errors?.min" class="invalid-feedback">
+          Body measurement cannot be a negative number
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="leftLegLength">Left Leg Length</label>
+        <input type="number" class="form-control" name="leftLegLength" [(ngModel)]="measurements.leftLegLength"
+          placeholder="Inches" #userMeasurementsleftLegLength="ngModel"
+          [ngClass]="{'is-invalid': userMeasurementsleftLegLength.errors && userMeasurementsleftLegLength.touched}"
+          [(ngModel)]="measurements.leftLegLength" min="0" required>
+        <div [hidden]="!userMeasurementsleftLegLength.errors?.required" class="invalid-feedback">
+          Mesurement value required
+
+        </div>
+        <div [hidden]="!userMeasurementsleftLegLength.errors?.min" class="invalid-feedback">
+          Body measurement cannot be a negative number
+        </div>
+      </div>
+      <div class="form-group">rightLegLength
+        <label for="rightLegLength">Right Leg Length</label>
+        <input type="number" class="form-control" name="rightLegLength" [(ngModel)]="measurements.rightLegLength"
+          placeholder="Inches" #userMeasurementsrightLegLength="ngModel"
+          [ngClass]="{'is-invalid': userMeasurementsrightLegLength.errors && userMeasurementsrightLegLength.touched}"
+          [(ngModel)]="measurements.rightLegLength" min="0" required>
+        <div [hidden]="!userMeasurementsrightLegLength.errors?.required" class="invalid-feedback">
+          Mesurement value required
+
+        </div>
+        <div [hidden]="!userMeasurementsrightLegLength.errors?.min" class="invalid-feedback">
+          Body measurement cannot be a negative number
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="leftLegInseam">Left Leg Inseam</label>
+        <input type="number" class="form-control" name="leftLegInseam" [(ngModel)]="measurements.leftLegInseam"
+          placeholder="Inches" #userMeasurementsleftLegInseam="ngModel"
+          [ngClass]="{'is-invalid': userMeasurementsleftLegInseam.errors && userMeasurementsleftLegInseam.touched}"
+          [(ngModel)]="measurements.leftLegInseam" min="0" required>
+        <div [hidden]="!userMeasurementsleftLegInseam.errors?.required" class="invalid-feedback">
+          Mesurement value required
+
+        </div>
+        <div [hidden]="!userMeasurementsleftLegInseam.errors?.min" class="invalid-feedback">
+          Body measurement cannot be a negative number
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="rightLegInseam">Right Leg Inseam</label>
+        <input type="number" class="form-control" name="rightLegInseam" [(ngModel)]="measurements.rightLegInseam"
+          placeholder="Inches" #userMeasurementsrightLegInseam="ngModel"
+          [ngClass]="{'is-invalid': userMeasurementsrightLegInseam.errors && userMeasurementsrightLegInseam.touched}"
+          [(ngModel)]="measurements.rightLegInseam" min="0" required>
+        <div [hidden]="!userMeasurementsrightLegInseam.errors?.required" class="invalid-feedback">
+          Mesurement value required
+
+        </div>
+        <div [hidden]="!userMeasurementsrightLegInseam.errors?.min" class="invalid-feedback">
+          Body measurement cannot be a negative number
+        </div>
+      </div>
     </div>
-     
-          
+
+
   </div>
   <br>
 
-          <input type="submit" value="Submit" class="btn btn-primary btn-block" >
-          <br>
-  </form>
+  <input type="submit" value="Submit" class="btn btn-primary btn-block">
+  <br>
+</form>
 
-  <ng-template #noUserMeasurements>You have not yet added your body measurements</ng-template>
-
-
+<ng-template #noUserMeasurements>You have not yet added your body measurements</ng-template>

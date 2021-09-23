@@ -24,6 +24,7 @@ import { AdminEditAccessoriesComponent } from './admin/admin-edit-accessories/ad
 import { AdminAccessoriesComponent } from './admin/admin-accessories/admin-accessories.component';
 import { AdminClientsComponent } from './admin/admin-clients/admin-clients.component';
 import { AdminDetailsClientComponent } from './admin/admin-details-client/admin-details-client.component';
+import { AdminPermissionsClientComponent } from './admin/admin-permissions-client/admin-permissions-client.component';
 import { SidebarComponent } from './admin/sidebar/sidebar.component';
 
 
@@ -43,7 +44,7 @@ import { OrdersComponent } from './tailor/orders/orders.component';
 import { OrderDetailsComponent } from './tailor/order-details/order-details.component';
 import { AdminAuthGuard } from './guards/auth.admin-guard';
 import { TailorAuthGuard } from './guards/auth.tailor-guard';
-// import { AdminClientPermissionsComponent } from './admin/admin-client-permissions/admin-client-permissions.component';
+
 
 
 
@@ -66,7 +67,7 @@ const routes: Routes =[
 
   {path: 'checkout', component: CheckoutComponent, canActivate:[AuthGuard] },
 
-  {path: 'tailor/orders', component: OrdersComponent, canActivate:[TailorAuthGuard]  },
+  {path: 'tailor/orders', component: OrdersComponent, canActivate:[TailorAuthGuard, AdminAuthGuard]  },
   {path: 'tailor/orders/:id', component: OrderDetailsComponent , canActivate:[TailorAuthGuard] },
   
   {path: 'admin/add', component: AdminAddProductComponent, canActivate:[AdminAuthGuard]},
@@ -83,7 +84,7 @@ const routes: Routes =[
   {path: 'admin/accessories', component: AdminAccessoriesComponent, canActivate:[AdminAuthGuard]},
   {path: 'admin/clients', component: AdminClientsComponent, canActivate:[AdminAuthGuard]},
   {path: 'admin/detailsclients/:id', component: AdminDetailsClientComponent, canActivate:[AdminAuthGuard]},
-  // {path: 'admin/clientpermissions/:id', component: AdminClientPermissionsComponent, canActivate:[AdminAuthGuard]},
+  {path: 'admin/clientpermissions/:id', component: AdminPermissionsClientComponent, canActivate:[AdminAuthGuard]},
   {path: '**', component: NotFoundComponent },
 
 

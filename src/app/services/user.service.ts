@@ -7,6 +7,7 @@ import {
 } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { switchMap, map, first } from 'rxjs/operators';
+import { Roles } from '../models/roles';
 import { UserDetails } from '../models/user-details';
 import { UserMeasurements } from '../models/user-measurements';
 import { AuthService } from './auth.service';
@@ -15,6 +16,8 @@ import { AuthService } from './auth.service';
   providedIn: 'root',
 })
 export class UserService {
+  roles: Roles
+
   
   users: Observable<UserDetails[]> |any;
   userCollection: AngularFirestoreCollection<UserDetails> | any;
@@ -31,8 +34,6 @@ export class UserService {
     this.userCollection = this.db.collection('user-details'
     );
   }
-
-
 
   async createUserDetails(data: UserDetails) {
     const user = await this.afAuth.currentUser;
@@ -51,14 +52,39 @@ export class UserService {
     })
   }
 
-  // deleteUserDetails(userId: string) {
-  //   return this.db.collection('user-details').doc(userId).delete();
-  // }
-
-  deleteUser(user: UserDetails){
-    this.userDoc = this.db.doc(`user-details/${user.id}`);
-    this.userDoc.delete()
+  deleteUser(userId: string) {
+    this.db.collection('user-details')
+      .snapshotChanges()
+      .pipe(map(allDocuments => {
+        // Loop over all the documents in the user details collection in a map
+        return allDocuments.map(doc => {
+          // Store the values for the current document
+          const data: UserDetails = doc.payload.doc.data();
+          // Store the id of the current document being checked
+          const id: string = doc.payload.doc.id;
+          // Check the uid field for the current doc if it matched the uid of the user passed into the method
+          if (userId !== data.uid) {
+            return;
+          } else {
+            // If a match is found (should be only one) - return the id of the document
+            return { id }
+          }
+        })
+      })).subscribe(docIds => {
+        if (docIds) {
+          // loop over all the returned doc ids (only one will not be undefined)
+          docIds.forEach(docId => {
+            // Check each doc id - look for the one that's not undefined
+            if (docId) {
+              // when not undefined doc id found - delete this document
+              this.userDoc = this.db.doc(`user-details/${docId.id}`);
+              this.userDoc.delete();
+            }
+          })
+        }
+      });
   }
+
 
   getUserDetails(): Observable<UserDetails[]> {
     return this.afAuth.authState.pipe(
@@ -125,6 +151,7 @@ export class UserService {
   }
 
   public getUserRolesByUid(uid: String) : Observable<UserDetails[]>{
+    console.log(uid);
     return this.db
     .collection<UserDetails>('user-roles', (ref) => ref.where('uid', '==', uid))
     .snapshotChanges()
@@ -138,14 +165,16 @@ export class UserService {
     )
   }
 
-  makeUserAdmin(userId: string, user: UserDetails, isAdmin: boolean) {
-    this.db.collection('user-roles').doc(userId).update(user.roles.admin ===true);
-    
+  makeUserAdmin(userId: string, user: UserDetails) {
+    this.db.collection('user-roles').doc(userId).update({
+      "roles.admin": true
+    })
   }
 
-  makeUserTailor(userId: string, user: UserDetails, isTailor: boolean) {
-    this.db.collection('user-roles').doc(userId).update(user.roles.tailor ===true);
-    
+  makeUserTailor(userId: string, user: UserDetails) {
+    this.db.collection('user-roles').doc(userId).update({
+      "roles.tailor": true
+    })
   }
 
   public getUserMeasurementsByUid(uid: String): Observable<UserMeasurements[]> {
@@ -161,7 +190,6 @@ export class UserService {
           })
         })
       )
-     
   }
 
   getAllUsers(): Observable<UserDetails[]> {
