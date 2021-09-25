@@ -1,39 +1,37 @@
-<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
-
 <nav class="navbar navbar-expand-md navbar-dark bg-primary mb-4">
-    <div class="container">
-        <a routerLink="/" class="navbar-brand">Adaptive Fitting</a>
-        <button class="navbar-toggler" type="button"
-        data-toggle="collapse" data-target="#navbarMain">
-    <span class="navbar-toggler-icon"></span></button>
-    </div>
-    <div class="collapse navbar-collapse" id="navbarMain">
-        <ul class="ul navbar-nav ml-auto">
-            <li *ngIf="isLoggedIn" class="nav-item" >
-                <a routerLink="/dashboard" class="nav-link">Dashboard</a>
-            </li>
-            <li *ngIf="!isLoggedIn" class="nav-item">
-                <a routerLink="/register" class="nav-link">Register</a>
-            </li>
-            <li *ngIf="!isLoggedIn" class="nav-item">
-                <a routerLink="/" class="nav-link">Login</a>
-            </li>
-            <li *ngIf="isLoggedIn" class="nav-item">
-                <a routerLink="/profile" class="nav-link">Profile</a>
-            </li>
-            <li *ngIf="isUserAdmin || isUserTailor" ngbDropdown class="nav-item dropdown ">
-                <a ngbDropdownToggle class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More Options</a>
-                <div ngbDropdownMenu class="dropdown-menu " aria-labelledby="dropdown01">
-                    <a *ngIf="isUserAdmin" class="dropdown-item" routerLink="admin/dash">Admin Dashboard</a>
-                    <a *ngIf="isUserTailor" class="dropdown-item" routerLink="/tailor/orders" >Tailor Dashboard</a>
-                    <a class="dropdown-item">Log Out</a>
-                </div>
-            </li>
-            <li *ngIf="isLoggedIn" class="nav-item">
-                <a href="#" (click)="onLogoutClick()" class="nav-link">Logout</a>
-            </li>
-        </ul>
-    </div>
+  <div class="container">
+    <a routerLink="/" class="navbar-brand">Adaptive Fitting</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMain">
+      <span class="navbar-toggler-icon"></span></button>
+  </div>
+  <!-- links for navbar protected depending on the auth state or roles of the user -->
+  <div class="collapse navbar-collapse" id="navbarMain">
+    <ul class="ul navbar-nav ml-auto">
+      <li *ngIf="isLoggedIn" class="nav-item">
+        <a routerLink="/dashboard" class="nav-link">Dashboard</a>
+      </li>
+      <li *ngIf="!isLoggedIn" class="nav-item">
+        <a routerLink="/register" class="nav-link">Register</a>
+      </li>
+      <li *ngIf="!isLoggedIn" class="nav-item">
+        <a routerLink="/" class="nav-link">Login</a>
+      </li>
+      <li *ngIf="isLoggedIn" class="nav-item">
+        <a routerLink="/profile" class="nav-link">Profile</a>
+      </li>
+      <li *ngIf="isUserAdmin || isUserTailor" ngbDropdown class="nav-item dropdown ">
+        <a ngbDropdownToggle class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">More Options</a>
+        <div ngbDropdownMenu class="dropdown-menu " aria-labelledby="dropdown01">
+          <a *ngIf="isUserAdmin" class="dropdown-item" routerLink="admin/dash">Admin Dashboard</a>
+          <a *ngIf="isUserTailor" class="dropdown-item" routerLink="/tailor/orders">Tailor Dashboard</a>
+          <a class="dropdown-item">Log Out</a>
+        </div>
+      </li>
+      <li *ngIf="isLoggedIn" class="nav-item">
+        <!-- click event handler for logout method in ts file of this component -->
+        <a href="#" (click)="onLogoutClick()" class="nav-link">Logout</a>
+      </li>
+    </ul>
+  </div>
 </nav>

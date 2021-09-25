@@ -1,10 +1,9 @@
-
-
-
+<!-- this form displays all primary fittings related to the lower body -->
+<!-- onSubmit called with the the form as a parameter -->
 <form #userFittingForm="ngForm" (ngSubmit)="onSubmit(userFittingForm)">
+  <!-- if there are fittings for secondary fittings related to the lower body, then the noItems directive is called -->
     <table *ngIf="accessories.length >0; else noItems" class="table table-striped" >
         <div class="row">
-
           <div class="col-md-3">
             <div class="card shadow-sm" style="padding: 15px;">
             <h3>Instructions:</h3>
@@ -15,15 +14,12 @@
             screen to move onto the next step.</p>
           </div>
           </div>
-          
+          <!-- looping through primary fittings related to the lower body -->
           <div class="col-md-2" *ngFor="let item of accessories">
-        
-            
             <div class="card shadow-sm">
+                      <!-- displaying items via string interpolation -->
               <img class="bd-placeholder-img card-img-top" width="100%"
                 src="{{item.image}}"/>
-        
-        
               <div class="card-body">
                 <h4 class="card-title">{{item.item | titlecase}}</h4>
                 <p class="card-text">{{item.description}}</p>
@@ -31,28 +27,24 @@
                 </div>
               </div>
               <div class="card-footer" >
-                
-                <!-- <button 
-                
-                type="button" class="btn btn-sm btn-outline-primary">Add To Cart</button> -->
+                  <!-- click event for fittings added to cart -->
                 <button 
                 (click)="addAccessoryLowerToCart(item)"
                 type="submit" class="btn btn-primary w-100">Add to order
-                  
               </button>
               </div>
             </div>
-    
           </div>
           <div class="col-md-3">
             <a routerLink="/user-accessories-item-lower" class="btn btn-link">
               <i class="fa fa-arrow-circle-o-right"> <h3>Next</h3></i> 
           </a>
+            <!-- displaying shopping cart component -->
             <app-shopping-cart></app-shopping-cart>
         </div>
         </div>
+          <!-- noItems directive -->
         </table>
-        
         <ng-template #noItems><hr><h5>There are no items in the system</h5></ng-template>
       </form>
 

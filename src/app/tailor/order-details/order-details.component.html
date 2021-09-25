@@ -9,6 +9,7 @@
 
   <br>
   <br>
+  <!-- displaying the items ordered by the user -->
   <div class="row">
     <div class="col-md-3">
       <div class="card" style="width: 20rem; padding: 15px;">
@@ -26,6 +27,7 @@
       </div>
     </div>
 
+    <!-- displaying users details -->
     <div class="col-3" *ngIf="user">
       <div class="col-md-8" class="card" style="width: 20rem; padding: 15px;">
         <div class="tab-content profile-tab">
@@ -74,6 +76,7 @@
       </div>
     </div>
 
+    <!-- displaying the users upper body measurements -->
     <div class="col-3" *ngIf="userMeasurements">
       <div class="col-md-8" class="card" style="width: 20rem; padding: 15px;">
         <div class="tab-content profile-tab" id="myTabContent">
@@ -160,7 +163,7 @@
 
 
     </div>
-
+    <!-- displaying the users lower body measurements -->
     <div class="col-3" *ngIf="userMeasurements">
       <div class="col-md-8" class="card" style="width: 20rem; padding: 15px;">
         <div class="tab-content profile-tab" id="myTabContent">

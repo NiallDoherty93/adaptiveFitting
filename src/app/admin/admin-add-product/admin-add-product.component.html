@@ -12,12 +12,15 @@
         </div>
 
         <div class="card-body">
+          <!-- calling onSumbit method that exists in the ts file of this component. The method accepts the parameter of the values submitted in this form -->
           <form #productForm="ngForm" (ngSubmit)="onSubmit(productForm)">
             <div class="form-group">
               <label for="item">Product Title</label>
+              <!-- Error handlers for incorrect values - if a values is invalid it is assigned the 'is-invalid' class on the ng directive -->
               <input type="text" class="form-control" name="item" #productTitle="ngModel"
                 [ngClass]="{'is-invalid': productTitle.errors && productTitle.touched}" [(ngModel)]="product.item"
                 minlength="2" required>
+              <!-- Error messages being displated if the form values invalid -->
               <div [hidden]="!productTitle.errors?.required" class="invalid-feedback">
                 Product title required
 
@@ -30,9 +33,11 @@
 
             <div class="form-group">
               <label for="description">Description</label>
+              <!-- Error handlers for incorrect values - if a values is invalid it is assigned the 'is-invalid' class on the ng directive -->
               <input type="text" class="form-control" name="description" #productDescription="ngModel"
                 [ngClass]="{'is-invalid': productDescription.errors && productDescription.touched}"
                 [(ngModel)]="product.description" minlength="2" required>
+              <!-- Error messages being displated if the form values invalid -->
               <div [hidden]="!productDescription.errors?.required" class="invalid-feedback">
                 Description required
 
@@ -45,9 +50,11 @@
 
             <div class="form-group">
               <label for="image">Image URL</label>
+              <!-- Error handlers for incorrect values - if a values is invalid it is assigned the 'is-invalid' class on the ng directive -->
               <input type="text" class="form-control" name="image" #productImage="ngModel"
                 [ngClass]="{'is-invalid': productImage.errors && productImage.touched}" [(ngModel)]="product.image"
                 required>
+              <!-- Error messages being displated if the form values invalid -->
               <div [hidden]="!productImage.errors?.required" class="invalid-feedback">
                 Image required
 
@@ -58,7 +65,7 @@
               </div>
             </div>
 
-
+            <!-- dropdown to assign the product category - does the garment added apply to upper or lower body -->
             <div class="form-group">
               <label for="category">Category</label>
               <select [(ngModel)]="product.category" name="category" class="form-control" id="category-dropdown">
@@ -75,7 +82,7 @@
       </div>
 
     </div>
-
+    <!-- card to display what the added product will look like before it is submitted -->
     <div class="col-md-6">
       <div class="card" style="width: 20rem;">
         <img class="card-img-top" [src]="productImage.value" alt="Card image cap">

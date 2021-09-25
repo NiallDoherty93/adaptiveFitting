@@ -7,26 +7,29 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-shopping-cart',
   templateUrl: './shopping-cart.component.html',
-  styleUrls: ['./shopping-cart.component.css']
+  styleUrls: ['./shopping-cart.component.css'],
 })
 export class ShoppingCartComponent implements OnInit {
-  cart$!: Observable<ShoppingCart>;
+  cart$: Observable<ShoppingCart>;
 
-  constructor(private shoppingCartService: ShoppingCartService, private router: Router,) { }
+  constructor(
+    private shoppingCartService: ShoppingCartService,
+    private router: Router
+  ) {}
 
   async ngOnInit(): Promise<void> {
-   this.cart$ = await this.shoppingCartService.getCart();
-   this.cart$.pipe().subscribe(cart => {
-   })
+    // getting users shopping cart and subsribing to the returned observeable - no uid required as cart id stored in local storage acts as identifier
+    this.cart$ = await this.shoppingCartService.getCart();
+    this.cart$.pipe().subscribe((cart) => {});
   }
 
-  clearCart(){
-      this.shoppingCartService.clearCart();
-      this.router.navigate(['/dashboard']);
+  clearCart() {
+    // calling the clear cart method in the shoppingCartService to allow user to clear all items from cart
+    this.shoppingCartService.clearCart();
+    this.router.navigate(['/dashboard']);
   }
 
-  onSubmit(){
+  onSubmit() {
     this.router.navigate(['/checkout']);
   }
-
 }

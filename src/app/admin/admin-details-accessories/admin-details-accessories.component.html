@@ -6,8 +6,10 @@
     </div>
     <div class="col-md-6">
         <div class="btn-group pull-right">
+            <!-- Depending on what type of fitting the user would like to edit, will be depended on the id passed into the router link -->
             <a routerLink="/admin/editaccessories/{{idUpper || idUpperItem || idLower || idLowerItem}}" class="btn btn-light">
             Edit</a>
+            <!-- click event to call the  the "onDeleteClick()" method if user clicks delete -->
             <button (click)="onDeleteClick()" class="btn btn-danger">Delete</button>
         </div>
     </div>
@@ -17,7 +19,7 @@
 
 <div >
 
-
+<!-- If the fitting is a primary upper body fitting (*ngIf="accessoryUpper"), call the image, the title and the description of that fitting - use of string interpolation -->
 <div class="col-md-12" *ngIf="accessoryUpper">
     <div class="card" style="width: 20rem;">
         <img class="card-img-top" [src]="accessoryUpper.image" alt="Card image cap">
@@ -29,6 +31,7 @@
 </div>
 
 </div>
+<!-- If the fitting is a secondary upper body fitting *ngIf="accessoryItemUpper", call the image, the title and the description of that fitting - use of string interpolation -->
 <div class="col-md-12" *ngIf="accessoryItemUpper" >
     <div class="card" style="width: 20rem;">
         <img class="card-img-top" [src]="accessoryItemUpper.image" alt="Card image cap">
@@ -38,6 +41,7 @@
         </div>
     </div>
 </div>
+<!-- If the fitting is a primary lower body fitting *ngIf="accessoryLower", call the image, the title and the description of that fitting - use of string interpolation -->
 <div class="col-md-12" *ngIf="accessoryLower" >
     <div class="card" style="width: 20rem;">
         <img class="card-img-top" [src]="accessoryLower.image" alt="Card image cap">
@@ -47,6 +51,7 @@
         </div>
     </div>
 </div>
+<!-- If the fitting is a secondary lower body fitting *ngIf="accessoryItemLower", call the image, the title and the description of that fitting - use of string interpolation -->
 <div class="col-md-12" *ngIf="accessoryItemLower" >
     <div class="card" style="width: 20rem;">
         <img class="card-img-top" [src]="accessoryItemLower.image" alt="Card image cap">

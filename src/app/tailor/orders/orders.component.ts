@@ -19,19 +19,26 @@ export class OrdersComponent implements OnInit, OnDestroy {
   filteredOrders: Order[] = [];
 
   constructor(private orderService: OrdersService) {
+    // setting this.subscription to getOrders()
     this.subscription = this.orderService
       .getOrders()
+      // subscribing to the returned values
+      // assigning order to this.filteredOrders
       .subscribe((order) => (this.filteredOrders = this.orders = order));
   }
 
   ngOnInit(): void {}
 
+  // filter method to seach by order ID
   filter(query: string) {
+    // setting filtered orders to equal the users input
     this.filteredOrders = query
       ? this.orders.filter((order) =>
+          // ignoring case sensitivity
           order.id?.toLowerCase().includes(query.toLowerCase())
         )
-      : this.orders;
+      : // returning the appliable order(s)
+        this.orders;
   }
 
   ngOnDestroy() {

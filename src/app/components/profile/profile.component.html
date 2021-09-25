@@ -4,98 +4,99 @@
 <!------ Include the above in your HEAD tag ---------->
 
 <div class="container emp-profile">
-            <form method="post">
-                <div class="row">
-                  
-                    <div class="col-md-6">
-                        <div class="profile-head">
-                                    <h5>
-                                       {{user.firstName}} {{user.lastName}}
-                                    </h5>
-                                    <h6>
-                                        Member
-                                    </h6>
-                                 
-                            <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                <li class="nav-item">
-                                    <a class="nav-link active" id="home-tab" data-toggle="tab" role="tab" 
-                                    aria-controls="home" aria-selected="true">Details</a>
-                                </li>
-                                
-                            </ul>
-                        </div>
-                    </div>
-                   
-                </div>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="profile-work">
-                            <p>USEFUL LINKS</p> 
-                            <a href="edit-details">Add/ Edit Details</a><br/>
-                            <a href="edit-measurements">Add/ Edit Measurements</a><br/>
-                            <a href="my-orders">View Orders</a><br/>
-                            <a href="shopping-cart">View Shopping Cart</a><br/>
-                            <a href="">Logout</a><br/>
-                        </div>
-                    </div>
-                    <div class="col-md-8">
-                        <div class="tab-content profile-tab" id="myTabContent">
-                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>First Name</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>{{user.firstName}}</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Last Name</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>{{user.lastName}}</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Email</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>{{user.email}}</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Phone</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>{{user.phone}}</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Address</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>{{user.address}}</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Postcode</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>{{user.postcode}}</p>
-                                            </div>
-                                        </div>
-                            </div>
-                          
-                        </div>
-                    </div>
+  <form method="post">
+    <div class="row">
+      <!-- string interpolation to display users details - no details displayed if user has not added any details -->
+      <div class="col-md-6">
+        <div class="profile-head">
+          <h5>
+            {{user.firstName}} {{user.lastName}}
+          </h5>
+          <h6>
+            Member
+          </h6>
 
-                    
-                </div>
-            </form>           
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="home-tab" data-toggle="tab" role="tab" aria-controls="home"
+                aria-selected="true">Details</a>
+            </li>
+
+          </ul>
         </div>
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="profile-work">
+          <!-- links to other components relevant to the user -->
+          <p>USEFUL LINKS</p>
+          <a href="edit-details">Add/ Edit Details</a><br />
+          <a href="edit-measurements">Add/ Edit Measurements</a><br />
+          <a href="my-orders">View Orders</a><br />
+          <a href="shopping-cart">View Shopping Cart</a><br />
+          <a href="">Logout</a><br />
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="tab-content profile-tab" id="myTabContent">
+          <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+            <div class="row">
+              <div class="col-md-6">
+                <label>First Name</label>
+              </div>
+              <div class="col-md-6">
+                <p>{{user.firstName}}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label>Last Name</label>
+              </div>
+              <div class="col-md-6">
+                <p>{{user.lastName}}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label>Email</label>
+              </div>
+              <div class="col-md-6">
+                <p>{{user.email}}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label>Phone</label>
+              </div>
+              <div class="col-md-6">
+                <p>{{user.phone}}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label>Address</label>
+              </div>
+              <div class="col-md-6">
+                <p>{{user.address}}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label>Postcode</label>
+              </div>
+              <div class="col-md-6">
+                <p>{{user.postcode}}</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+    </div>
+  </form>
+</div>

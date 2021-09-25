@@ -9,12 +9,13 @@
             <a routerLink="/admin/clientpermissions/{{id}}" class="btn btn-light">
             Change Permissions</a>
         </div>
+        <!-- click event to call the "onDeleteClick()" in the ts file of this component  -->
         <button (click)="onDeleteClick()" class="btn btn-danger">Delete User</button>
     </div>
 </div>
 
 <hr>
-
+<!-- Card to show the details of that user - use of string interpolation  -->
 <div class="col-md-12">
     <div class="card" style="width: 20rem;">
         <div class="card-body">

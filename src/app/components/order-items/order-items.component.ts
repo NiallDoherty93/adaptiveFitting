@@ -25,20 +25,27 @@ export class OrderItemsComponent implements OnInit {
   ) {}
 
   async ngOnInit(): Promise<void> {
+    // getting the items (garments) via getItems in the item service
     this.itemsService.getItems().subscribe((items) => {
       this.items = items;
     });
   }
-
+  // depending on what type of garement the user has selected, navigation routes set in place
   addToCart(product: ProductItems) {
     switch (product.category) {
+      // if the garment is an upper body item
       case 'Upper-Body': {
+        // add the item to the cart
         this.shoppingCartService.addItemToCart(product);
+        // navigate to fittings related to upper body garments
         this.router.navigate(['/user-accessories-upper']);
         break;
       }
+      // if the garment is an lower body item
       case 'Lower-Body': {
+        // add the item to the cart
         this.shoppingCartService.addItemToCart(product);
+        // navigate to fittings related to lower body garments
         this.router.navigate(['/user-accessories-lower']);
         break;
       }

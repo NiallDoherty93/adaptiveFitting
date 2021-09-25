@@ -1,55 +1,54 @@
+<!-- this form displays all primary fittings related to the upper body -->
+<!-- onSubmit called with the the form as a parameter -->
 <form #userFittingForm="ngForm" (ngSubmit)="onSubmit(userFittingForm)">
-    <table *ngIf="accessories.length >0; else noItems" class="table table-striped" >
-        <div class="row">
-
-          <div class="col-md-3">
-            <div class="card shadow-sm" style="padding: 15px;">
-            <h3>Instructions:</h3>
-            <br>
-            <p> <strong>Step 2:</strong> Choose which type fitting(s) you would like. Each fitting has a description of why someone would need it. If
-              you do not want any of these changes, click <a routerLink="/user-accessories-item-upper"> here</a>. Otherwise, 
-            click the 'Add to order' button. Once you've added all the fittings that you want, click next at the top of the
+  <!-- if there are fittings for primary fittings related to the upper body, then the noItems directive is called -->
+  <table *ngIf="accessories.length >0; else noItems" class="table table-striped">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="card shadow-sm" style="padding: 15px;">
+          <h3>Instructions:</h3>
+          <br>
+          <p> <strong>Step 2:</strong> Choose which type fitting(s) you would like. Each fitting has a description of
+            why someone would need it. If
+            you do not want any of these changes, click <a routerLink="/user-accessories-item-upper"> here</a>.
+            Otherwise,
+            click the 'Add to order' button. Once you've added all the fittings that you want, click next at the top of
+            the
             screen to move onto the next step.</p>
-          </div>
-          </div>
-          
-          <div class="col-md-2" *ngFor="let item of accessories">
-        
-            
-            <div class="card shadow-sm">
-              <img class="bd-placeholder-img card-img-top" width="100%"
-                src="{{item.image}}"/>
-        
-        
-              <div class="card-body">
-                <h4 class="card-title">{{item.item | titlecase}}</h4>
-                <p class="card-text">{{item.description}}</p>
-                <div class="d-flex justify-content-between align-items-center">
-                </div>
-              </div>
-              <div class="card-footer" >
-                
-                <!-- <button 
-                
-                type="button" class="btn btn-sm btn-outline-primary">Add To Cart</button> -->
-                <button 
-                (click)="addAccessoryUpperToCart(item)"
-                type="submit" class="btn btn-primary w-100">Add to order
-                  
-              </button>
-              </div>
+        </div>
+      </div>
+      <!-- looping through secondary fittings related to the lower body -->
+      <div class="col-md-2" *ngFor="let item of accessories">
+        <div class="card shadow-sm">
+          <!-- displaying items via string interpolation -->
+          <img class="bd-placeholder-img card-img-top" width="100%" src="{{item.image}}" />
+          <div class="card-body">
+            <h4 class="card-title">{{item.item | titlecase}}</h4>
+            <p class="card-text">{{item.description}}</p>
+            <div class="d-flex justify-content-between align-items-center">
             </div>
-    
           </div>
-          <div class="col-md-3">
-            <a routerLink="/user-accessories-item-upper" class="btn btn-link">
-              <i class="fa fa-arrow-circle-o-right"> <h3>Next</h3></i> 
-          </a>
-            <app-shopping-cart></app-shopping-cart>
+          <div class="card-footer">
+            <!-- click event for fittings added to cart -->
+            <button (click)="addAccessoryUpperToCart(item)" type="submit" class="btn btn-primary w-100">Add to order
+            </button>
+          </div>
         </div>
-        </div>
-        
-        </table>
-        
-        <ng-template #noItems><hr><h5>There are no items in the system</h5></ng-template>
-      </form>
+      </div>
+      <div class="col-md-3">
+        <a routerLink="/user-accessories-item-upper" class="btn btn-link">
+          <i class="fa fa-arrow-circle-o-right">
+            <h3>Next</h3>
+          </i>
+        </a>
+        <!-- displaying shopping cart component -->
+        <app-shopping-cart></app-shopping-cart>
+      </div>
+    </div>
+  </table>
+  <!-- noItems directive -->
+  <ng-template #noItems>
+    <hr>
+    <h5>There are no items in the system</h5>
+  </ng-template>
+</form>

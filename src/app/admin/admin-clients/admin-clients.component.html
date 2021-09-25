@@ -1,45 +1,48 @@
 <div>
-    <a routerLink="/admin/dash" class="btn btn-link">
-        <i class="fa fa-arrow-circle-o-left"></i>Back To Dashboard
-    </a>
-    </div>
+  <a routerLink="/admin/dash" class="btn btn-link">
+    <i class="fa fa-arrow-circle-o-left"></i>Back To Dashboard
+  </a>
+</div>
+<br>
+
+<div class="row">
+  <div class="col-md-12">
+    <h2><i class="fa fa-shopping-basket"></i>Clients</h2>
     <br>
-    
-    <div class="row">
-        <div class="col-md-12">
-            <h2><i class="fa fa-shopping-basket"></i>Clients</h2>
-            <br>
-            <div>
-                <input 
-                #query
-                (keyup)="filter(query.value)"
-                type="text" class="form-control" placeholder="Search by email...">
-            </div>
-        </div>
-       
+    <div>
+      <!-- using keyup direcctive to handle value user puts into seach bar -->
+      <input #query (keyup)="filter(query.value)" type="text" class="form-control" placeholder="Search by email...">
     </div>
-    <br>
-    
-    <table *ngIf="users.length >0; else noProducts" class="table table-striped">
-    
-        
-        
-        <thead class="thead-inverse">
-            <tr>
-                <th>User ID</th>
-                <th>User Email</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let user of filteredUsers">
-                <td>{{user.uid}}</td>
-                <td>{{user.email}}</td>
-                
-                <td><a routerLink="/admin/detailsclients/{{user.uid}}" class="btn btn-secondary btn-sm"> -->
-                    
-                <i class="fa fa-arrow-circle-o-right"></i>Details</a></td>
-            </tr>
-         </tbody> 
-    </table>
-    
-    <ng-template #noProducts><hr><h5>There are no products in the system</h5></ng-template>
+  </div>
+
+</div>
+<br>
+<!-- conditonal used to check if there are any users (clients) in the server, else call the noProducts method in the HTML - assigned on line 44 -->
+<table *ngIf="users.length >0; else noProducts" class="table table-striped">
+
+
+
+  <thead class="thead-inverse">
+    <tr>
+      <th>User ID</th>
+      <th>User Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- looping through all users, displaying their uid and email address -->
+    <tr *ngFor="let user of filteredUsers">
+      <td>{{user.uid}}</td>
+      <td>{{user.email}}</td>
+
+      <td><a routerLink="/admin/detailsclients/{{user.uid}}" class="btn btn-secondary btn-sm"> -->
+          <!-- button to click to view that particular users details -->
+          <i class="fa fa-arrow-circle-o-right"></i>Details</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<ng-template #noProducts>
+  <hr>
+  <!-- error handler if there are no clients to display -->
+  <h5>There are no clients in the system</h5>
+</ng-template>

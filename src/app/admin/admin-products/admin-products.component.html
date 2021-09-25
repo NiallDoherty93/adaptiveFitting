@@ -1,49 +1,52 @@
 <div>
-<a routerLink="/admin/dash" class="btn btn-link">
+  <a routerLink="/admin/dash" class="btn btn-link">
     <i class="fa fa-arrow-circle-o-left"></i> Back To Dashboard
-</a>
+  </a>
 </div>
 <br>
 <div>
-    <a routerLink='/admin/add' class="btn btn-success btn-block btn-group pull-right">
-        <i class="fa fa-plus"></i>New product
-        </a>
+  <a routerLink='/admin/add' class="btn btn-success btn-block btn-group pull-right">
+    <i class="fa fa-plus"></i>New product
+  </a>
 </div>
 <br>
 <div class="row">
-    <div class="col-md-12">
-        <h2><i class="fa fa-shopping-basket"></i>Products</h2>
-        <div>
-            <input 
-            #query
-            (keyup)="filter(query.value)"
-            type="text" class="form-control" placeholder="Search by title...">
-        </div>
+  <div class="col-md-12">
+    <h2><i class="fa fa-shopping-basket"></i>Products</h2>
+    <div>
+      <!-- keyup event to handle search, filter by the value of the query -->
+      <input #query (keyup)="filter(query.value)" type="text" class="form-control" placeholder="Search by title...">
     </div>
-   
+  </div>
+
 </div>
 <br>
-
+<!-- checking if any products exist in the server, if not - then no products method in html called -->
 <table *ngIf="products.length >0; else noProducts" class="table table-striped">
 
-    
-    
-    <thead class="thead-inverse">
-        <tr>
-            <th>Title</th>
-            <th>description</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let product of filteredProducts">
-            <td>{{product.item}}</td>
-            <td>{{product.description}}</td>
-            
-            <td><a routerLink="/admin/details/{{product.id}}" class="btn btn-secondary btn-sm">
-                
-            <i class="fa fa-arrow-circle-o-right"></i>Details</a></td>
-        </tr>
-    </tbody>
-</table>
 
-<ng-template #noProducts><hr><h5>There are no products in the system</h5></ng-template>
+
+  <thead class="thead-inverse">
+    <tr>
+      <th>Title</th>
+      <th>description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- looping through each product called and using string interpolation to display the tile and description of the products -->
+    <tr *ngFor="let product of filteredProducts">
+      <td>{{product.item}}</td>
+      <td>{{product.description}}</td>
+
+      <!-- To view details of a product, the id of that product document is inserted into the URL link -->
+      <td><a routerLink="/admin/details/{{product.id}}" class="btn btn-secondary btn-sm">
+
+          <i class="fa fa-arrow-circle-o-right"></i>Details</a></td>
+    </tr>
+  </tbody>
+</table>
+<!-- if no products, message displayed informing the user -->
+<ng-template #noProducts>
+  <hr>
+  <h5>There are no products in the system</h5>
+</ng-template>

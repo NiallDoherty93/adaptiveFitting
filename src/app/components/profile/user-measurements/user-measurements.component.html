@@ -5,7 +5,11 @@
     </a>
   </div>
 </div>
+<!-- form used for users to add or edit thier body measurements, if details have been submitted already
+and the user is  editing them, then the values will appear in the fields.
+If its the first time filling out the form, the values will be empty -->
 
+<!-- calling the onSubmitAddMeasurements method from the components ts file, will execute method once form submitted -->
 <form #userMeasurementsForm="ngForm" (ngSubmit)="onSubmitAddMeasurements(userMeasurementsForm)"
   *ngIf="measurements; else noUserMeasurements">
   <div class="row">
@@ -13,10 +17,12 @@
       <h2>Upper Body (Inches)</h2>
       <div class="form-group">
         <label for="neck">Neck Circumference </label>
+        <!-- error handlers to ensure correct format of data ie: numbers only, no negative values -->
         <input type="number" class="form-control" name="neck" [(ngModel)]="measurements.neck" placeholder="Inches"
           #userMeasurementsneck="ngModel"
           [ngClass]="{'is-invalid': userMeasurementsneck.errors && userMeasurementsneck.touched}"
           [(ngModel)]="measurements.neck" min="0" required>
+        <!-- error messages if criteria not met -->
         <div [hidden]="!userMeasurementsneck.errors?.required" class="invalid-feedback">
           Mesurement value required
 

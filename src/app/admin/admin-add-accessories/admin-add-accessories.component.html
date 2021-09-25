@@ -1,120 +1,95 @@
 <a routerLink="/admin/accessories" class="btn btn-link">
-    <i class="fa fa-arrow-circle-o-left"></i> Back To Fittings
+  <i class="fa fa-arrow-circle-o-left"></i> Back To Fittings
 </a>
 <div class="row">
-    <div class="col-md-6">
-        <div class="card">
-            <div class="card-header">
-                Add Fitting
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-header">
+        Add Fitting
+      </div>
+
+
+      <div class="card-body">
+        <!-- onSubmit method in the ts file of this component called once the values of the productForm are submitted -->
+        <form #productForm="ngForm" (ngSubmit)="onSubmit(productForm, accessory)">
+          <div class="form-group">
+            <label for="item">Fitting Title</label>
+            <!-- Various form controls implemented, dealing with invalid form values - assigning an invalid form to 'is invalid' -->
+            <input type="text" class="form-control" name="item" #productTitle="ngModel"
+              [ngClass]="{'is-invalid': productTitle.errors && productTitle.touched}" [(ngModel)]="accessory.item"
+              minlength="2" required>
+            <!-- Error messages presented to user if form values invalid -->
+            <div [hidden]="!productTitle.errors?.required" class="invalid-feedback">
+              Product title required
+
             </div>
-           
-            <div class="card-body">
-                <form #productForm="ngForm" (ngSubmit)="onSubmit(productForm, accessory)">
-                    <div class="form-group">
-                        <label for="item">Fitting Title</label>
-                        <input 
-                        type="text"
-                        class="form-control"
-                        name="item"
-                        #productTitle="ngModel"
-                        [ngClass]="{'is-invalid': productTitle.errors && productTitle.touched}"
-                        [(ngModel)]="accessory.item"
-                        minlength="2"
-                        required
-                        
-                        >
-                        <div [hidden]="!productTitle.errors?.required"
-                        class="invalid-feedback">
-                        Product title required
-        
-                        </div>
-                        <div [hidden]="!productTitle.errors?.minlength"
-                        class="invalid-feedback">
-                        Must be at least 2 characters 
-        
-                        </div>
-                    </div>
-        
-                    <div class="form-group">
-                        <label for="description">Description</label>
-                        <input 
-                        type="text"
-                        class="form-control"
-                        name="description"
-                        #productDescription="ngModel"
-                        [ngClass]="{'is-invalid': productDescription.errors && productDescription.touched}"
-                        [(ngModel)]="accessory.description"
-                        minlength="2"
-                        required
-                        
-                        >
-                        <div [hidden]="!productDescription.errors?.required"
-                        class="invalid-feedback">
-                        Description required
-        
-                        </div>
-                        <div [hidden]="!productDescription.errors?.minlength"
-                        class="invalid-feedback">
-                        Must be at least 2 characters 
-        
-                        </div>
-                    </div>
-        
-                    <div class="form-group">
-                        <label for="image">Image URL</label>
-                        <input 
-                        type="text"
-                        class="form-control"
-                        name="image"
-                        #productImage="ngModel"
-                        [ngClass]="{'is-invalid': productImage.errors && productImage.touched}"
-                        [(ngModel)]="accessory.image"
-                        
-                        required
-                        
-                        >
-                        <div [hidden]="!productImage.errors?.required"
-                        class="invalid-feedback">
-                       Image required
-        
-                        </div>
-                        <div [hidden]="!productImage.errors?.pattern"
-                        class="invalid-feedback">
-                        Image is not valid 
-        
-                        </div>
-                    </div>
-        
-                       
-                        <div class="form-group">
-                            <label for="category">Category</label>
-                            <select [(ngModel)]="accessory.type" 
-                            name="type"
-                            class="form-control" id="category-dropdown">
-                            <option>Accessory Upper</option>
-                            <option>Accessory Upper Item</option>
-                            <option>Accessory Lower</option>
-                            <option>Accessory Lower Item</option>
-                            </select>
-                          </div>
-                
-                    <input type="submit" value="Submit" class="btn btn-primary btn-block" >
-        
-                </form>
+            <div [hidden]="!productTitle.errors?.minlength" class="invalid-feedback">
+              Must be at least 2 characters
+
             </div>
-        </div>
-        
+          </div>
+          <!-- onSubmit method in the ts file of this component called once the values of the productForm are submitted -->
+          <div class="form-group">
+            <label for="description">Description</label>
+            <!-- Various form controls implemented, dealing with invalid form values - assigning an invalid form to 'is invalid' -->
+            <input type="text" class="form-control" name="description" #productDescription="ngModel"
+              [ngClass]="{'is-invalid': productDescription.errors && productDescription.touched}"
+              [(ngModel)]="accessory.description" minlength="2" required>
+            <!-- Error messages presented to user if form values invalid -->
+            <div [hidden]="!productDescription.errors?.required" class="invalid-feedback">
+              Description required
+
+            </div>
+            <div [hidden]="!productDescription.errors?.minlength" class="invalid-feedback">
+              Must be at least 2 characters
+
+            </div>
+          </div>
+
+          <!-- onSubmit method in the ts file of this component called once the values of the productForm are submitted -->
+          <div class="form-group">
+            <label for="image">Image URL</label>
+            <!-- Various form controls implemented, dealing with invalid form values - assigning an invalid form to 'is invalid' -->
+            <input type="text" class="form-control" name="image" #productImage="ngModel"
+              [ngClass]="{'is-invalid': productImage.errors && productImage.touched}" [(ngModel)]="accessory.image"
+              required>
+            <!-- Error messages presented to user if form values invalid -->
+            <div [hidden]="!productImage.errors?.required" class="invalid-feedback">
+              Image required
+
+            </div>
+            <div [hidden]="!productImage.errors?.pattern" class="invalid-feedback">
+              Image is not valid
+
+            </div>
+          </div>
+
+          <!-- Drop down option to assign a category to the fitting being added into the system -->
+          <div class="form-group">
+            <label for="category">Category</label>
+            <select [(ngModel)]="accessory.type" name="type" class="form-control" id="category-dropdown">
+              <option>Accessory Upper</option>
+              <option>Accessory Upper Item</option>
+              <option>Accessory Lower</option>
+              <option>Accessory Lower Item</option>
+            </select>
+          </div>
+
+          <input type="submit" value="Submit" class="btn btn-primary btn-block">
+
+        </form>
+      </div>
     </div>
 
-    <div class="col-md-6">
-        <div class="card" style="width: 20rem;">
-            <img class="card-img-top" [src]="productImage.value" alt="Card image cap">
-            <div class="card-body">
-                <h4 class="card-title">{{productTitle.value}}</h4>
-                <p class="card-text">{{productDescription.value}}</p>
-            </div>
-        </div>
+  </div>
+  <!-- Card displayed on the side of the screen to outline to the user what the added product will look like before it is submitted -->
+  <div class="col-md-6">
+    <div class="card" style="width: 20rem;">
+      <img class="card-img-top" [src]="productImage.value" alt="Card image cap">
+      <div class="card-body">
+        <h4 class="card-title">{{productTitle.value}}</h4>
+        <p class="card-text">{{productDescription.value}}</p>
+      </div>
     </div>
+  </div>
 </div>
-
-

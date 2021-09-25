@@ -5,15 +5,18 @@
     </a>
   </div>
 </div>
-
+<!-- this form calls in details from current user and displays them in the fields, user can edit fields -->
+<!-- checking to see if user exists, if not then noUserDetails directive applied -->
 <div class="card" *ngIf="user; else noUserDetails">
   <div class="card-header">
     Edit Details
   </div>
   <div class="card-body">
+    <!-- calling onSubmitAdd from ts file in this component when user submits from -->
     <form #userDetailsForm="ngForm" (ngSubmit)="onSubmitAdd(userDetailsForm)">
       <div class="form-group">
         <label for="firstName">First Name</label>
+        <!-- error handlers  -->
         <input type="text" class="form-control" name="firstName" #userFirstName="ngModel"
           [ngClass]="{'is-invalid': userFirstName.errors && userFirstName.touched}" [(ngModel)]="user.firstName"
           minlength="2" required>
@@ -95,6 +98,6 @@
   </div>
 </div>
 
-
+<!-- no user directive -->
 
 <ng-template #noUserDetails>No user details </ng-template>

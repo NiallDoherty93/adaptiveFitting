@@ -1,57 +1,43 @@
+<!-- showing all orders in the system -->
 <div class="col-md-6">
-    <a routerLink="/admin/dash" class="btn btn-link">
-        <i class="fa fa-arrow-circle-o-left"></i> Back To Dashboard
-    </a>
+  <a routerLink="/admin/dash" class="btn btn-link">
+    <i class="fa fa-arrow-circle-o-left"></i> Back To Dashboard
+  </a>
 </div>
 <br>
-  <div class="row">
-    <div class="col-md-12">
-        <h2><i class="fa fa-shopping-basket"></i>Orders</h2>
-     
-    </div>
-   
+<div class="row">
+  <div class="col-md-12">
+    <h2><i class="fa fa-shopping-basket"></i>Orders</h2>
+  </div>
 </div>
 <br>
-
 <div>
-    <input 
-    #query
-    (keyup)="filter(query.value)"
-    type="text" class="form-control" placeholder="Search by order reference...">
+  <!-- filter method called into the search function -->
+  <input #query (keyup)="filter(query.value)" type="text" class="form-control"
+    placeholder="Search by order reference...">
 </div>
-
 <br>
-
+<!-- if there are orders in the server -->
 <table *ngIf="orders.length >0; else noOrders" class="table table-striped">
-
-    
-    
-    <thead class="thead-inverse">
-        <tr >
-            <th>Order Reference</th>
-            <th>Date Placed</th>
-            
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let order of filteredOrders">
-            <td>
-                {{order.id}}
-                
-            </td>
-        
-                <td>{{order.datePlaced | date: 'dd/MM/yyyy  :  HH:mm '}}</td>
-            
-                <td><a routerLink="/tailor/orders/{{order.id}}" class="btn btn-secondary btn-sm">
-                    
-                    <i class="fa fa-arrow-circle-o-right"></i>View Order Details</a></td>
-                    
-            
-            
-         
-        </tr>
-    </tbody>
+  <thead class="thead-inverse">
+    <tr>
+      <th>Order Reference</th>
+      <th>Date Placed</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- looping through the orders, displaying the order id and the date the order was placed -->
+    <tr *ngFor="let order of filteredOrders">
+      <td>
+        {{order.id}}
+      </td>
+      <td>{{order.datePlaced | date: 'dd/MM/yyyy  :  HH:mm '}}</td>
+      <td><a routerLink="/tailor/orders/{{order.id}}" class="btn btn-secondary btn-sm">
+          <i class="fa fa-arrow-circle-o-right"></i>View Order Details</a></td>
+    </tr>
+  </tbody>
 </table>
-
-<ng-template #noOrders><hr><h5>There are no orders in the system</h5></ng-template>
-
+<ng-template #noOrders>
+  <hr>
+  <h5>There are no orders in the system</h5>
+</ng-template>

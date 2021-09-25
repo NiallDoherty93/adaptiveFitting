@@ -1,14 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ItemsService } from 'src/app/services/items.service';
-import { ProductItems } from 'src/app/models/product-items';
-import { UserService } from 'src/app/services/user.service';
-import { FormGroup, NgForm } from '@angular/forms';
-import { FlashMessagesService } from 'flash-messages-angular';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/services/auth.service';
-
 import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
-import { AccessoriesUpper } from 'src/app/models/accessories-upper';
 import { Accessories } from 'src/app/models/accessories';
 
 @Component({
@@ -23,31 +17,24 @@ export class UserAccessoriesComponent implements OnInit {
 
   constructor(
     private itemsService: ItemsService, 
-    private flashMessageService: FlashMessagesService,
-    private userService: UserService,
     private router: Router,
-    private auth: AuthService,
     private shoppingCartService: ShoppingCartService
   ) { }
 
   ngOnInit(): void {
+    // getting all upper body secondary primary from the server
     this.itemsService.getAccessoriesUpper().subscribe(accessories => {
       this.accessories = accessories;
     });
   }
 
-  onSubmit({value, valid}: NgForm){
-  
-      
+  onSubmit({value, valid}: NgForm){ 
     this.router.navigate(['/user-accessories-upper']);
-    
-    
   }
 
   addAccessoryUpperToCart(accessory: Accessories){
-    
+        // add selected fittings to the cart
     this.shoppingCartService.addAccessoryUpperToCart(accessory);
-  
   }
 
 }

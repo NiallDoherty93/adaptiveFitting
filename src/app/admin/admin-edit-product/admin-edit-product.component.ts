@@ -24,28 +24,29 @@ export class AdminEditProductComponent implements OnInit {
 
   ngOnInit(): void {
     
-    // get id from url
+    // get document id from url
     this.id = this.route.snapshot.params['id'];
-    // get products
+    // get products by document id
     this.itemService.getItem(this.id).subscribe(product => 
-     
       this.product = product);
   }
 
   onSubmit({value, valid}: NgForm){
     if(!valid){
+      // danger message if form sumission invalid
       this.flashMessageService.show('Please fill out the form correctly',{
           cssClass: 'alert-danger', timeout: FLASH_MESSAGE_TIMEOUT
       });
     }else{
       // add id to client
       value.id= this.id;
-      //update client
+      //update client calling updateItem(value) - value is equal to the document id
       this.itemService.updateItem(value);
       this.flashMessageService.show('Client updated',{
         cssClass: 'alert-success', timeout: FLASH_MESSAGE_TIMEOUT
     
     });
+    // nagivate using route to specific user details
     this.router.navigate(['/admin/details/'+this.id])
 }
 

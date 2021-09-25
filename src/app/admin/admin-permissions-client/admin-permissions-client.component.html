@@ -1,7 +1,8 @@
-
+<!-- on submit called from component ts file -->
 <form #permissionForm="ngForm" (ngSubmit)="onSubmit(permissionForm)" >
     <div class="form-group">
         <label for="category">Permissions</label>
+        <!-- values of tpye user defined in ts file -->
         <select [(ngModel)]="user" 
         name="role"
         class="form-control" id="category-dropdown">

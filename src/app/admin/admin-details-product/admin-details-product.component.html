@@ -8,13 +8,14 @@
         <div class="btn-group pull-right">
             <a routerLink="/admin/edit/{{id}}" class="btn btn-light">
             Edit</a>
+            <!-- click event to call the "onDeleteClick()" in the ts file of this component  -->
             <button (click)="onDeleteClick()" class="btn btn-danger">Delete </button>
         </div>
     </div>
 </div>
 
 <hr>
-
+<!-- Card to show the details of that product (garment) - use of string interpolation  -->
 <div class="col-md-12">
     <div class="card" style="width: 20rem;">
         <img class="card-img-top" [src]="product.image" alt="Card image cap">

@@ -1,52 +1,49 @@
-<div class="row col-lg-10 col-md mx-auto" *ngIf="cart$ | async as cart">
-  <div class="card shadow-sm" style="padding: 15px;">
-  <div class="heading">
-    <h2>Cart</h2>
-  </div>
-
-  <table class="table">
-    <thead>
-      <tr>
-        
-        <th class="text-left">Garment:</th>
-
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let item of cart.items">
-        <td>{{ item?.product?.item }}</td>
-        <td class="text-left"> 
-        </td>
-      </tr>
-    </tbody>
-
-    <thead>
-      <tr>
-        <th class="text-left">Fitting:</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let item of cart.items">
-        <td>{{ item?.accessory?.item }}</td>
-      </tr>
-    </tbody>
-  
-  </table>
-  <div>
-    
-  </div>
-  <button style="background-color: red; font-family: 'Lucida Sans', 'Lucida Sans Regular', 
-  'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; color: white;"  (click)="clearCart()">
-    Clear Cart
-  </button>
-  <div>
-    <br>
-  </div>
- 
-  <button style="background-color: green; font-family: 'Lucida Sans', 'Lucida Sans Regular', 
-  'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; color: white;"  class="nav-link" *ngIf="cart?.items?.length" 
-    (click)="onSubmit()"
-  >Checkout
-  </button>
-</div>
-</div>
+ <!-- using | async creates a subscription if the source is an Observable - cart$ is an observable  -->
+ <div class="row col-lg-10 col-md mx-auto" *ngIf="cart$ | async as cart">
+   <div class="card shadow-sm" style="padding: 15px;">
+     <div class="heading">
+       <h2>Cart</h2>
+     </div>
+     <table class="table">
+       <thead>
+         <tr>
+           <th class="text-left">Garment:</th>
+         </tr>
+       </thead>
+       <tbody>
+         <!-- looping through the garments in the shopping cart -->
+         <tr *ngFor="let item of cart.items">
+           <!-- displaying the garments via string interpolation  -->
+           <td>{{ item?.product?.item }}</td>
+           <td class="text-left">
+           </td>
+         </tr>
+       </tbody>
+       <thead>
+         <tr>
+           <th class="text-left">Fitting:</th>
+         </tr>
+       </thead>
+       <tbody>
+         <!-- looping through the fittings in the shopping cart -->
+         <tr *ngFor="let item of cart.items">
+           <!-- displaying the fittings via string interpolation  -->
+           <td>{{ item?.accessory?.item }}</td>
+         </tr>
+       </tbody>
+     </table>
+     <div>
+     </div>
+     <button style="background-color: red; font-family: 'Lucida Sans', 'Lucida Sans Regular', 
+  'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; color: white;" (click)="clearCart()">
+       Clear Cart
+     </button>
+     <div>
+       <br>
+     </div>
+     <button style="background-color: green; font-family: 'Lucida Sans', 'Lucida Sans Regular', 
+  'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; color: white;" class="nav-link"
+       *ngIf="cart?.items?.length" (click)="onSubmit()">Checkout
+     </button>
+   </div>
+ </div>

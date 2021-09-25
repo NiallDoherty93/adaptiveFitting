@@ -1,28 +1,22 @@
 <div class="row">
 
-    <div class="col-md-2">
-        <div class="card shadow-sm">
-        <h3> Instructions:</h3>
-        <br>
-        <p> <strong>Step 1:</strong>  Select the garment type you would like fitted by clicking the 'Start fitting' button. 
-            You will then get to choose which adaptive fittings you would like to add!. </p>
-            <br>
-            <p>Before you start, you can add your details in your <a routerLink="/profile"> profile page</a>
-                section (if you have not done so). This will save you filling out these details at checkout.</p> 
-        </div>
+  <div class="col-md-2">
+    <div class="card shadow-sm" style="padding: 15px;">
+      <h3> Instructions:</h3>
+      <br>
+      <p> <strong>Step 1:</strong> Select the garment type you would like fitted by clicking the 'Start fitting' button.
+        You will then get to choose which adaptive fittings you would like to add!. </p>
+      <br>
+      <p>Before you start, you can add your details in your <a routerLink="/profile"> profile page</a>
+        section (if you have not done so). This will save you filling out these details at checkout.</p>
     </div>
-
-    <div class="col-md-8">
-        <app-order-items></app-order-items>
-    </div>
-
-    <div class="col-md-2">
-        <app-shopping-cart></app-shopping-cart>
-    </div>
+  </div>
+  <!-- calling the app-order-items component as a whole and assiging it a given amount of space on the user dashboard -->
+  <div class="col-md-8">
+    <app-order-items></app-order-items>
+  </div>
+  <!-- calling the app-shopping-cart component as a whole and assiging it a given amount of space on the user dashboard -->
+  <div class="col-md-2">
+    <app-shopping-cart></app-shopping-cart>
+  </div>
 </div>
-
-
-  
-
-
-

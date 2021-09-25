@@ -1,20 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ItemsService } from 'src/app/services/items.service';
-import { ProductItems } from 'src/app/models/product-items';
-import { UserService } from 'src/app/services/user.service';
-import { FormGroup, NgForm } from '@angular/forms';
-import { FlashMessagesService } from 'flash-messages-angular';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/services/auth.service';
-
 import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
-import { AccessoriesItemsUpper } from 'src/app/models/accessorries-items-upper';
 import { Accessories } from 'src/app/models/accessories';
 
 @Component({
   selector: 'app-user-accessories-items-upper',
   templateUrl: './user-accessories-items-upper.component.html',
-  styleUrls: ['./user-accessories-items-upper.component.css']
+  styleUrls: ['./user-accessories-items-upper.component.css'],
 })
 export class UserAccessoriesItemsUpperComponent implements OnInit {
   public accessories: Accessories[] = [];
@@ -22,32 +16,23 @@ export class UserAccessoriesItemsUpperComponent implements OnInit {
   accessoriesCollection: any;
 
   constructor(
-    private itemsService: ItemsService, 
-    private flashMessageService: FlashMessagesService,
-    private userService: UserService,
+    private itemsService: ItemsService,
     private router: Router,
-    private auth: AuthService,
     private shoppingCartService: ShoppingCartService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
-    this.itemsService.getAccessoriesItemsUpper().subscribe(accessories => {
+    // getting all upper body secondary fittings from the server
+    this.itemsService.getAccessoriesItemsUpper().subscribe((accessories) => {
       this.accessories = accessories;
     });
   }
 
-  onSubmit({value, valid}: NgForm){
-  
-      
+  onSubmit({ value, valid }: NgForm) {
     this.router.navigate(['/user-accessories-item-upper']);
-    
-    
   }
-
-  addAccessoryItemUpperToCart(accessory: Accessories){
-    
+  addAccessoryItemUpperToCart(accessory: Accessories) {
+    // add selected fittings to the cart
     this.shoppingCartService.addAccessoryItemUpperToCart(accessory);
-  
   }
-
 }

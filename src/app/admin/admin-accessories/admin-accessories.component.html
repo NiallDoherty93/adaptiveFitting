@@ -1,76 +1,80 @@
 <div class="col-md-6">
-    <a routerLink="/admin/dash" class="btn btn-link">
-        <i class="fa fa-arrow-circle-o-left"></i> Back To Dashboard
-    </a>
+  <a routerLink="/admin/dash" class="btn btn-link">
+    <i class="fa fa-arrow-circle-o-left"></i> Back To Dashboard
+  </a>
 </div>
 <br>
 <div>
-    <a routerLink='/admin/addaccessories' class="btn btn-success btn-block btn-group pull-right">
-        <i class="fa fa-plus"></i>New Fitting
-        </a>
+  <a routerLink='/admin/addaccessories' class="btn btn-success btn-block btn-group pull-right">
+    <i class="fa fa-plus"></i>New Fitting
+  </a>
 </div>
 <br>
 
 <div class="row">
-    <div class="col-md-12">
-        <h2><i class="fa fa-shopping-basket"></i>Fittings</h2>
-        <div>
-            <input 
-            #query
-            (keyup)="filterUpper(query.value)"
-            (keyup)="filterItemUpper(query.value)"
-            (keyup)="filterLower(query.value)"
-            (keyup)="filterItemLower(query.value)"
-            type="text" class="form-control" placeholder="Search...">
-        </div>
+  <div class="col-md-12">
+    <h2><i class="fa fa-shopping-basket"></i>Fittings</h2>
+    <div>
+        <!-- Filtering method triggered when user types value into search bar -->
+      <input #query (keyup)="filterUpper(query.value)" (keyup)="filterItemUpper(query.value)"
+        (keyup)="filterLower(query.value)" (keyup)="filterItemLower(query.value)" type="text" class="form-control"
+        placeholder="Search...">
     </div>
-   
+  </div>
+
 </div>
 
 <table *ngIf="accessories.length >0; else noProducts" class="table table-striped">
 
-    
-    
-    <thead class="thead-inverse">
-        <tr>
-            <th>Title</th>
-            <th>description</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let accessoriesUpper of filteredAccessoryUpper">
-            <td>{{accessoriesUpper.item}}</td>
-            <td>{{accessoriesUpper.description}}</td>
-            
-            <td><a routerLink="/admin/detailsaccessories/{{accessoriesUpper.id}}" class="btn btn-secondary btn-sm">
-                
-            <i class="fa fa-arrow-circle-o-right"></i>Details</a></td>
-        </tr>
-        <tr *ngFor="let accessoriesItemsUpper of filteredAccessoryItemUpper">
-            <td>{{accessoriesItemsUpper.item}}</td>
-            <td>{{accessoriesItemsUpper.description}}</td>
-            
-            <td><a routerLink="/admin/detailsaccessories/{{accessoriesItemsUpper.id}}" class="btn btn-secondary btn-sm">
-                
-            <i class="fa fa-arrow-circle-o-right"></i>Details</a></td>
-        </tr>
-        <tr *ngFor="let accessoriesLower of filteredAccessoryLower">
-            <td>{{accessoriesLower.item}}</td>
-            <td>{{accessoriesLower.description}}</td>
-            
-            <td><a routerLink="/admin/detailsaccessories/{{accessoriesLower.id}}" class="btn btn-secondary btn-sm">
-                
-            <i class="fa fa-arrow-circle-o-right"></i>Details</a></td>
-        </tr>
-        <tr *ngFor="let accessoriesItemsLower of filteredAccessoryItemLower">
-            <td>{{accessoriesItemsLower.item}}</td>
-            <td>{{accessoriesItemsLower.description}}</td>
-            
-            <td><a routerLink="/admin/detailsaccessories/{{accessoriesItemsLower.id}}" class="btn btn-secondary btn-sm">
-                
-            <i class="fa fa-arrow-circle-o-right"></i>Details</a></td>
-        </tr>
-    </tbody>
+
+
+  <thead class="thead-inverse">
+    <tr>
+      <th>Title</th>
+      <th>description</th>
+    </tr>
+  </thead>
+  <tbody>
+      <!-- For loop looping through primary upper body accessories -->
+    <tr *ngFor="let accessoriesUpper of filteredAccessoryUpper">
+      <td>{{accessoriesUpper.item}}</td>
+      <td>{{accessoriesUpper.description}}</td>
+
+      <td><a routerLink="/admin/detailsaccessories/{{accessoriesUpper.id}}" class="btn btn-secondary btn-sm">
+
+          <i class="fa fa-arrow-circle-o-right"></i>Details</a></td>
+    </tr>
+    <!-- For loop looping through secondary upper body accessories -->
+    <tr *ngFor="let accessoriesItemsUpper of filteredAccessoryItemUpper">
+      <td>{{accessoriesItemsUpper.item}}</td>
+      <td>{{accessoriesItemsUpper.description}}</td>
+
+      <td><a routerLink="/admin/detailsaccessories/{{accessoriesItemsUpper.id}}" class="btn btn-secondary btn-sm">
+
+          <i class="fa fa-arrow-circle-o-right"></i>Details</a></td>
+    </tr>
+    <!-- For loop looping through primary lower body accessories -->
+    <tr *ngFor="let accessoriesLower of filteredAccessoryLower">
+      <td>{{accessoriesLower.item}}</td>
+      <td>{{accessoriesLower.description}}</td>
+
+      <td><a routerLink="/admin/detailsaccessories/{{accessoriesLower.id}}" class="btn btn-secondary btn-sm">
+
+          <i class="fa fa-arrow-circle-o-right"></i>Details</a></td>
+    </tr>
+    <!-- For loop looping through secondary lower body accessories -->
+    <tr *ngFor="let accessoriesItemsLower of filteredAccessoryItemLower">
+      <td>{{accessoriesItemsLower.item}}</td>
+      <td>{{accessoriesItemsLower.description}}</td>
+
+      <td><a routerLink="/admin/detailsaccessories/{{accessoriesItemsLower.id}}" class="btn btn-secondary btn-sm">
+
+          <i class="fa fa-arrow-circle-o-right"></i>Details</a></td>
+    </tr>
+  </tbody>
 </table>
 
-<ng-template #noProducts><hr><h5>There are no products in the system</h5></ng-template>
+<ng-template #noProducts>
+  <hr>
+  <h5>There are no products in the system</h5>
+</ng-template>

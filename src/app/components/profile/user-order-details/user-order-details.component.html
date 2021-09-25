@@ -1,15 +1,17 @@
 <div class="col-md-12">
-    <div class="card" style="width: 20rem;">
-        <h4>Garment</h4>
-        <div *ngFor="let product of products" class="card-body">
-            <h5>{{product.product.item}}</h5>
-            <p>{{product.product.description}}</p>
-        </div>
-
-        <h4>Accesories</h4>
-        <div *ngFor="let accessory of accessories" class="card-body">
-            <h5>{{accessory.accessory.item}}</h5>
-            <p>{{accessory.accessory.description}}</p>
-        </div>
+  <div class="card" style="width: 20rem;">
+    <h4>Garment</h4>
+    <!-- looping through garments in the order and displaying them by string interpolation -->
+    <div *ngFor="let product of products" class="card-body">
+      <h5>{{product.product.item}}</h5>
+      <p>{{product.product.description}}</p>
     </div>
+
+    <h4>Accesories</h4>
+    <!-- looping through fittings in the order and displaying them by string interpolation -->
+    <div *ngFor="let accessory of accessories" class="card-body">
+      <h5>{{accessory.accessory.item}}</h5>
+      <p>{{accessory.accessory.description}}</p>
+    </div>
+  </div>
 </div>
