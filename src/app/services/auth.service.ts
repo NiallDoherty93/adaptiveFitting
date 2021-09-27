@@ -42,6 +42,7 @@ export class AuthService {
       this.firebaseAuth.signInWithEmailAndPassword(email, password).then(
         // resolve this data to the user creditials stored in the server
         (userData) => resolve(userData),
+        // rejection if credientials dont match
         (err) => reject(err)
       );
     });

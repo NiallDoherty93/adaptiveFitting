@@ -10,7 +10,7 @@ import { switchMap, map, first } from 'rxjs/operators';
 import { Roles } from '../models/roles';
 import { UserDetails } from '../models/user-details';
 import { UserMeasurements } from '../models/user-measurements';
-import { AuthService } from './auth.service';
+
 
 @Injectable({
   providedIn: 'root',
@@ -32,7 +32,6 @@ export class UserService {
   constructor(
     private afAuth: AngularFireAuth,
     private db: AngularFirestore,
-    private authService: AuthService
   ) {
     this.measurementCollection = db.collection('user-measurements');
     this.userCollection = this.db.collection('user-details');
@@ -58,8 +57,9 @@ export class UserService {
       uid: user?.uid,
     });
   }
-
+//method used to delete a user
   deleteUser(userId: string) {
+    // calling values in the 'user-details' collection'
     this.db
       .collection('user-details')
       .snapshotChanges()
@@ -158,6 +158,7 @@ export class UserService {
             .collection<UserMeasurements>('user-measurements', (ref) =>
               ref.where('uid', '==', measurement.uid)
             )
+            // document id added to id field inside document
             .valueChanges({
               idField: 'id',
             });
