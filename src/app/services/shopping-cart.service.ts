@@ -69,7 +69,7 @@ export class ShoppingCartService {
     );
   }
 
-  // gets shopping cart
+  // gets shopping cart - will return different values throughout the order process
   async getCart(): Promise<Observable<ShoppingCart>> {
     // setting cartId to await the getOrCreateCartId method
     let cartId = await this.getOrCreateCartId();
@@ -81,20 +81,23 @@ export class ShoppingCartService {
       .valueChanges()
       // using pipe to accept an input value and return a transformed value. 
       .pipe(
-        //  map applies a function to each value emitted by the source Observable, and emits the resulting values as an Observable.
-        map((item: any) => {
+        //  map applies a function to each transformed value emitted by the source Observable, and emits the resulting values as an Observable.
+        map((cartItems: any) => {
           // cart is to be of interface type ShoppingCart
           let cart: ShoppingCart = {
             // date created set to 0 as default until date is called
             dateCreated: 0,
             // items are set to type any
-            items: item,
+            items: cartItems,
           };
+          // as cart changes, get values
           this.db
             .collection('shopping-cart')
             // calling document Id that is equal to cart id and date created as a number (as date needs to be formatted)
             .doc<{ dateCreated: number }>(cartId)
+            // when the value of the cart changes, it gets the latest value (cart will chabge as user adds items)
             .valueChanges()
+            // emmitting fist item that passes check on line 97 as an observable 
             .pipe(first())
             .subscribe((d) => {
               cart.dateCreated = d?.dateCreated;

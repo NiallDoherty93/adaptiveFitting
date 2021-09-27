@@ -44,15 +44,6 @@ export class OrdersService {
     this.shoppingCartService.clearCart();
   }
 
-  // getting an order made by a specific user - takes paramter of type string - this will be the users uid
-  public getOrdersByUser(userId: string) {
-    // returning the document in the database where the the parameter matches the uid held in the document
-    // the uid was placed in the document when the placeOrder method was executed
-    return this.db.collection('orders', (ref) =>
-      ref.where('uid', '==', userId)
-    );
-  }
-
   // getting all orders in the ordersCollection - defined in the constructor, returns an observable of type Order
   getOrders(): Observable<Order[]> {
     // setting orders variable to equal all the orders stored in the server in that given collection
@@ -110,6 +101,8 @@ export class OrdersService {
             .collection<Order>('orders', (ref) =>
               ref.where('uid', '==', user.uid)
             )
+            // optional - passing the id of the document into the id field inside the document,
+            // allows order details to be displayed by calling the id field inside the document 
             .valueChanges({
               idField: 'id',
             });
