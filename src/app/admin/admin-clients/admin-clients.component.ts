@@ -15,7 +15,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class AdminClientsComponent implements OnInit {
   users: UserDetails[] = [];
-  subscription: Subscription | any;
+  subscription: Subscription;
   filteredUsers: UserDetails[] = [];
 
   constructor(private userService: UserService) {

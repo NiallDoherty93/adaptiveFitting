@@ -11,8 +11,8 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./admin-details-client.component.css'],
 })
 export class AdminDetailsClientComponent implements OnInit {
-  id: string | any;
-  user: UserDetails | any;
+  id: string;
+  user: UserDetails;
   role: UserDetails;
 
   constructor(

@@ -13,7 +13,7 @@ import { Accessories } from 'src/app/models/accessories';
 export class UserAccessoriesItemsUpperComponent implements OnInit {
   public accessories: Accessories[] = [];
   public accessoryName: Accessories | any;
-  accessoriesCollection: any;
+  // accessoriesCollection: any;
 
   constructor(
     private itemsService: ItemsService,

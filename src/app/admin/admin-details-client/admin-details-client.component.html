@@ -16,7 +16,7 @@
 
 <hr>
 <!-- Card to show the details of that user - use of string interpolation  -->
-<div class="col-md-12">
+<div class="col-md-12" *ngIf="user">
     <div class="card" style="width: 20rem;">
         <div class="card-body">
             <h4 class="card-title">{{user.email}}</h4>

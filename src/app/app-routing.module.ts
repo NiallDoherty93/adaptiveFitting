@@ -55,7 +55,7 @@ const routes: Routes =[
   {path: 'user-accessories-item-lower', component: UserAccessoriesItemsLowerComponent, canActivate:[AuthGuard]},
   {path: 'checkout', component: CheckoutComponent, canActivate:[AuthGuard] },
   
-  {path: 'tailor/orders', component: OrdersComponent, canActivate:[TailorAuthGuard, AdminAuthGuard]  },
+  {path: 'tailor/orders', component: OrdersComponent, canActivate:[TailorAuthGuard]  },
   {path: 'tailor/orders/:id', component: OrderDetailsComponent , canActivate:[TailorAuthGuard] },
  
   {path: 'admin/add', component: AdminAddProductComponent, canActivate:[AdminAuthGuard]},

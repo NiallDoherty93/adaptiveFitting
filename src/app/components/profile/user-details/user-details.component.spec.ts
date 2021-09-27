@@ -1,14 +1,31 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { RouterTestingModule } from '@angular/router/testing';
+import { FlashMessagesModule } from 'flash-messages-angular';
+import { environment } from 'src/environments/environment';
 
 import { AddUserDetailsComponent } from './user-details.component';
 
-describe('AddUserDetailsComponent', () => {
+fdescribe('AddUserDetailsComponent', () => {
   let component: AddUserDetailsComponent;
   let fixture: ComponentFixture<AddUserDetailsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AddUserDetailsComponent ]
+      declarations: [ AddUserDetailsComponent ],
+      imports: [
+        AngularFireAuthModule,
+        AngularFirestoreModule,
+        AngularFireStorageModule,
+        RouterTestingModule,
+        AngularFireModule.initializeApp(environment.firebase, 'TailorU'),
+        FlashMessagesModule.forRoot()
+        
+    ],
+    providers: [AngularFirestore]
     })
     .compileComponents();
   });
@@ -21,5 +38,12 @@ describe('AddUserDetailsComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should create the component with variables set to expected values', () => {
+    expect(component.user).toBeUndefined();
+    expect(component.userId).toBeUndefined();
+    expect(component.userDetails).toBeDefined();
+
   });
 });

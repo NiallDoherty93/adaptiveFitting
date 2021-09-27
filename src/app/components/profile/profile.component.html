@@ -7,7 +7,7 @@
   <form method="post">
     <div class="row">
       <!-- string interpolation to display users details - no details displayed if user has not added any details -->
-      <div class="col-md-6">
+      <div class="col-md-6" *ngIf="user">
         <div class="profile-head">
           <h5>
             {{user.firstName}} {{user.lastName}}
@@ -39,7 +39,7 @@
           <a href="">Logout</a><br />
         </div>
       </div>
-      <div class="col-md-8">
+      <div class="col-md-8" *ngIf="user">
         <div class="tab-content profile-tab" id="myTabContent">
           <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 

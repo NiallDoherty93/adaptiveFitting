@@ -10,7 +10,7 @@
 
       <div class="card-body">
         <!-- calling onSubmit() from component ts file -->
-        <form #productForm="ngForm" (ngSubmit)="onSubmit(productForm)">
+        <form #productForm="ngForm" (ngSubmit)="onSubmit(productForm)" *ngIf="product">
           <div class="form-group">
             <label for="item">Product Title</label>
             <!-- error handlers for user input -->
@@ -77,12 +77,12 @@
 
   </div>
   <!-- card to show what the edited product will look like before form submitted -->
-  <div class="col-md-6">
+  <div class="col-md-6" *ngIf="product">
     <div class="card" style="width: 20rem;">
-      <img class="card-img-top" [src]="productImage.value" alt="Card image cap">
+      <img class="card-img-top" [src]="product.image" alt="Card image cap">
       <div class="card-body">
-        <h4 class="card-title">{{productTitle.value}}</h4>
-        <p class="card-text">{{productDescription.value}}</p>
+        <h4 class="card-title">{{product.item}}</h4>
+        <p class="card-text">{{product.description}}</p>
       </div>
     </div>
   </div>

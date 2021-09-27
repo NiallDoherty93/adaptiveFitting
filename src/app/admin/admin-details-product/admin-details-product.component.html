@@ -16,7 +16,7 @@
 
 <hr>
 <!-- Card to show the details of that product (garment) - use of string interpolation  -->
-<div class="col-md-12">
+<div class="col-md-12" *ngIf="product">
     <div class="card" style="width: 20rem;">
         <img class="card-img-top" [src]="product.image" alt="Card image cap">
         <div class="card-body">

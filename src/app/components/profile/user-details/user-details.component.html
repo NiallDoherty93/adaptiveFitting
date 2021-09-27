@@ -48,7 +48,7 @@
       <div class="form-group">
         <label for="phone">Phone</label>
         <input type="number" class="form-control" name="phone" #userPhone="ngModel"
-          [ngClass]="{'is-invalid': userPhone.errors && userPhone.touched}" [(ngModel)]="user.phone" minlength="2"
+          [ngClass]="{'is-invalid': userPhone.errors && userPhone.touched}" [(ngModel)]="user.phone" minlength="10"
           required>
         <div [hidden]="!userPhone.errors?.required" class="invalid-feedback">
           Phone number is required
@@ -80,7 +80,7 @@
           [ngClass]="{'is-invalid': userPostcode.errors && userPostcode.touched}" [(ngModel)]="user.postcode"
           minlength="2" required>
         <div [hidden]="!userPostcode.errors?.required" class="invalid-feedback">
-          Last name required
+          Postcode is required
 
         </div>
         <div [hidden]="!userPostcode.errors?.minlength" class="invalid-feedback">

@@ -13,7 +13,7 @@ export class ShoppingCartComponent implements OnInit {
   cart$: Observable<ShoppingCart>;
 
   constructor(
-    private shoppingCartService: ShoppingCartService,
+    public shoppingCartService: ShoppingCartService,
     private router: Router
   ) {}
 

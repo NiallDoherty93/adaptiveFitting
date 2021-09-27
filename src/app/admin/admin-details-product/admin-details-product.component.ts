@@ -11,8 +11,8 @@ import { FLASH_MESSAGE_TIMEOUT } from 'src/app/global/application-constants';
   styleUrls: ['./admin-details-product.component.css'],
 })
 export class AdminDetailsProductComponent implements OnInit {
-  id: string | any;
-  product: ProductItems | any;
+  id: string;
+  product: ProductItems;
 
   constructor(
     private itemService: ItemsService,

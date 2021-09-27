@@ -13,7 +13,6 @@ import { FLASH_MESSAGE_TIMEOUT } from 'src/app/global/application-constants';
   styleUrls: ['./user-details.component.css'],
 })
 export class AddUserDetailsComponent implements OnInit {
-  detailsExist: boolean | any = true;
   user: UserDetails;
   userId: string | any;
 

@@ -14,7 +14,7 @@ import { FLASH_MESSAGE_TIMEOUT } from 'src/app/global/application-constants';
 })
 export class UserMeasurementsComponent implements OnInit {
   measurements: UserMeasurements;
-  userId: string | any;
+  userId: string;
 
   constructor(
     private flashMessageService: FlashMessagesService,

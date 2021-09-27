@@ -77,8 +77,11 @@ export class ShoppingCartService {
     // added items are held
     return this.db
       .collection('shopping-cart/' + cartId + '/product-items')
+      // emitting first item that matches the condition.
       .valueChanges()
+      // using pipe to accept an input value and return a transformed value. 
       .pipe(
+        //  map applies a function to each value emitted by the source Observable, and emits the resulting values as an Observable.
         map((item: any) => {
           // cart is to be of interface type ShoppingCart
           let cart: ShoppingCart = {
@@ -87,7 +90,6 @@ export class ShoppingCartService {
             // items are set to type any
             items: item,
           };
-          // second call made to 'shopping-cart'
           this.db
             .collection('shopping-cart')
             // calling document Id that is equal to cart id and date created as a number (as date needs to be formatted)
@@ -110,7 +112,9 @@ export class ShoppingCartService {
     this.db
       // calling the relevant document by the cart Id
       .collection('shopping-cart/' + cartId + '/product-items')
+      // emitting first item that matches the condition.
       .valueChanges()
+      // using pipe to accept an input value and return a transformed value. 
       .pipe(
         // looping over all the items in the cart (can be a garment - product, or accessory - fitting)
         map((p) => {
@@ -124,6 +128,7 @@ export class ShoppingCartService {
       .subscribe((productIdArray) => {
         // for each item in the cart, delete each one of those items
         productIdArray.forEach((productId: any) => {
+          // call to a sub collection -  this is a work around and not native to firestore
           this.db
             .collection('shopping-cart/' + cartId + '/product-items')
             .doc(productId)
@@ -136,14 +141,18 @@ export class ShoppingCartService {
   private async updateItemQuantity(product: ProductItems, change: number) {
     // awaiting the cart Id
     let cartId = await this.getOrCreateCartId();
-    // item$ set to the garments got from the collection relevant to the cart ID
+    // item$ set to the garments got from the collection relevant to the cart ID and product ID
     let item$ = this.getItem(cartId, product.id);
-    // garment got from the relevant document are then updated in quanity.
+    // setting item to observable with .valueChanges()
     item$
       .valueChanges()
+      // emitting first item that matches the condition.
       .pipe(first())
+      // subscribing to item$ observeable 
       .subscribe((item: any) => {
+        // setting quanity to quanity stored in the server, or 0 if no quanity is there, plus the change 
         let quantity = (item?.quantity || 0) + change;
+        // using set to create or overwrite values in document 
         item$.set({
           product: product,
           quantity: quantity,

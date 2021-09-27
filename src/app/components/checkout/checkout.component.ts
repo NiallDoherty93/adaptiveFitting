@@ -105,7 +105,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
         'Please ensure your details are fully filled out before you place your order',
         {
           cssClass: 'alert-danger',
-          timeout: FLASH_MESSAGE_TIMEOUT,
+          timeout: 10000,
         }
       );
     }
