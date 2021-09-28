@@ -40,13 +40,13 @@ export class AdminEditProductComponent implements OnInit {
     }else{
       // add id to client
       value.id= this.id;
-      //update client calling updateItem(value) - value is equal to the document id
+      //update client calling updateItem (value) - value is equal to the document id
       this.itemService.updateItem(value);
       this.flashMessageService.show('Client updated',{
         cssClass: 'alert-success', timeout: FLASH_MESSAGE_TIMEOUT
     
     });
-    // nagivate using route to specific user details
+    // nagivate using route to specific user details via the doc id
     this.router.navigate(['/admin/details/'+this.id])
 }
 

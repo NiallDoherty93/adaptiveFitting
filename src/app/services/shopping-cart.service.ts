@@ -5,10 +5,9 @@ import {
   AngularFirestoreDocument,
 } from '@angular/fire/firestore';
 import { ProductItems } from '../models/product-items';
-import { first, map, switchMap, take } from 'rxjs/operators';
+import { first, map} from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { ShoppingCart } from '../models/shopping-cart';
-import { AngularFireAuth } from '@angular/fire/auth';
 import { Accessories } from '../models/accessories';
 
 @Injectable({
@@ -24,7 +23,7 @@ export class ShoppingCartService {
   itemDoc!: AngularFirestoreDocument<ProductItems>;
   items!: Observable<ProductItems[]>;
 
-  constructor(private db: AngularFirestore, private afAuth: AngularFireAuth) {}
+  constructor(private db: AngularFirestore) {}
 
   // creates a document inside the collection 'shopping-cart'
   public create() {
@@ -77,11 +76,9 @@ export class ShoppingCartService {
     // added items are held
     return this.db
       .collection('shopping-cart/' + cartId + '/product-items')
-      // emitting first item that matches the condition.
+      // emitting first value that matches the condition.
       .valueChanges()
-      // using pipe to accept an input value and return a transformed value. 
       .pipe(
-        //  map applies a function to each transformed value emitted by the source Observable, and emits the resulting values as an Observable.
         map((cartItems: any) => {
           // cart is to be of interface type ShoppingCart
           let cart: ShoppingCart = {
@@ -90,12 +87,12 @@ export class ShoppingCartService {
             // items are set to type any
             items: cartItems,
           };
-          // as cart changes, get values
+          // going back into the collection
           this.db
             .collection('shopping-cart')
             // calling document Id that is equal to cart id and date created as a number (as date needs to be formatted)
             .doc<{ dateCreated: number }>(cartId)
-            // when the value of the cart changes, it gets the latest value (cart will chabge as user adds items)
+            // when the value of the cart changes, it gets the latest value (cart will change as user adds items)
             .valueChanges()
             // emmitting fist item that passes check on line 97 as an observable 
             .pipe(first())
@@ -131,10 +128,12 @@ export class ShoppingCartService {
       .subscribe((productIdArray) => {
         // for each item in the cart, delete each one of those items
         productIdArray.forEach((productId: any) => {
-          // call to a sub collection -  this is a work around and not native to firestore
+          // go back into the product-items sub collection using the current productID in the loop 
           this.db
             .collection('shopping-cart/' + cartId + '/product-items')
+            // where the product id is held in the document
             .doc(productId)
+            // delete this document
             .delete();
         });
       });

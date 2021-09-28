@@ -15,7 +15,7 @@ import { FLASH_MESSAGE_TIMEOUT } from 'src/app/global/application-constants';
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.css'],
 })
-export class CheckoutComponent implements OnInit, OnDestroy {
+export class CheckoutComponent implements OnInit {
   cart: any;
 
   userSubscription: Subscription;
@@ -36,18 +36,21 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   ) {}
 
   async ngOnInit(): Promise<void> {
-    // calling the cart items and subscribing to the cart as an observable
+    // calling the cart items and subscribing to the cart as an observable - defining cart as the retured observable
     let cart$ = await this.shoppingCartService.getCart();
+    // storing the cart as a subscription so that it can be cleared when the component is destroyed
     this.cartSubscription = cart$
       .pipe()
       .subscribe((cart) => (this.cart = cart));
 
     // getting cart items to display to the shopping cart on the checkout screen
     this.cart$ = await this.shoppingCartService.getCart();
+    // calling the getCart method from the shoppingCartService and waiting for the result to display on the ui
     this.cart = this.shoppingCartService
       .getCart()
       .then((result) => (this.cart = result));
 
+      // getting the uid of the user so that their details cna be displayed on the checkout screen
     // if the user is logged in, subscribe to the value of thier uid
     this.auth.getAuth().subscribe((userAuth) => {
       this.userId = userAuth?.uid[0];
@@ -61,10 +64,11 @@ export class CheckoutComponent implements OnInit, OnDestroy {
         });
       }
     });
+    // getting the uid of the user so that their measuremnts cna be displayed on the checkout screen
     // if the user is logged in, subscribe to the value of their uid
     this.auth.getAuth().subscribe((userAuth) => {
       this.userId = userAuth?.uid[0];
-      // if the users UID exists (which it will becasuse this component cannot be accessed if uuser not registered and logged in)
+      // if the users UID exists (which it will becasuse this component cannot be accessed if user not registered and logged in)
       if (this.userId) {
         // get the users body measurements and subscribe to as observable
         this.userService.getUserMeasurements().subscribe((measurement) => {
@@ -79,13 +83,13 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     this.cartSubscription.unsubscribe();
   }
 
-  placeOrder() {
+  onSubmit() {
     // checking to see if user filled out thier details before trying to place an order
     if (
       !this.isUserDetailsEmpty(this.userDetails) ||
       !this.isUserMeasurementsEmpty(this.userMeasurements)
     ) {
-      // order is populated with the cart items and a date-time stamp
+      // order is populated with the cart items defined in the oninit and a date-time stamp
       let order = {
         items: this.cart.items,
         datePlaced: new Date().getTime(),
